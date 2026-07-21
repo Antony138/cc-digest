@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+ <channel>
+  <title>Claude Code Digest — 中文更新摘要</title>
+  <link>https://antony138.github.io/cc-digest/</link>
+  <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
+  <language>zh-cn</language>
+  <lastBuildDate>Tue, 21 Jul 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-07-21：2.1.215 → 2.1.216（2 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-07-21</guid>
+   <pubDate>Tue, 21 Jul 2026 07:00:00 +0900</pubDate>
+   <description>本期最值得注意：自 2.1.215 起 Claude 不再自动运行 `/verify` 和 `/code-review`，想要审查需手动触发；2.1.216 则根治了长会话中随轮次二次方增长的卡顿，并对权限与沙箱做了多处安全加固。
+亮点：`/verify` 和 `/code-review` 不再自动运行；长会话二次方级卡顿被根治；权限与文件系统多处安全加固；新增 `sandbox.filesystem.disabled` 设置；auto mode 与后台会话一批高频修复</description>
+  </item>
+  <item>
+   <title>2026-07-18：2.1.212 → 2.1.214（2 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-07-18</guid>
+   <pubDate>Sat, 18 Jul 2026 07:00:00 +0900</pubDate>
+   <description>本期以安全加固为主线：2.1.214 集中修补了一批 Bash/PowerShell 权限检查绕过，并收紧了单段 `dir/**` 权限规则与 hook 条件的匹配范围（用到的需要检查配置）；2.1.212 把 `/fork` 重做成独立后台会话，并给 WebSearch 和子代理加上防失控上限。
+亮点：单段 `dir/**` 规则匹配范围收紧；一批权限检查绕过被集中修补；`/fork` 重做：分叉成独立后台会话；WebSearch 与子代理加上防失控上限；慢 MCP 调用自动转后台；plan 模式不再漏放行文件修改命令</description>
+  </item>
+  <item>
+   <title>2026-07-15：2.1.208 → 2.1.211（4 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-07-15</guid>
+   <pubDate>Wed, 15 Jul 2026 07:00:00 +0900</pubDate>
+   <description>本期 4 个版本主打权限体系加固与长会话性能大修：2.1.208 修掉一批内存泄漏、把编辑密集会话的 transcript 体积最多缩小 79 倍，2.1.210 起 `Write(path)` 等权限规则写法需改为 `Edit(path)`，另外网关用户此前被 prompt caching 回归多收的 token 账单也修好了。
+亮点：权限规则写法调整：`Write(path)` 等启动时会告警；一批安全加固：worktree 隔离、提示注入、`rm -rf` 兜底；长会话性能与内存大修；屏幕阅读器模式上线，vim 党喜提 `jj` 退出插入模式；网关 prompt caching 回归修复：不再重复计费尾部 system 块；worktree 里的「总是允许」终于能记住了</description>
+  </item>
+  <item>
+   <title>2026-07-11：2.1.204 → 2.1.207（4 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-07-11</guid>
+   <pubDate>Sat, 11 Jul 2026 07:00:00 +0900</pubDate>
+   <description>本期覆盖 2.1.204–2.1.207：auto mode 在 Bedrock/Vertex/Foundry 上默认开启且 `autoMode` 配置不再从 `.claude/settings.local.json` 读取，插件 `${user_config.*}` shell 注入修复引入破坏性变更，同时长响应流式输出卡顿这一老毛病终于修复。
+亮点：插件配置收紧：shell 形式的 `${user_config.*}` 被禁用；auto mode 策略调整：企业平台默认开启，配置位置迁移；长响应流式输出不再卡死终端；`/doctor` 升级为全面体检工具；auto mode 多项安全加固；MCP 稳定性修复：超时配置生效、OAuth 不再频繁掉登录</description>
+  </item>
+ </channel>
+</rss>

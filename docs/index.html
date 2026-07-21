@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Claude Code Digest — 中文更新摘要</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="每 2-3 天，AI 帮你读 Claude Code 更新——官方 changelog 的中文摘要。">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="alternate" type="application/rss+xml" title="Claude Code Digest" href="rss.xml">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="CC Digest">
+<meta name="theme-color" content="#F4F7F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#101413" media="(prefers-color-scheme: dark)">
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #F4F7F5;
+    --card: #FFFFFF;
+    --ink: #1C2422;
+    --muted: #68746F;
+    --line: #E2E8E4;
+    --accent: #0F766E;
+    --accent-ink: #0B5D57;
+    --wash: #E7F1EF;
+    --shadow: 0 1px 2px rgba(28,36,34,.05);
+    --act-bg: #FFF7E0;
+    --act-line: #EEDCA4;
+    --act-ink: #6D5310;
+    --danger: #DC2626;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --bg: #101413;
+      --card: #191F1D;
+      --ink: #E7ECEA;
+      --muted: #97A39D;
+      --line: #2A332F;
+      --accent: #3FBFAF;
+      --accent-ink: #5ED4C5;
+      --wash: #1B2E2A;
+      --shadow: none;
+      --act-bg: #31280F;
+      --act-line: #4A3D18;
+      --act-ink: #E8CF7F;
+      --danger: #EF4444;
+    }
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "PingFang SC", "Hiragino Sans", sans-serif;
+    line-height: 1.6;
+  }
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: max(24px, env(safe-area-inset-top)) 16px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  header { padding: 0 4px 2px; }
+  h1 {
+    margin: 0 0 2px;
+    font-size: 23px; font-weight: 800; letter-spacing: -.01em; text-wrap: balance;
+  }
+  h1 .prompt {
+    color: var(--accent);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-weight: 700; margin-right: 2px;
+  }
+  .sub { margin: 0; font-size: 13.5px; color: var(--muted); }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .card + .card { margin-top: 12px; }
+
+  .head {
+    display: flex; align-items: flex-start; gap: 12px;
+    width: 100%; min-height: 48px; text-align: left;
+    background: none; border: 0; padding: 14px 16px; margin: 0;
+    color: inherit; font: inherit; cursor: pointer;
+  }
+  .head:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .headTxt { flex: 1; min-width: 0; }
+  .meta {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px;
+    font-size: 12.5px;
+  }
+  .date { color: var(--muted); font-weight: 600; }
+  .range {
+    color: var(--accent-ink); font-weight: 700; font-size: 12px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+    background: var(--wash); border-radius: 5px; padding: 1px 7px;
+  }
+  .tldr { display: block; margin: 7px 0 0; font-size: 15px; line-height: 1.65; }
+  .chev { flex: 0 0 auto; margin-top: 6px; color: var(--muted); transition: transform .2s ease; }
+  .chev svg { display: block; }
+  .card.open .chev { transform: rotate(180deg); }
+  @media (prefers-reduced-motion: reduce) { .chev { transition: none; } }
+
+  .hls { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .hl { padding: 12px 16px 13px; }
+  .hl + .hl { border-top: 1px solid var(--line); }
+  .hl.break { box-shadow: inset 3px 0 0 var(--danger); }
+  .hlHead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px 8px; }
+  .hlTitle { font-weight: 700; font-size: 14.5px; }
+  .hlVer {
+    margin-left: auto; color: var(--muted);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11px; font-weight: 500;
+  }
+  .detail { margin: 5px 0 0; font-size: 13.5px; color: var(--muted); line-height: 1.7; }
+
+  .badge {
+    flex: 0 0 auto;
+    font-size: 11px; font-weight: 700; letter-spacing: .04em; line-height: 1.7;
+    padding: 1px 8px; border-radius: 5px; white-space: nowrap;
+  }
+  .cat-new     { color: #15803D; background: #DCFCE7; }
+  .cat-improve { color: #1D4ED8; background: #DBEAFE; }
+  .cat-fix     { color: #7E22CE; background: #F3E8FF; }
+  .cat-sec     { color: #B45309; background: #FEF3C7; }
+  .cat-break   { color: #FFFFFF; background: #DC2626; }
+  .cat-other   { color: var(--muted); background: var(--wash); }
+  @media (prefers-color-scheme: dark) {
+    .cat-new     { color: #86EFAC; background: #122E1C; }
+    .cat-improve { color: #93C5FD; background: #152741; }
+    .cat-fix     { color: #D8B4FE; background: #2C1A42; }
+    .cat-sec     { color: #FCD34D; background: #382A0D; }
+    .cat-break   { color: #FFFFFF; background: #C22222; }
+  }
+
+  .action {
+    display: flex; align-items: baseline; gap: 8px;
+    margin-top: 9px; padding: 9px 12px;
+    background: var(--act-bg); border: 1px solid var(--act-line);
+    border-radius: 8px;
+    font-size: 13.5px; color: var(--act-ink); line-height: 1.65;
+  }
+  .actTag { flex: 0 0 auto; font-size: 12px; font-weight: 800; letter-spacing: .04em; }
+
+  .orig { border-top: 1px solid var(--line); }
+  .orig summary {
+    list-style: none; cursor: pointer;
+    display: flex; align-items: center; gap: 8px;
+    min-height: 44px; padding: 10px 16px;
+    font-size: 13px; font-weight: 700; color: var(--muted);
+  }
+  .orig summary::-webkit-details-marker { display: none; }
+  .orig summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .sumHint { font-weight: 400; font-size: 12px; }
+  .orig summary::after { content: "▾"; margin-left: auto; font-size: 12px; }
+  .orig[open] summary::after { content: "▴"; }
+  .ver { padding: 2px 16px 12px; }
+  .verHead {
+    display: flex; align-items: baseline; gap: 8px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13px; font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .verHead span { color: var(--muted); font-weight: 400; font-size: 12px; }
+  .bullets { margin: 5px 0 0; padding-left: 18px; font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+  .bullets li + li { margin-top: 4px; }
+
+  .state { padding: 36px 16px; text-align: center; color: var(--muted); font-size: 14px; }
+  .state.small { padding: 18px 16px; }
+  .retry {
+    display: block; margin: 12px auto 0;
+    min-height: 40px; padding: 8px 24px; border-radius: 20px;
+    border: 1px solid var(--line); background: var(--card); color: var(--accent-ink);
+    font: 600 13px/1 system-ui, sans-serif; cursor: pointer;
+  }
+  .retry:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  footer {
+    padding: 10px 22px calc(18px + env(safe-area-inset-bottom));
+    font-size: 12px; color: var(--muted); text-align: center; text-wrap: balance;
+  }
+  footer a { color: var(--accent-ink); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1><span class="prompt">❯</span> Claude Code Digest</h1>
+    <p class="sub">每 2-3 天，AI 帮你读 Claude Code 更新</p>
+  </header>
+
+  <main id="main"><div class="state">加载中…</div></main>
+
+  <footer>云端 agent 每日检查官方 changelog · <a href="rss.xml">RSS 订阅</a> · 已缓存的摘要离线可读</footer>
+</div>
+
+<script>
+  const CHEV = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+  const WD = ['周日','周一','周二','周三','周四','周五','周六'];
+  const CAT = {
+    '新功能': 'cat-new',
+    '改进': 'cat-improve',
+    '修复': 'cat-fix',
+    '破坏性变更': 'cat-break',
+    '安全': 'cat-sec',
+  };
+
+  const dayCache = new Map();
+  const $main = document.getElementById('main');
+
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+
+  function fmtDate(d) {
+    const [y, m, dd] = d.split('-').map(Number);
+    return `${y}年${m}月${dd}日 · ${WD[new Date(y, m - 1, dd).getDay()]}`;
+  }
+
+  function rangeText(d) {
+    const span = d.count > 1 ? `${esc(d.from)} → ${esc(d.to)}` : esc(d.to);
+    return `${span} · ${d.count} 个版本`;
+  }
+
+  async function fetchDay(date) {
+    if (dayCache.has(date)) return dayCache.get(date);
+    const res = await fetch(`./data/${date}.json`);
+    if (!res.ok) throw new Error(date);
+    const j = await res.json();
+    dayCache.set(date, j);
+    return j;
+  }
+
+  function cardHTML(d) {
+    return `<article class="card" data-date="${esc(d.date)}">
+      <button class="head" aria-expanded="false">
+        <span class="headTxt">
+          <span class="meta"><span class="date">${fmtDate(d.date)}</span><span class="range">${rangeText(d)}</span></span>
+          <span class="tldr">${esc(d.tldr)}</span>
+        </span>
+        <span class="chev" aria-hidden="true">${CHEV}</span>
+      </button>
+      <div class="body" hidden></div>
+    </article>`;
+  }
+
+  function highlightHTML(h) {
+    const cls = CAT[h.category] || 'cat-other';
+    const brk = h.category === '破坏性变更' ? ' break' : '';
+    const vers = Array.isArray(h.versions) && h.versions.length
+      ? `<span class="hlVer">${h.versions.map(esc).join(' · ')}</span>` : '';
+    const act = h.action != null && String(h.action).trim() !== ''
+      ? `<div class="action"><span class="actTag">需要行动</span><span>${esc(h.action)}</span></div>` : '';
+    return `<li class="hl${brk}">
+      <div class="hlHead"><span class="badge ${cls}">${esc(h.category)}</span><span class="hlTitle">${esc(h.title)}</span>${vers}</div>
+      <p class="detail">${esc(h.detail)}</p>
+      ${act}
+    </li>`;
+  }
+
+  function bodyHTML(day) {
+    const hls = (day.highlights || []).map(highlightHTML).join('');
+    const versions = day.versions || [];
+    const vers = versions.map((v) => `
+      <section class="ver">
+        <div class="verHead"><b>v${esc(v.version)}</b><span>${esc(v.date || '')}</span></div>
+        <ul class="bullets">${(v.bullets || []).map((b) => `<li>${esc(b)}</li>`).join('')}</ul>
+      </section>`).join('');
+    return `<ul class="hls">${hls}</ul>
+      <details class="orig" lang="en">
+        <summary><span lang="zh-CN">英文原文</span><span class="sumHint" lang="zh-CN">${versions.length} 个版本</span></summary>
+        ${vers}
+      </details>`;
+  }
+
+  async function toggle(card) {
+    const head = card.querySelector('.head');
+    const body = card.querySelector('.body');
+    if (card.classList.contains('open')) {
+      card.classList.remove('open');
+      body.hidden = true;
+      head.setAttribute('aria-expanded', 'false');
+      return;
+    }
+    card.classList.add('open');
+    body.hidden = false;
+    head.setAttribute('aria-expanded', 'true');
+    if (body.dataset.loaded) return;
+    body.innerHTML = '<div class="state small">加载中…</div>';
+    try {
+      const day = await fetchDay(card.dataset.date);
+      body.innerHTML = bodyHTML(day);
+      body.dataset.loaded = '1';
+    } catch {
+      body.innerHTML = '<div class="state small">这一期加载失败 — 可能处于离线状态，请联网后重试</div>';
+    }
+  }
+
+  document.addEventListener('click', (e) => {
+    const head = e.target.closest('.head');
+    if (head) { toggle(head.closest('.card')); return; }
+    if (e.target.closest('.retry')) init();
+  });
+
+  async function init() {
+    $main.innerHTML = '<div class="state">加载中…</div>';
+    try {
+      const res = await fetch('./data/index.json', { cache: 'no-cache' });
+      if (!res.ok) throw new Error();
+      const idx = await res.json();
+      const digests = [...(idx.digests || [])].sort((a, b) => b.date.localeCompare(a.date));
+      if (!digests.length) {
+        $main.innerHTML = '<div class="state">还没有发布任何摘要 — 第一期正在路上</div>';
+        return;
+      }
+      $main.innerHTML = digests.map(cardHTML).join('');
+    } catch {
+      $main.innerHTML = '<div class="state">加载失败 — 离线时仅能查看已缓存内容，请检查网络后重试<button class="retry">重试</button></div>';
+    }
+  }
+  init();
+
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+</script>
+</body>
+</html>
