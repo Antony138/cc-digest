@@ -203,7 +203,7 @@
 
   <main id="main"><div class="state">加载中…</div></main>
 
-  <footer>云端 agent 每日检查官方 changelog · <a href="rss.xml">RSS 订阅</a> · 已缓存的摘要离线可读</footer>
+  <footer>云端 agent 每日检查官方 changelog · <a href="rss.xml">RSS 订阅</a> · 已缓存的摘要离线可读<span id="visits"></span></footer>
 </div>
 
 <script>
@@ -333,6 +333,18 @@
   init();
 
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+
+  // 访问统计：自建 Cloudflare Worker（counter/ 目录），不采集 IP、不种 cookie；失败时静默
+  (() => {
+    let nv = 0;
+    try {
+      if (!localStorage.getItem('ccd_visited')) { nv = 1; localStorage.setItem('ccd_visited', '1'); }
+    } catch {}
+    fetch('https://gh-visits.antony138.workers.dev/hit', { method: 'POST', body: JSON.stringify({ site: 'cc-digest', nv }) })
+      .then(r => r.json())
+      .then(d => { if (d?.pv) document.getElementById('visits').textContent = ` · 访问 ${d.pv} · 访客 ${d.uv}`; })
+      .catch(() => {});
+  })();
 </script>
 </body>
 </html>

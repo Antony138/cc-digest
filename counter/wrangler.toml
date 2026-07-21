@@ -1,0 +1,8 @@
+name = "gh-visits"
+main = "src/index.js"
+compatibility_date = "2026-07-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "gh-visits"
+database_id = "d2dd3ef2-d74d-48c3-969f-5f9e11d008eb"

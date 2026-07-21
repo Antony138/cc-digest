@@ -1,5 +1,5 @@
 /* cc-digest service worker — 页面/数据 network-first（保证 push 即生效），图标等静态资源 cache-first */
-const CACHE = 'cc-digest-v1';
+const CACHE = 'cc-digest-v2';
 const SHELL = [
   '.',
   'index.html',
