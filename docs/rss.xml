@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Tue, 21 Jul 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Thu, 23 Jul 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-07-23：2.1.217 → 2.1.218（2 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-07-23</guid>
+   <pubDate>Thu, 23 Jul 2026 07:00:00 +0900</pubDate>
+   <description>本期两个版本合计带来三处默认行为变更：子代理并发和嵌套派生现在有硬性上限，`/deep-research` 和 `context: fork` 技能都从「Claude 自行判断触发」改成手动/后台默认，依赖这些自动行为的日常习惯需要相应调整；另外修好了一处 MCP 长会话内存泄漏和两处越权风险。
+亮点：子代理并发和嵌套派生新增默认上限；`/deep-research` 不再由 Claude 自行触发；`context: fork` 技能默认改为后台运行；`/code-review` 迁移为后台子代理执行；MCP 工具输出截断后仍整份留在内存里的泄漏修复；两处越权风险修复：符号链接工作目录、非受信文件夹里的 agent hooks</description>
+  </item>
   <item>
    <title>2026-07-21：2.1.215 → 2.1.216（2 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
