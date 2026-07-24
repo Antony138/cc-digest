@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Thu, 23 Jul 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Sat, 25 Jul 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-07-25：2.1.219 → 2.1.219（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-07-25</guid>
+   <pubDate>Sat, 25 Jul 2026 07:00:00 +0900</pubDate>
+   <description>本期最大的事是 Claude Opus 5 上线并成为默认 Opus 模型（100 万 token 上下文，fast mode 定价 $10/$50 每 Mtok）；同时子代理嵌套深度默认从 1 层放宽回 3 层，等于悄悄撤销了上期收紧的安全限制，重度用多代理工作流的人需要留意。
+亮点：Claude Opus 5 发布，成为默认 Opus 模型；子代理嵌套深度默认从 1 层放宽回 3 层；Fast mode 移除 Opus 4.7；Dynamic workflow 默认收紧到「中等规模」（建议少于 15 个 agent）；新增 `sandbox.network.strictAllowlist` 设置；修复 `claude -p` 在流式请求中途报错时丢弃已生成内容</description>
+  </item>
   <item>
    <title>2026-07-23：2.1.217 → 2.1.218（2 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
