@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sat, 25 Jul 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Mon, 27 Jul 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-07-27：2.1.220 → 2.1.220（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-07-27</guid>
+   <pubDate>Mon, 27 Jul 2026 07:00:00 +0900</pubDate>
+   <description>2.1.220 是一次纯维护性发布，官方 changelog 只给了一句“修复与稳定性改进”，没有披露具体改动，也没有新功能、破坏性变更或需要调整的配置，日常升级即可。
+亮点：2.1.220：官方仅注明“修复与稳定性改进”，未列出具体条目；紧接上期 Opus 5 大版本之后的收尾式小版本；无破坏性变更、无需改动任何配置</description>
+  </item>
   <item>
    <title>2026-07-25：2.1.219 → 2.1.219（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
