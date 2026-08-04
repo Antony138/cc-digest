@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Mon, 27 Jul 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Wed, 05 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-08-05：2.1.221 → 2.1.221（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-05</guid>
+   <pubDate>Wed, 05 Aug 2026 07:00:00 +0900</pubDate>
+   <description>本期安全修复是重点：修好了 zsh 正则条件和 Windows 带引号路径这两处权限检查绕过；同时新增 Linux/WSL 沙箱凭据文件 mask 模式和 VSCode Focus view，并修复了 `-p` 打印模式下 MCP 工具调用被当成文本输出的问题。
+亮点：两处 Bash/PowerShell 权限检查绕过被修复；沙箱凭据文件新增 `mode: "mask"`（Linux/WSL）；VSCode 扩展新增 Focus view；修复 `-p` 打印模式下 `--mcp-config` 的 MCP 工具首轮不可用；后台会话默认行为调整：自动提交推送、按需开 draft PR；修复 `CLAUDE_CODE_RESUME_INTERRUPTED_TURN=0` 不生效</description>
+  </item>
   <item>
    <title>2026-07-27：2.1.220 → 2.1.220（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>

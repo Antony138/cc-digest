@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.220",
- "last_digest_date": "2026-07-27",
+ "last_version": "2.1.221",
+ "last_digest_date": "2026-08-05",
  "digests": [
+  {
+   "date": "2026-08-05",
+   "from": "2.1.221",
+   "to": "2.1.221",
+   "count": 1,
+   "tldr": "本期安全修复是重点：修好了 zsh 正则条件和 Windows 带引号路径这两处权限检查绕过；同时新增 Linux/WSL 沙箱凭据文件 mask 模式和 VSCode Focus view，并修复了 `-p` 打印模式下 MCP 工具调用被当成文本输出的问题。"
+  },
   {
    "date": "2026-07-27",
    "from": "2.1.220",
