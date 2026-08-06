@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Wed, 05 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Fri, 07 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-08-07：2.1.222 → 2.1.223（2 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-07</guid>
+   <pubDate>Fri, 07 Aug 2026 07:00:00 +0900</pubDate>
+   <description>本期是一次密集的安全加固：worktree 隔离越权执行 git、权限检查被特殊字符或动态 import() 绕过等多个漏洞被修复；同时 ultraplan 功能被移除，Remote Control 自动启动方式和上下文窗口强制策略也发生了需要留意的行为变化。
+亮点：一批权限/隔离绕过漏洞集中修复；ultraplan 功能被移除；Remote Control 自动启动改为只能在用户级 `/config` 打开；1M 上下文与未知模型 ID 的上下文窗口强制策略变化；`/review` 变成 `/code-review` 的别名，且会记住上次的 effort 等级；marketplace 白名单/黑名单支持 owner 通配符，新增 `/teleport` 提示</description>
+  </item>
   <item>
    <title>2026-08-05：2.1.221 → 2.1.221（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>

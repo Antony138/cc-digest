@@ -1,0 +1,120 @@
+{
+ "date": "2026-08-07",
+ "version_range": {
+  "from": "2.1.222",
+  "to": "2.1.223",
+  "count": 2
+ },
+ "tldr": "本期是一次密集的安全加固：worktree 隔离越权执行 git、权限检查被特殊字符或动态 import() 绕过等多个漏洞被修复；同时 ultraplan 功能被移除，Remote Control 自动启动方式和上下文窗口强制策略也发生了需要留意的行为变化。",
+ "highlights": [
+  {
+   "title": "一批权限/隔离绕过漏洞集中修复",
+   "category": "安全",
+   "detail": "worktree 隔离的会话及其子代理此前能对主 checkout 执行破坏性 git 操作，现在文件编辑和 Bash 在所有会话类型下都会被正确隔离；后台代理任务（摘要、压缩、改名）里 PreToolUse 的 auto-allow hook 会绕过工具限制的问题也被修复。此外还修好了用制表符/不可见 Unicode 字符填充命令、或用精心构造的命令来隐藏部分内容以绕过权限审批弹窗的问题，以及 workflow 脚本能用动态 `import()` 逃出沙箱、agent 定义里 `bypassPermissions` 会无视组织级 bypass 禁用策略这两处权限缺口。密集使用后台代理、worktree 隔离或自定义 agent 权限配置的人升级后会更安全，无需额外操作。",
+   "action": null,
+   "versions": [
+    "2.1.222",
+    "2.1.223"
+   ]
+  },
+  {
+   "title": "ultraplan 功能被移除",
+   "category": "破坏性变更",
+   "detail": "本期直接砍掉了 ultraplan 功能。如果你的工作流或脚本里还在用它，升级后会失效，需要改用常规的 plan mode 或其他规划方式。",
+   "action": "检查自己的脚本、别名或习惯用法里是否还依赖 ultraplan，改为其他规划手段。",
+   "versions": [
+    "2.1.222"
+   ]
+  },
+  {
+   "title": "Remote Control 自动启动改为只能在用户级 `/config` 打开",
+   "category": "破坏性变更",
+   "detail": "以前仓库内的 `.claude/settings.json` 或 `.claude/settings.local.json` 可以直接把 Remote Control 自动开启打开；现在仓库级配置只能用来关闭它，不能再用来打开，要开启必须在 `/config` 里以用户级设置的方式手动开。",
+   "action": "如果你之前靠仓库内 settings 文件让 Remote Control 自动启动，升级后需要改到 `/config` 里用户级重新打开。",
+   "versions": [
+    "2.1.222"
+   ]
+  },
+  {
+   "title": "1M 上下文与未知模型 ID 的上下文窗口强制策略变化",
+   "category": "改进",
+   "detail": "`CLAUDE_CODE_DISABLE_1M_CONTEXT` 现在对所有原生支持 1M 窗口的 Claude 模型都通过 auto-compaction 压到 200K，而不只是针对一份固定模型列表；如果 auto-compaction 没能把会话稳定控制在 200K 以内，启动时会给出警告。同时 auto-compact 也开始对不认识的模型 ID 强制套用一个假定的上下文窗口上限，防止会话无限增长；用自定义 `ANTHROPIC_BASE_URL` 网关或非官方模型 ID 的人如果想恢复旧行为，可以设置 `CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT=1`。",
+   "action": "用自定义网关或非标准模型 ID 跑 Claude Code 的人，留意新的自动压缩行为，需要时设置 `CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT=1` 恢复旧行为。",
+   "versions": [
+    "2.1.223"
+   ]
+  },
+  {
+   "title": "`/review` 变成 `/code-review` 的别名，且会记住上次的 effort 等级",
+   "category": "改进",
+   "detail": "`/review` 现在就是 `/code-review`，可以直接审当前 diff 或用 `/code-review <level> <pr#>` 审某个 PR，`/code-review ultra` 会触发云端深度审查。不带 effort 等级直接调用时，会复用你上一次输入的等级，想换等级就显式打 `/code-review high` 这样的命令。",
+   "action": null,
+   "versions": [
+    "2.1.223"
+   ]
+  },
+  {
+   "title": "marketplace 白名单/黑名单支持 owner 通配符，新增 `/teleport` 提示",
+   "category": "新功能",
+   "detail": "`strictKnownMarketplaces` 和 `blockedMarketplaces` 这两个受管设置现在支持 `\"owner/*\"` 写法，可以一次性放行或屏蔽某个 GitHub 组织下的所有 marketplace 仓库，团队管理插件来源会方便不少。另外云端会话里新增了 `/teleport` 提示，告诉你可以用 `claude --teleport <session id>` 把云端会话接回本地继续跑。",
+   "action": null,
+   "versions": [
+    "2.1.223"
+   ]
+  }
+ ],
+ "versions": [
+  {
+   "version": "2.1.223",
+   "date": "2026-08-06",
+   "bullets": [
+    "Added owner wildcard entries (`\"owner/*\"`) to the `strictKnownMarketplaces` and `blockedMarketplaces` managed settings for allowing or blocking all marketplace repos under a GitHub org",
+    "Added a warning when workflow agents, forked skills, slash commands, or resumed background agents' requested subagent model is restricted and the parent model runs instead",
+    "Added a `/teleport` hint in cloud sessions showing how to continue locally with `claude --teleport <session id>`",
+    "Fixed a Bash permission bypass where a crafted command could hide parts of itself from permission checks",
+    "Fixed permission prompts so commands padded with tabs or invisible Unicode can no longer hide part of the command from the approval dialog",
+    "Fixed workflow scripts being able to use dynamic `import()` to run code outside the workflow sandbox",
+    "Fixed a permission gap where an agent definition's `bypassPermissions` mode ignored the org bypass-permissions disable policy",
+    "Fixed resuming a session after a mid-session `/cd` coming back empty",
+    "Fixed gateway model discovery hiding Claude models registered under provider-prefixed IDs such as `vertex_ai/claude-*` or `bedrock/anthropic.claude-*`",
+    "Fixed `modelOverrides` keys that aren't Anthropic model IDs being treated as the session's canonical model ID; unknown keys are now ignored as documented",
+    "Fixed managed settings: server-delivered settings no longer disable the env block of a machine-local `managed-settings.json` or MDM profile; admin env now merges per key",
+    "Fixed sandboxed commands failing to start on Linux when `sandbox.filesystem.denyWrite` covers the working directory",
+    "Fixed forked background agents getting stuck \"already resuming\" for the rest of the session when rebuilding the fork's parent prompt failed during resume",
+    "Fixed a resumed session failing every turn, or leaving the interactive app on an unresponsive error screen, when its history held a malformed diagnostics attachment",
+    "Fixed a rare hang when parsing unusual `git push` output",
+    "Changed `CLAUDE_CODE_DISABLE_1M_CONTEXT` to hold every Claude model with a native 1M window to 200K via auto-compaction, not just a fixed list; a startup warning now appears when auto-compaction isn't holding the session to 200K",
+    "Changed auto-compact to keep sessions on unrecognized model IDs within the assumed context window instead of letting them grow past it; set `CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT=1` to restore the previous behavior",
+    "Changed `/review` to be an alias of `/code-review`, which reviews the current diff or a PR (`/code-review <level> <pr#>`); use `/code-review ultra` for a deep cloud review",
+    "Changed `/code-review` with no effort level to reuse the level you typed last; type a level like `/code-review high` to change it"
+   ]
+  },
+  {
+   "version": "2.1.222",
+   "date": "2026-08-04",
+   "bullets": [
+    "Fixed worktree-isolated sessions and their subagents being able to run destructive git commands against the main checkout; isolation now applies to file edits and Bash in every session type",
+    "Fixed PreToolUse auto-allow hooks bypassing tool restrictions in background agent tasks (summaries, compaction, renames)",
+    "Fixed `/usage-credits` on Team and Enterprise showing \"you've already sent a usage credit request\" for members whose earlier request was dismissed, blocking them from sending a new one",
+    "Fixed the startup connectivity check hanging and then failing behind an HTTPS proxy; it now uses the same proxy-aware transport as API requests and times out with a clear message",
+    "Fixed \"Connection closed mid-response\" errors being reported on responses that had actually completed",
+    "Fixed `/usage` overattributing usage to MCP servers: a server's share now reflects only the requests that actually consumed its tool results, instead of every turn after any call to it",
+    "Fixed sessions not linking to pull requests created after the branch was pushed, including through the GitHub REST API",
+    "Fixed org-restricted `model: opus`-style subagent and teammate family aliases dropping to the parent model instead of stepping down to the newest org-allowed model in the family",
+    "Fixed stream idle timeout firing on custom `ANTHROPIC_BASE_URL` gateways despite server keep-alive pings arriving on the wire",
+    "Fixed claude.ai connectors being falsely marked as needing authorization when the session token is invalid — they now show a `/login` hint instead",
+    "Fixed tool errors not being displayed for tools no longer available locally, for example after an MCP server is removed",
+    "Fixed `SendMessage` rejecting a long summary — it now truncates instead, so sends no longer fail on a character limit",
+    "Fixed the spinner's effort label in a subagent's transcript view showing the session's effort level instead of the subagent's own `effort:` setting",
+    "Fixed rare crashes when a file watcher hit a filesystem error or during file-watcher teardown",
+    "Fixed screen readers re-reading the whole input line on every backspace in `--ax-screen-reader` mode — end-of-line deletions now echo just the deleted characters",
+    "Fixed host model-selection keys not taking precedence over a stale on-disk `managed-settings.json` when `CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST` is set",
+    "Improved auto mode safety: messages sent to other agent sessions via `SendMessage` are now evaluated by the permission classifier before dispatch",
+    "Improved the refusal when Claude tries to invoke a skill with `disable-model-invocation`: Claude is now told to ask you to run the skill instead of replicating its workflow",
+    "Improved the `/diff` view, the Remote Control workspace diff, and file-edit diffs in Claude Code on the web sessions to use raw git blob content, ignoring workspace-configured diff drivers and textconv",
+    "Changed Remote Control auto-start so repo-local settings (`.claude/settings.json` or `.claude/settings.local.json`) can no longer turn it on (they can still turn it off); enable it at user scope via `/config`",
+    "Removed ultraplan feature"
+   ]
+  }
+ ]
+}

@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.221",
- "last_digest_date": "2026-08-05",
+ "last_version": "2.1.223",
+ "last_digest_date": "2026-08-07",
  "digests": [
+  {
+   "date": "2026-08-07",
+   "from": "2.1.222",
+   "to": "2.1.223",
+   "count": 2,
+   "tldr": "本期是一次密集的安全加固：worktree 隔离越权执行 git、权限检查被特殊字符或动态 import() 绕过等多个漏洞被修复；同时 ultraplan 功能被移除，Remote Control 自动启动方式和上下文窗口强制策略也发生了需要留意的行为变化。"
+  },
   {
    "date": "2026-08-05",
    "from": "2.1.221",
