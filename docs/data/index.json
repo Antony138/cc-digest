@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.223",
- "last_digest_date": "2026-08-07",
+ "last_version": "2.1.226",
+ "last_digest_date": "2026-08-09",
  "digests": [
+  {
+   "date": "2026-08-09",
+   "from": "2.1.224",
+   "to": "2.1.226",
+   "count": 3,
+   "tldr": "本期（2.1.224→2.1.226）带来跨会话 SendMessage 与自托管环境两个大功能；新增的 bypassPermissions 会话消息审批默认值、反馈问卷 transcript 上传范围变化值得留意；另有多项沙箱隔离、Remote Control 和 headless 场景的安全与稳定性修复。"
+  },
   {
    "date": "2026-08-07",
    "from": "2.1.222",

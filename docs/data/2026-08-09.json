@@ -1,0 +1,134 @@
+{
+ "date": "2026-08-09",
+ "version_range": {
+  "from": "2.1.224",
+  "to": "2.1.226",
+  "count": 3
+ },
+ "tldr": "本期（2.1.224→2.1.226）带来跨会话 SendMessage 与自托管环境两个大功能；新增的 bypassPermissions 会话消息审批默认值、反馈问卷 transcript 上传范围变化值得留意；另有多项沙箱隔离、Remote Control 和 headless 场景的安全与稳定性修复。",
+ "highlights": [
+  {
+   "title": "跨会话 SendMessage 和自托管环境同时上线",
+   "category": "新功能",
+   "detail": "2.1.224 一次带来两个大功能：`claude self-hosted-runner` 可以把自己的机器或容器变成 Claude Code Web、移动端、桌面端会话的运行环境（Team/Enterprise 计划）；同时 macOS 和 Linux 上的 Claude Code 会话之间现在能直接用 `SendMessage` 互相发消息，`ListAgents` 可以发现你名下所有会话，包括其他机器上的 Remote Control 会话。2.1.225 进一步把这个能力打通：`SendMessage` 现在可以按名字主动向 Remote Control 会话发起对话，不用再等对方先发消息过来。经常同时开多个终端或多台机器跑 agent 的人会明显受益。",
+   "action": null,
+   "versions": [
+    "2.1.224",
+    "2.1.225"
+   ]
+  },
+  {
+   "title": "跨会话消息新增审批/过期设置，bypassPermissions 会话默认更谨慎",
+   "category": "破坏性变更",
+   "detail": "新增 `crossSessionInbound` 和 `dialogExpiry` 设置：发给一个以 bypassPermissions（跳过权限确认）方式运行的会话的跨会话消息，现在默认会被挂起等待你手动批准，发给普通会话的消息则仍然自动送达。如果有自动化流程依赖给 bypass 权限的后台会话直接推送消息、不经人工确认，升级后这一环会被卡住。",
+   "action": "检查是否有脚本或 routine 会向 bypassPermissions 会话发送跨会话消息，需要的话用 `crossSessionInbound`/`dialogExpiry` 调整回自动送达，或设置合适的过期时间。",
+   "versions": [
+    "2.1.224"
+   ]
+  },
+  {
+   "title": "两处沙箱/会话隔离安全修复",
+   "category": "安全",
+   "detail": "带尾随斜杠写的沙箱拒绝规则（例如 `denyRead: \"~/.aws/\"`）此前在 Linux 和 macOS 上会被静默绕过，现已修复；另外超过 200 字符的超长项目路径此前可能因共享的截断前缀解析到另一个项目的会话目录，导致会话列表、改名、fork、删除和 `/resume` 跨项目串台，现在也已修复。用长路径项目或写过沙箱 deny 规则的人升级后直接受益，无需额外操作。",
+   "action": null,
+   "versions": [
+    "2.1.224"
+   ]
+  },
+  {
+   "title": "反馈问卷分享 transcript 时会额外带上 system prompt 和 CLAUDE.md",
+   "category": "改进",
+   "detail": "在反馈问卷里分享 transcript 时，经你同意后现在还会一并上传最后一次请求的模型设置：包含 `CLAUDE.md` 指令的 system prompt、工具定义和模型参数（密钥仍会像之前一样被脱敏，分享内容过大时这些字段会被优先丢弃）。如果 `CLAUDE.md` 里写了不想外泄的内部信息，提交反馈前值得留意一下。",
+   "action": "分享反馈 transcript 前，确认自己的 `CLAUDE.md` 和工具配置里没有不方便外传的内容。",
+   "versions": [
+    "2.1.224"
+   ]
+  },
+  {
+   "title": "Remote Control 一揽子稳定性修复",
+   "category": "修复",
+   "detail": "这期修了不少 Remote Control 的老毛病：超大会话压缩后 resume 时对话历史会断掉、冷启动时偶发 \"Remote credentials fetch failed\"、`/clear` 等无输出命令后显示空白 \"(no content)\"、会话过期重建后会把本地历史重复上传等问题都已解决；连接失败现在会给持久的失败提示和重连入口，而不是一闪而过的 8 秒 toast。经常用手机或网页端遥控本地会话的人会感觉明显更稳。",
+   "action": null,
+   "versions": [
+    "2.1.224",
+    "2.1.225"
+   ]
+  },
+  {
+   "title": "headless/CI 场景的几个关键修复",
+   "category": "修复",
+   "detail": "长期持有 `CLAUDE_CODE_OAUTH_TOKEN` 的 headless 会话，此前可能被一次性的 401 错误换成登录态的短期 token，导致后续一直失败直到重启；macOS 上 MCP OAuth 服务器也可能在 keychain 读取超时后陷入一阵 401、看起来像从未认证过。这两个问题都已修复，`claude self-hosted-runner` 在 `--base-dir` 无法创建或写入时现在也会在启动时就报错退出，而不是先注册成功再让每个会话都失败。",
+   "action": null,
+   "versions": [
+    "2.1.225",
+    "2.1.224"
+   ]
+  }
+ ],
+ "versions": [
+  {
+   "version": "2.1.226",
+   "date": "2026-08-08",
+   "bullets": [
+    "Bug fixes and reliability improvements"
+   ]
+  },
+  {
+   "version": "2.1.225",
+   "date": "2026-08-08",
+   "bullets": [
+    "Added gateway spend-limit support to Claude Code's usage warning; the limit-reached message now names the cap, its reset time, and the operator's message (requires the gateway on 2.1.225)",
+    "Added a workspace trust prompt to `claude agents` for untrusted directories, matching the behavior of `claude`",
+    "Fixed a transient 401 replacing a long-lived `CLAUDE_CODE_OAUTH_TOKEN` with a stored login's short-lived token, breaking headless sessions until restart",
+    "Fixed MCP OAuth servers on macOS intermittently failing with a burst of 401 errors, as if never authenticated, after a keychain read timed out",
+    "Fixed auto mode counting a safety-filter refusal of its own permission check toward the consecutive-block limit; the action is still denied, but the model is now told to move on rather than retry",
+    "Fixed cross-session messages staying parked without a notice or expiry in headless sessions and during startup",
+    "Fixed conversation history breaking on Remote Control session resume after very large conversations were compacted",
+    "Fixed hovering over a session in another project in the agents list changing the directory the next agent starts in",
+    "Fixed `claude self-hosted-runner` registering and then failing every session when `--base-dir` cannot be created or written; it now exits at startup with a clear error",
+    "Fixed Claude Code on the web sessions being misreported as stuck, re-sending a growing event backlog on every reconnect",
+    "Improved Remote Control: photos attached from the Claude app are now shown to Claude directly instead of being read from disk with a separate tool call",
+    "\\[VSCode] Fixed Focus view folding away the latest to-do list, a pending question's context, and settled answers; thinking-only folds show \"Thought for Ns\" and re-collapse when their turn completes",
+    "SendMessage can now start a conversation with your Remote Control sessions on other machines by name (`ListAgents` shows them as `name [ref]`), instead of only replying after they message you first",
+    "SendMessage: a Remote Control recipient you already confirmed is never swapped for a same-named session on this machine when its own list couldn't be checked"
+   ]
+  },
+  {
+   "version": "2.1.224",
+   "date": "2026-08-07",
+   "bullets": [
+    "Added self-hosted environments: `claude self-hosted-runner` turns your own machines or containers into a place Claude Code web, mobile, and desktop sessions can run, on Team and Enterprise plans",
+    "Added `archive` plugin source: install plugins from a zip over HTTPS without git or npm, with optional SHA-256 pinning",
+    "Added a cancel-and-confirm step when removing an unavailable paste changes a command's text",
+    "Added `ANTHROPIC_BEDROCK_REGION_PREFIX` env var for Bedrock to prefer a specific cross-region inference profile over the `AWS_REGION`-derived one",
+    "Added `crossSessionInbound` and `dialogExpiry` settings: cross-session messages sent to a session running with bypassed permissions are held for your approval, and messages to other sessions auto-deliver",
+    "Added sandbox credential-masking options: `extract` and `onExtractNoMatch` for structured env values, `decode: \"jwt\"` with `maskClaims` for JWT-aware masking, and `awsPairs`/`sigv4` for AWS SigV4 re-signing; these need `network.tlsTerminate` and are honored only from user, managed, or `--settings` settings",
+    "Added cross-session `SendMessage`: Claude Code sessions can now message each other, on any of your machines, with `ListAgents` to discover them (macOS and Linux)",
+    "Fixed long (>200 char) project paths resolving to another project's session directory under a shared sanitized prefix; session list, rename, fork, delete and `/resume` no longer cross projects",
+    "Fixed `SendMessage` reporting \"Message sent\" when the write to a teammate's inbox had actually failed; failed deliveries are now reported as errors",
+    "Fixed sandbox filesystem deny entries written with a trailing slash (e.g. `denyRead: \"~/.aws/\"`) being silently bypassable on Linux and macOS",
+    "Fixed sandbox violation details never appearing in Bash tool results; Claude now sees which file or network access was denied and why",
+    "Fixed MCP tools that connect mid-turn being deferred for tool search without their names announced to the model",
+    "Fixed plugin install records being silently corrupted when the same plugin is installed in multiple projects",
+    "Fixed recalled or restored paste content occasionally attaching wrong data or silently losing text when the paste had aged out or placeholder numbers collided",
+    "Fixed copy-on-select on Wayland sometimes not reaching the clipboard; the two selection writes no longer race",
+    "Fixed the feedback survey's transcript share silently failing on long sessions; a failed share now shows an error instead of a success message",
+    "Fixed Remote Control auto-start intermittently failing with \"Remote credentials fetch failed\" on a cold start with a stale login token",
+    "Fixed Remote Control and SDK clients showing a blank \"(no content)\" message after `/clear` and other output-less commands",
+    "Fixed a Remote Control session recreated after its server session expired uploading prior local conversation history into the new session",
+    "Improved fullscreen mode to keep the full pre-compaction history in scrollback across repeated compactions, instead of only the most recent interval",
+    "Improved Remote Control: attached web and mobile clients now see compaction progress and the post-compaction boundary instead of a silent pause; `/clear` resets now propagate to attached clients",
+    "Improved Remote Control: connection failures now show a persistent failure indicator with details and a reconnect shortcut, instead of only an 8-second toast",
+    "Removed the 200-subagent-per-session spawn cap; long-running sessions no longer refuse new agents (concurrency and depth limits still apply)",
+    "Changed managed settings: the approval prompt no longer re-appears after re-login or org switching when the organization's settings are unchanged",
+    "Changed the feedback-survey transcript share: with your consent it now also uploads the last request's model settings — the system prompt (which includes your `CLAUDE.md` instructions), tool definitions, and model parameters. Secrets are redacted as before, and these fields are dropped first if the share is too large",
+    "Changed the Bash tool description to always note that command output is displayed to the model, not reliably to the user",
+    "Changed recalled paste placeholder numbers to renumber when accepted into the input",
+    "Changed Remote Control to archive the stale server session instead of leaving a dead one listed when a fresh session is minted after compaction or `/resume`",
+    "\\[VSCode] Fixed the extension showing Remote Control as connected after the connection failed",
+    "Fixed a session resume silently reconnecting Remote Control after the user turned it off (`--resume`, SDK hosts, and the VS Code extension)",
+    "\\[VSCode] Fixed sessions not honoring `remoteControlAtStartup` when explicitly enabled"
+   ]
+  }
+ ]
+}

@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Fri, 07 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Sun, 09 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-08-09：2.1.224 → 2.1.226（3 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-09</guid>
+   <pubDate>Sun, 09 Aug 2026 07:00:00 +0900</pubDate>
+   <description>本期（2.1.224→2.1.226）带来跨会话 SendMessage 与自托管环境两个大功能；新增的 bypassPermissions 会话消息审批默认值、反馈问卷 transcript 上传范围变化值得留意；另有多项沙箱隔离、Remote Control 和 headless 场景的安全与稳定性修复。
+亮点：跨会话 SendMessage 和自托管环境同时上线；跨会话消息新增审批/过期设置，bypassPermissions 会话默认更谨慎；两处沙箱/会话隔离安全修复；反馈问卷分享 transcript 时会额外带上 system prompt 和 CLAUDE.md；Remote Control 一揽子稳定性修复；headless/CI 场景的几个关键修复</description>
+  </item>
   <item>
    <title>2026-08-07：2.1.222 → 2.1.223（2 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
