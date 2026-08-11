@@ -1,0 +1,69 @@
+{
+ "date": "2026-08-12",
+ "version_range": {
+  "from": "2.1.227",
+  "to": "2.1.227",
+  "count": 1
+ },
+ "tldr": "本期只有 2.1.227 一个小版本，全是修复和体验优化：修了过期登录 token 下权限判断出错、误提示 Max 用户开通 Fable 用量额度的问题，也修了 GitHub Actions 里 claude-code-action 命令全部失败、以及 /tui 恢复到 rewind 之前状态的两个 bug。",
+ "highlights": [
+  {
+   "title": "修复过期登录 token 导致的功能开关误判",
+   "category": "修复",
+   "detail": "会话以过期登录 token 启动时，功能开关（feature flags）此前会在不知道你订阅档位的情况下被评估，结果可能错误地提示 Max 计划用户去开通 Fable 的用量额度付费选项。这个判断逻辑现已修复，升级后不会再看到这种误导性提示。",
+   "action": null,
+   "versions": [
+    "2.1.227"
+   ]
+  },
+  {
+   "title": "修复 claude-code-action 在 GitHub 托管 runner 上全部命令失败",
+   "category": "修复",
+   "detail": "配置了 `allowed_non_write_users` 的 `claude-code-action` 在 GitHub 托管的 runner 上运行时，此前每一条 Bash 命令都会执行失败，等于整个 CI 流水线跑不动。这是个纯粹的回归修复，用这套 GitHub Action 跑 Claude Code 的仓库升级后应该立刻恢复正常。",
+   "action": "如果 CI 里的 claude-code-action 最近一直失败，升级到 2.1.227 后重跑一次流水线确认已恢复。",
+   "versions": [
+    "2.1.227"
+   ]
+  },
+  {
+   "title": "修复 /tui 恢复到 rewind 之前的历史",
+   "category": "修复",
+   "detail": "如果一段对话被 rewind 到第一条消息之前，再执行 `/tui` 此前会把那段本该被撤销的历史重新带回来。现在 `/tui` 会正确尊重 rewind 后的状态，不再复活已经撤销的内容。",
+   "action": null,
+   "versions": [
+    "2.1.227"
+   ]
+  },
+  {
+   "title": "slash 命令菜单交互细节打磨",
+   "category": "改进",
+   "detail": "斜杠命令菜单做了几处小优化：蓝色高亮现在只标记当前选中的一行（而不是整片着色），输入匹配到的字符会加粗而不是变色提示，命令名里带 emoji 或重音字符时也能正常保留原本的字形，不会被替换成方块或问号。",
+   "action": null,
+   "versions": [
+    "2.1.227"
+   ]
+  },
+  {
+   "title": "减少输入建议场景下的事件循环卡顿",
+   "category": "改进",
+   "detail": "文件未找到的建议提示、以及 @ 提及文件时的大小检查，这两处此前会阻塞事件循环，在文件多或路径复杂的项目里能感觉到输入卡顿。这次做了性能优化，交互应该更顺滑。",
+   "action": null,
+   "versions": [
+    "2.1.227"
+   ]
+  }
+ ],
+ "versions": [
+  {
+   "version": "2.1.227",
+   "date": "2026-08-10",
+   "bullets": [
+    "Fixed feature flags being evaluated without the user's subscription tier when a session started with an expired login token, which could wrongly prompt Max plan users to enable usage credits for Fable",
+    "Fixed every Bash command failing under `claude-code-action` with `allowed_non_write_users` on GitHub-hosted runners",
+    "Fixed `/tui` bringing back a conversation that had been rewound to before its first message",
+    "Improved slash-command menu: blue now marks only the selected row, matched characters are bolded instead of recolored, and emoji or accented names keep their glyphs",
+    "Improved performance: fewer event-loop stalls on file-not-found suggestions and at-mention size checks"
+   ]
+  }
+ ]
+}

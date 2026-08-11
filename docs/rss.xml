@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sun, 09 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Wed, 12 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-08-12：2.1.227 → 2.1.227（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-12</guid>
+   <pubDate>Wed, 12 Aug 2026 07:00:00 +0900</pubDate>
+   <description>本期只有 2.1.227 一个小版本，全是修复和体验优化：修了过期登录 token 下权限判断出错、误提示 Max 用户开通 Fable 用量额度的问题，也修了 GitHub Actions 里 claude-code-action 命令全部失败、以及 /tui 恢复到 rewind 之前状态的两个 bug。
+亮点：修复过期登录 token 导致的功能开关误判；修复 claude-code-action 在 GitHub 托管 runner 上全部命令失败；修复 /tui 恢复到 rewind 之前的历史；slash 命令菜单交互细节打磨；减少输入建议场景下的事件循环卡顿</description>
+  </item>
   <item>
    <title>2026-08-09：2.1.224 → 2.1.226（3 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
