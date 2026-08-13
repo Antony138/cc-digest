@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Wed, 12 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Fri, 14 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-08-14：2.1.228 → 2.1.231（3 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-14</guid>
+   <pubDate>Fri, 14 Aug 2026 07:00:00 +0900</pubDate>
+   <description>本期（2.1.228→2.1.231）集中修复了一批会让终端直接崩溃或流式输出错乱的稳定性问题，同时对 sandbox 网络配置和 Windows 自托管 runner 启动做了更严格的约束，这两处涉及配置的改动需要留意。
+亮点：修复多个终端崩溃与流式输出错乱问题；MCP OAuth 登录修复：预注册 client（如 Slack）+ 严格授权服务器；sandbox 网络配置对 IPv6 写法强制收紧；Windows 自托管 runner 启动必须显式指定 --base-dir；/commit-push-pr 里的危险 git/gh 操作不再自动批准；同步自 claude.ai 的 skills 安全加固</description>
+  </item>
   <item>
    <title>2026-08-12：2.1.227 → 2.1.227（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
