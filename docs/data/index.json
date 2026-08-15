@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.231",
- "last_digest_date": "2026-08-14",
+ "last_version": "2.1.233",
+ "last_digest_date": "2026-08-16",
  "digests": [
+  {
+   "date": "2026-08-16",
+   "from": "2.1.232",
+   "to": "2.1.233",
+   "count": 2,
+   "tldr": "本期（2.1.232→2.1.233）最扎眼的变化是新模型上 TaskCreate/TodoWrite 这套任务追踪工具默认被关闭；同时 subagent forking 默认开启、@ 可直接联系其他会话，GitLab 生态支持大幅完善，外加一批 Windows 权限相关的安全修复。"
+  },
   {
    "date": "2026-08-14",
    "from": "2.1.228",

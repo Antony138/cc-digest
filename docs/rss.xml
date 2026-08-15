@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Fri, 14 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Sun, 16 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-08-16：2.1.232 → 2.1.233（2 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-16</guid>
+   <pubDate>Sun, 16 Aug 2026 07:00:00 +0900</pubDate>
+   <description>本期（2.1.232→2.1.233）最扎眼的变化是新模型上 TaskCreate/TodoWrite 这套任务追踪工具默认被关闭；同时 subagent forking 默认开启、@ 可直接联系其他会话，GitLab 生态支持大幅完善，外加一批 Windows 权限相关的安全修复。
+亮点：新模型上 Task/Todo 工具默认关闭；Subagent forking 默认开启，@ 提及可直达其他会话；GitLab 生态支持大幅完善；一批 Windows/权限相关安全修复；Windows 上 Bash 权限检查两连改；Bash 命令可选内存限制，失控构建不再拖垮会话</description>
+  </item>
   <item>
    <title>2026-08-14：2.1.228 → 2.1.231（3 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
