@@ -1,0 +1,124 @@
+{
+ "date": "2026-08-18",
+ "version_range": {
+  "from": "2.1.234",
+  "to": "2.1.234",
+  "count": 1
+ },
+ "tldr": "本期是单版本发布（2.1.234），最大的变化是达到 claude.ai 用量限额后会话会自动续接的新默认行为，另外还有一批权限提示、长会话 sandbox 网络检查、Windows 路径安全方面的修复，以及 claude-api 内置 skill 大幅瘦身。",
+ "highlights": [
+  {
+   "title": "用量限额重置后自动续接会话",
+   "category": "新功能",
+   "detail": "以前撞到 claude.ai 的 usage limit 后会话就卡住，得自己回来手动继续；现在限额一重置，Claude Code 会自动帮你把会话接着跑下去。对经常把额度用满的重度用户是个省心的改动，但也意味着你离开电脑时会话可能会在你不知情的情况下自己重新启动执行。",
+   "action": "不想要这个行为的话，在 /config 里关掉 \"Continue automatically at usage limit\"。",
+   "versions": [
+    "2.1.234"
+   ]
+  },
+  {
+   "title": "移除 \"Default teammate model\" 设置",
+   "category": "破坏性变更",
+   "detail": "/config 里的 \"Default teammate model\" 选项被去掉了：以后 agent-team 里的 teammate 默认跟随 leader 所用的模型，除非在 spawn 时显式指定模型。如果你之前专门配置过统一的 teammate 模型，这个设置会在升级后失效。",
+   "action": "升级前如果设置过 Default teammate model，需要改为在每次 spawn teammate 时手动指定模型。",
+   "versions": [
+    "2.1.234"
+   ]
+  },
+  {
+   "title": "长会话里 sandbox 网络权限反复重问的问题修复",
+   "category": "修复",
+   "detail": "auto 模式下，跑得很长、经历过 compact 的会话之前会不断重新检查并拒绝已授权 sandboxed 命令的网络访问，导致同一个命令反复被拦。这个问题在本版本修复，对话越长、compact 次数越多的重度用户受益越明显。",
+   "action": null,
+   "versions": [
+    "2.1.234"
+   ]
+  },
+  {
+   "title": "claude-api 内置 skill 大幅瘦身",
+   "category": "改进",
+   "detail": "内置 claude-api skill 的加载成本从约 200k+ token 降到约 25k，做法是把参考文档改成按需加载而不是一次性塞进上下文。如果你的项目会用到这个 skill，日常上下文预算会宽松不少。",
+   "action": null,
+   "versions": [
+    "2.1.234"
+   ]
+  },
+  {
+   "title": "账号邮箱使用范围收紧",
+   "category": "安全",
+   "detail": "Claude 现在被明确告知，账号邮箱只能用于识别你本人（比如署名、归属），不能在你没有要求的情况下发给无关服务。这条约束也出现在本次会话的系统提示里，算是官方把隐私边界正式写进了行为规范。",
+   "action": null,
+   "versions": [
+    "2.1.234"
+   ]
+  },
+  {
+   "title": "多处权限提示与 Windows 路径安全修复",
+   "category": "安全",
+   "detail": "修复了后台 subagent 权限询问时，会话级权限答复（包括拒绝）会被丢弃的问题；credential masking 也补了几个遮蔽不全的漏洞，避免命令、路径或密钥在权限预览里露出。同时远程文件读取、会话恢复、CLAUDE.md 引用、workflow 脚本和文件上传等剩余的预授权文件访问路径，现在统一拒绝 Windows 的 NT 命名空间路径（\\??\\），堵上此前几个版本一直在修的 NTLM 凭证泄露口子。",
+   "action": null,
+   "versions": [
+    "2.1.234"
+   ]
+  }
+ ],
+ "versions": [
+  {
+   "version": "2.1.234",
+   "date": "2026-08-17",
+   "bullets": [
+    "Added the optional `CLAUDE_CODE_PROJECT_DIR_NAME` environment variable: hosts that give each session its own config directory can choose a short name for the per-project transcript directory",
+    "Added the `selection:clear` keybinding action, so a key can be bound to clear an in-app text selection; also works in the agents view",
+    "Added a GitLab merge request badge to the footer and statusline: repos with a GitLab remote and an authenticated glab CLI show MR !N with draft/pending/green states",
+    "Claude Code now continues your session automatically when a claude.ai usage limit resets; turn it off in `/config` (\"Continue automatically at usage limit\")",
+    "Claude is now told to use your account email only to identify you, and not to send it to unrelated services unless you ask",
+    "Security: remote file reads, session restore, CLAUDE.md includes, workflow scripts and file uploads now reject Windows NT-namespace (`\\??\\`) paths, hardening the remaining pre-approval file accesses against the NTLM credential-leak vector",
+    "Fixed auto mode in very long sessions repeatedly re-checking and denying sandboxed commands' network access after the conversation had been compacted",
+    "Fixed session-scoped permission answers (including denies) being dropped when answering background subagent tool permission prompts",
+    "Fixed a crash when an API response on the non-streaming fallback path (typically via third-party gateways) contained a thinking block missing its thinking field or a text block missing its text field",
+    "Fixed markdown rendering becoming extremely slow for some messages containing unusual Unicode sequences",
+    "Fixed `SendMessage` rejecting a recipient copied from `ListAgents` when the session name is at the 200-character cap or emoji-heavy",
+    "Fixed repository detection mis-reading the host of git remotes with unusual userinfo, producing links and repo-specific behavior for the wrong host",
+    "Fixed MCP diagnostics printing resolved secrets: scope-conflict warnings now show the configured `${VAR}` form, and connection-failure details show only the server origin",
+    "Fixed `strictKnownMarketplaces` allowlists accepting SCP-style git marketplace sources whose host differs from the one git would actually connect to",
+    "Fixed modal text such as the `/login` OAuth URL losing characters when copied in fullscreen",
+    "Fixed a `---` horizontal rule in rendered markdown running into the line after it",
+    "Fixed consecutive shell commands splitting into multiple \"Ran 1 shell command\" rows when todo/task updates were interleaved between them",
+    "Fixed dialogs like `/permissions` opened while a `!` shell command was running being dismissed when the command finished",
+    "Fixed a queued `!` shell command being sent to the model as plain text after pressing up-arrow to edit the queued input",
+    "Fixed queued messages reappearing in the prompt history while still queued, Esc while selecting a queued message no longer interrupts the turn, and `!` mode no longer sticks after a mid-turn submit",
+    "Fixed accepting the \"Try the new fullscreen renderer?\" prompt restarting the session without its permission mode (e.g. `--dangerously-skip-permissions`), tool allow/deny rules, model or effort flags",
+    "Fixed `/tui` dropping launch `--allowed-tools`/`--disallowed-tools` rules when it restarts; it now declines to switch, with the reason, when the session has restrictions a restart can't carry over",
+    "Fixed trust prompts omitting the repository-wide scope warning when the directory was first seen before the repository existed there",
+    "Fixed a case where an IDE diff tab closing during a permission re-prompt could answer the new prompt with the previous input",
+    "Fixed: files sent to the user during Remote Control sessions hosted by Claude Code Desktop or VS Code now upload, so they open on phone and web instead of showing an empty card",
+    "Fixed: after `/login` while `CLAUDE_CODE_OAUTH_TOKEN` is set, the stale-token reminder no longer leaks into Claude's automatically resumed turn — it now appears only to you",
+    "Fixed: permission previews now relay only to channel servers admitted by the inbound trust gate, and a server's explicit permission-capability opt-out is honored",
+    "Fixed: credential masking on relayed permission previews can no longer hide commands, paths, or destinations from the approver; oversized private-key blocks now redact under full-strength redaction",
+    "Fixed: provider API tokens that mask on permission previews now mask even when directly followed by shell delimiters",
+    "Fixed Claude Desktop inter-session messages being silently dropped by the recipient session when cross-session messaging read as disabled, which left the sender's query \"thinking\" for many minutes",
+    "Remote Control: signing this computer in to a different claude.ai account or organization now stops the running session within seconds and says why, instead of a misleading HTTP 404 hours later",
+    "Remote Control sessions started from Claude Code Desktop or VS Code now keep phones and claude.ai/code updated on the session's permission mode (and claude.ai/code on the model) as they change",
+    "Remote Control: effort picks made on a phone or on claude.ai/code now apply to terminal- and Desktop/VS Code-hosted sessions, and the session publishes its effort level to connected clients",
+    "`SendMessage` and `ListAgents` now say when your account's session list was too long to check completely, instead of treating unseen sessions as absent",
+    "Expired Anthropic profile credential now points you at `/login` when a claude.ai login would take precedence",
+    "Improved the transcript: your own prompts now render markdown (highlighted code blocks, inline code, lists) the same way replies do",
+    "Improved the \"API returned an empty or malformed response\" error to say what came back (content type, body kind, size, request ID) and why the original streaming request failed",
+    "Improved auto-generated session titles to read as short, specific names (e.g. \"Login button bug\") rather than sentences restating your request (e.g. \"Fix the login button on mobile\")",
+    "Reduced the context cost of loading the built-in `claude-api` skill from \\~200k+ tokens to \\~25k by loading reference docs on demand",
+    "`/permissions` can now be opened while Claude is working — rule changes apply to the rest of the current turn",
+    "`/add-dir <path>` can now be used while Claude is working; `/add-dir`, `/autocompact`, `/theme`, `/help`, `/config` and `/advisor` dialogs open mid-turn in the fullscreen TUI",
+    "`/goal` now clears itself with a notice when a turn dies on an unrecoverable error (e.g. revoked auth, an exhausted credit balance, or a context overflow) instead of staying armed",
+    "`/goal`: when background tasks keep a goal waiting for 30+ minutes, Claude now checks in on them instead of waiting indefinitely (set `CLAUDE_CODE_GOAL_CHECKIN_MINUTES=0` to opt out)",
+    "`claude setup-token` now rejects unexpected extra arguments instead of silently ignoring them",
+    "Changed Esc in fullscreen mode to no longer clear a mouse text selection: it interrupts or dismisses as usual and the selection stays highlighted",
+    "Removed the redundant \"Allowed by auto mode classifier\" line that auto mode showed under every Agent tool call",
+    "Removed the \"Default teammate model\" setting from `/config`; agent-team teammates now use the leader's model unless the spawn names one",
+    "Dimmed the elapsed-time counter on the running tool header so it no longer competes with the bold counts",
+    "Background task notifications delivered between turns are now sent to the model inside `<system-reminder>` tags, matching mid-turn delivery",
+    "Mantle: skip the admin-pin availability probe at startup when a main-loop model is already picked",
+    "Windows: startup no longer stalls on repeated rename retries when `~/.claude.json` is read-only"
+   ]
+  }
+ ]
+}

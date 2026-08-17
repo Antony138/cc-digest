@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.233",
- "last_digest_date": "2026-08-16",
+ "last_version": "2.1.234",
+ "last_digest_date": "2026-08-18",
  "digests": [
+  {
+   "date": "2026-08-18",
+   "from": "2.1.234",
+   "to": "2.1.234",
+   "count": 1,
+   "tldr": "本期是单版本发布（2.1.234），最大的变化是达到 claude.ai 用量限额后会话会自动续接的新默认行为，另外还有一批权限提示、长会话 sandbox 网络检查、Windows 路径安全方面的修复，以及 claude-api 内置 skill 大幅瘦身。"
+  },
   {
    "date": "2026-08-16",
    "from": "2.1.232",

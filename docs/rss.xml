@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sun, 16 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Tue, 18 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-08-18：2.1.234 → 2.1.234（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-18</guid>
+   <pubDate>Tue, 18 Aug 2026 07:00:00 +0900</pubDate>
+   <description>本期是单版本发布（2.1.234），最大的变化是达到 claude.ai 用量限额后会话会自动续接的新默认行为，另外还有一批权限提示、长会话 sandbox 网络检查、Windows 路径安全方面的修复，以及 claude-api 内置 skill 大幅瘦身。
+亮点：用量限额重置后自动续接会话；移除 "Default teammate model" 设置；长会话里 sandbox 网络权限反复重问的问题修复；claude-api 内置 skill 大幅瘦身；账号邮箱使用范围收紧；多处权限提示与 Windows 路径安全修复</description>
+  </item>
   <item>
    <title>2026-08-16：2.1.232 → 2.1.233（2 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
