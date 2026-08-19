@@ -1,0 +1,92 @@
+{
+ "date": "2026-08-19",
+ "version_range": {
+  "from": "2.1.235",
+  "to": "2.1.235",
+  "count": 1
+ },
+ "tldr": "本期只有 2.1.235 一个版本，安全上修了权限提示里 Shift+Tab 误触发全局编辑授权的漏洞，并让权限弹窗文案和实际授权范围对齐；另外新增了输入框拼写检查，grep 病态正则卡死、language server 重连打掉整段 prompt cache 等问题也一并修复。",
+ "highlights": [
+  {
+   "title": "输入框内置拼写检查",
+   "category": "新功能",
+   "detail": "新增一个可选的 spellcheck 设置，边打字边给 prompt 输入框里拼错的单词加下划线，检查交给你本地装好的 aspell、hunspell 或 ispell 完成，不依赖任何外部服务。对经常手速比脑速快、错别字连篇的人算是个贴心的小功能。",
+   "action": "默认关闭，需要本地已安装 aspell/hunspell/ispell 三者之一，再在 /config 里开启这项 spellcheck 设置才会生效。",
+   "versions": [
+    "2.1.235"
+   ]
+  },
+  {
+   "title": "权限提示里 Shift+Tab 误触发全局编辑授权",
+   "category": "安全",
+   "detail": "此前在权限确认框的评论输入框里按 Shift+Tab 想关闭该字段，会被误判成同意本次编辑，还会顺带把整个会话的编辑权限都放开，是个容易手滑触发的安全隐患。本版本修复后，Shift+Tab 只会正常关闭评论框，不再产生任何授权。",
+   "action": null,
+   "versions": [
+    "2.1.235"
+   ]
+  },
+  {
+   "title": "权限对话框文案与实际授权范围对齐",
+   "category": "改进",
+   "detail": "权限弹窗里显示的说明文字和 \"don't ask again\" 选项，现在始终和这次授权实际会覆盖的范围保持一致；当内容因为过长等原因无法完整展示时，\"don't ask again\" 选项会被直接隐去，避免在看不全内容的情况下稀里糊涂点了永久授权。",
+   "action": null,
+   "versions": [
+    "2.1.235"
+   ]
+  },
+  {
+   "title": "内置 grep 修复病态正则卡死与 -m/-A/-C 组合出错",
+   "category": "修复",
+   "detail": "macOS/Linux 原生版内置的 grep 之前碰到病态正则会一路吃满内存卡死，现在会快速失败退出；同时 -m N 和 -A/-C 一起用时打印出的上下文行数也修正了。日常靠 Grep 工具扒代码库的人会明显感觉更稳。",
+   "action": null,
+   "versions": [
+    "2.1.235"
+   ]
+  },
+  {
+   "title": "后台跑 /ultrareview、/autofix-pr 等 cloud session 更省资源",
+   "category": "改进",
+   "detail": "以前后台运行的 cloud session（比如 /ultrareview、/autofix-pr）每来一次事件更新，就会把整个事件流重新扫描、重新渲染一遍；现在不再这样，内存和 CPU 占用明显下降。手头挂着好几个后台任务同时跑的人受益最明显。",
+   "action": null,
+   "versions": [
+    "2.1.235"
+   ]
+  },
+  {
+   "title": "language server 断连重连不再打掉整段 prompt cache",
+   "category": "修复",
+   "detail": "之前项目里的 language server 只要断开重连一次，就会连带让整段会话的 prompt cache 失效，之后的请求都得重新计费、重新排队等待。这个问题在本版本修复，对开着 LSP 跑长会话的人是个实打实的省钱省时改动。",
+   "action": null,
+   "versions": [
+    "2.1.235"
+   ]
+  }
+ ],
+ "versions": [
+  {
+   "version": "2.1.235",
+   "date": "2026-08-18",
+   "bullets": [
+    "Added an optional `spellcheck` setting that underlines misspelled words in the prompt input as you type, using your installed `aspell`, `hunspell`, or `ispell`",
+    "Fixed whole-prompt-cache invalidation when a language server disconnected or reconnected mid-session",
+    "Fixed nested markdown list items misaligning at depth 3+ and added a hanging indent to wrapped list items in the terminal UI",
+    "Fixed prompt input highlights (slash commands, keywords, mentions) appearing shifted by one or more characters in some multi-line prompts",
+    "Fixed Shift+Tab inside the permission prompt's comment field approving the edit and granting session-wide edit permission instead of closing the field",
+    "Fixed the Agent tool advertising a general-purpose default in sessions where that agent is unavailable: an omitted `subagent_type` there now gets a clear error listing the available agents",
+    "Fixed notebook cell delete/replace approval dialogs silently omitting the existing cell content when the notebook or cell could not be read; the dialog now says why",
+    "Fixed slash commands run while Claude is responding showing HTML entities instead of the actual characters",
+    "Fixed the prompt footer not showing the \"Update installed\" restart notice after a background auto-update",
+    "Fixed the expanded task list (`ctrl+t`) always starting collapsed when resuming or relaunching into a session that still has open tasks",
+    "Improved memory and CPU usage while cloud sessions such as `/ultrareview` or `/autofix-pr` run in the background — their event streams are no longer re-scanned and re-rendered on every update",
+    "Improved permission dialogs: display text and \"don't ask again\" options now always match what a grant would cover, and \"don't ask again\" is withheld when contents cannot be fully displayed",
+    "Improved the embedded `grep` in native macOS/Linux builds: pathological patterns now fail fast instead of exhausting memory, and `-m N` with `-A/-C` prints correct context",
+    "Improved the context-limit error to say when auto-compact is off and point to `/config` to re-enable it",
+    "Vim mode: NORMAL mode and cursor position are now preserved when toggling the detailed transcript (ctrl+o) or closing a panel",
+    "Dialogs: arrow keys and Enter pressed in quick succession now select the option you navigated to instead of the previously highlighted one",
+    "`SendMessage` now refuses messages too large for cross-session delivery up front instead of silently dropping them",
+    "Remote Control: `claude rc` now applies the same enterprise-gateway availability check as interactive startup",
+    "\\[VSCode] Fixed focus jumping between open Claude tabs on its own when a window with several Claude panels is restored or reloaded"
+   ]
+  }
+ ]
+}

@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Tue, 18 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Wed, 19 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-08-19：2.1.235 → 2.1.235（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-19</guid>
+   <pubDate>Wed, 19 Aug 2026 07:00:00 +0900</pubDate>
+   <description>本期只有 2.1.235 一个版本，安全上修了权限提示里 Shift+Tab 误触发全局编辑授权的漏洞，并让权限弹窗文案和实际授权范围对齐；另外新增了输入框拼写检查，grep 病态正则卡死、language server 重连打掉整段 prompt cache 等问题也一并修复。
+亮点：输入框内置拼写检查；权限提示里 Shift+Tab 误触发全局编辑授权；权限对话框文案与实际授权范围对齐；内置 grep 修复病态正则卡死与 -m/-A/-C 组合出错；后台跑 /ultrareview、/autofix-pr 等 cloud session 更省资源；language server 断连重连不再打掉整段 prompt cache</description>
+  </item>
   <item>
    <title>2026-08-18：2.1.234 → 2.1.234（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>

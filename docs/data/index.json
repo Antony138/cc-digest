@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.234",
- "last_digest_date": "2026-08-18",
+ "last_version": "2.1.235",
+ "last_digest_date": "2026-08-19",
  "digests": [
+  {
+   "date": "2026-08-19",
+   "from": "2.1.235",
+   "to": "2.1.235",
+   "count": 1,
+   "tldr": "本期只有 2.1.235 一个版本，安全上修了权限提示里 Shift+Tab 误触发全局编辑授权的漏洞，并让权限弹窗文案和实际授权范围对齐；另外新增了输入框拼写检查，grep 病态正则卡死、language server 重连打掉整段 prompt cache 等问题也一并修复。"
+  },
   {
    "date": "2026-08-18",
    "from": "2.1.234",
