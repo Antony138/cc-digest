@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Wed, 19 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Fri, 21 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-08-21：2.1.236 → 2.1.238（3 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-21</guid>
+   <pubDate>Fri, 21 Aug 2026 07:00:00 +0900</pubDate>
+   <description>本期三个版本里最值得注意的是权限收紧：MCP 的 headersHelper 现在要求所在目录先通过信任确认，且不再继承外部凭据环境变量；同时全屏模式下双击 Ctrl+L/Cmd+K 清屏的老习惯被彻底拿掉。此外还修了一个长会话会持续吃内存的问题，并新增了 Concise 输出风格和 readline 风格的 Ctrl+W。
+亮点：MCP headersHelper 权限收紧：需信任确认、不再继承凭据环境变量；全屏模式下 Ctrl+L / Cmd+K 双击清屏快捷键被移除；修复长会话里的内存无限增长；自定义 base URL / LLM 网关下 prompt caching 失效修复；新增内置 "Concise" 输出风格；新增 keybindingFlavor：readline 风格 Ctrl+W</description>
+  </item>
   <item>
    <title>2026-08-19：2.1.235 → 2.1.235（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>

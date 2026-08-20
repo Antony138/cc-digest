@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.235",
- "last_digest_date": "2026-08-19",
+ "last_version": "2.1.238",
+ "last_digest_date": "2026-08-21",
  "digests": [
+  {
+   "date": "2026-08-21",
+   "from": "2.1.236",
+   "to": "2.1.238",
+   "count": 3,
+   "tldr": "本期三个版本里最值得注意的是权限收紧：MCP 的 headersHelper 现在要求所在目录先通过信任确认，且不再继承外部凭据环境变量；同时全屏模式下双击 Ctrl+L/Cmd+K 清屏的老习惯被彻底拿掉。此外还修了一个长会话会持续吃内存的问题，并新增了 Concise 输出风格和 readline 风格的 Ctrl+W。"
+  },
   {
    "date": "2026-08-19",
    "from": "2.1.235",
