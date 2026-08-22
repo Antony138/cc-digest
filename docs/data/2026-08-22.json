@@ -1,0 +1,139 @@
+{
+ "date": "2026-08-22",
+ "version_range": {
+  "from": "2.1.239",
+  "to": "2.1.240",
+  "count": 2
+ },
+ "tldr": "本期（2.1.239→2.1.240）以稳定性和安全修复为主：Bedrock 走代理时会被静默降级成非流式、导致双倍计费的问题被修复，掩码输入（如登录验证码）能被粘贴回显或存进历史的安全漏洞也被堵上；另外全屏模式下点击窗口聚焦可能误触权限确认框、`.worktreeinclude` 和自定义 agent/skill/command 文件里两处容易踩坑的静默失效一并修好。2.1.240 是纯维护发布，没有披露具体改动。",
+ "highlights": [
+  {
+   "title": "修复 Bedrock 代理场景静默降级为非流式、双倍计费",
+   "category": "修复",
+   "detail": "Bedrock 请求经过会剥离响应 Content-Type 头的代理时，Claude Code 之前会静默把每一轮对话重新按非流式方式跑一遍，相当于每次都多计一次 API 调用的费用，还完全没有提示。用 Bedrock + 反代/网关组合的团队这版账单应该会明显好看。",
+   "action": null,
+   "versions": [
+    "2.1.239"
+   ]
+  },
+  {
+   "title": "掩码输入（登录验证码等）可被粘贴回显或写入历史的安全漏洞修复",
+   "category": "安全",
+   "detail": "此前像登录验证码这类密码式（掩码）输入框，其内容在用双击 Esc 清空后仍可能被 Ctrl+Y 粘贴到别处显示出来，或残留进 prompt 历史。本次修复后掩码内容不再可被这样取出。",
+   "action": null,
+   "versions": [
+    "2.1.239"
+   ]
+  },
+  {
+   "title": "全屏模式下点击窗口聚焦可能被误判为应答权限确认框",
+   "category": "修复",
+   "detail": "之前在全屏模式下，仅仅点击终端窗口把焦点找回来，就可能被当成点击了正在弹出的权限确认框或按钮，相当于在你没有真正做选择的情况下悄悄批准或拒绝了一次操作。这版修好后点击聚焦不会再误触发任何按钮。",
+   "action": null,
+   "versions": [
+    "2.1.239"
+   ]
+  },
+  {
+   "title": "`.worktreeinclude` 里以 `**/` 开头的规则在 gitignored 目录下静默失效",
+   "category": "修复",
+   "detail": "如果目标文件本身位于 git 已忽略的目录里，`.worktreeinclude` 中以 `**/` 开头的匹配规则之前会悄悄匹配不到任何东西，不报错也不提示，导致本该被带进 worktree 的文件被漏掉。",
+   "action": "如果用 worktree 隔离时依赖 `.worktreeinclude` 把 gitignored 目录下的文件带进去，建议升级后确认这些规则是否真的生效了。",
+   "versions": [
+    "2.1.239"
+   ]
+  },
+  {
+   "title": "带 UTF-8 BOM 的自定义 agent/skill/command 文件被静默忽略",
+   "category": "修复",
+   "detail": "以 UTF-8 BOM 开头的 `.md` 文件（部分编辑器默认这样保存）此前会被 Claude Code 悄悄跳过加载，不报任何错误，看起来就像这个 agent、skill 或 command 根本不存在。",
+   "action": "如果自建的 agent/skill/command 一直\"没反应\"，可以检查对应 `.md` 文件是否带 BOM（多见于 Windows 记事本等编辑器保存的文件）。",
+   "versions": [
+    "2.1.239"
+   ]
+  },
+  {
+   "title": "Bedrock/Vertex/Foundry 等此前排除在外的环境，新安装现在默认直接进入全屏模式",
+   "category": "改进",
+   "detail": "全屏渲染器的一次性推荐提示此前只出现在部分环境，Bedrock、Vertex、Foundry 等企业部署渠道被排除在外；这版把这些渠道也纳入了，在这些环境上新装 Claude Code 会直接以全屏模式启动。",
+   "action": null,
+   "versions": [
+    "2.1.239"
+   ]
+  }
+ ],
+ "versions": [
+  {
+   "version": "2.1.240",
+   "date": "2026-08-22",
+   "bullets": [
+    "Bug fixes and reliability improvements"
+   ]
+  },
+  {
+   "version": "2.1.239",
+   "date": "2026-08-21",
+   "bullets": [
+    "Cost estimates (`/cost`, status line, `--max-budget-usd`) now include the 1.1× US-only-inference premium for data-residency workspaces",
+    "Added the one-time fullscreen renderer offer on Bedrock, Vertex, Foundry and other previously excluded setups; new installs there now start in fullscreen",
+    "Added `/claude-api upgrade` to migrate Python projects from `anthropic` 0.x to 1.x, and updated the skill's Python reference for 1.x (timeouts use `anthropic.Timeout`, not `httpx.Timeout`)",
+    "Cloud sessions: plugins synced from claude.ai now show as `name@synced`, work with `claude plugin enable/disable <name>@synced`, and never override a same-named plugin you installed",
+    "Alpine/musl builds: native image paste, clipboard, and audio-capture add-ons now load (musl-built binaries instead of glibc ones refused by the runtime)",
+    "The usage-limit message shown when your monthly spend limit is already used up now also says when your session or weekly limit resets",
+    "Fixed Bedrock streaming behind proxies that strip the response Content-Type header, which silently doubled billed API calls by re-running every turn non-streaming",
+    "Fixed Claude Code hanging at startup behind an HTTPS proxy when using Bedrock with an SSO profile and `awsAuthRefresh` — the credential pre-check now honors `HTTPS_PROXY`",
+    "Fixed a raw crash dump when starting Claude Code from a directory that no longer exists; it now prints a clear message",
+    "Fixed Edit and Write calls pausing for about 5 seconds in JetBrains IDE terminals when the Claude Code plugin is connected",
+    "Fixed a race where pressing Esc with a prompt queued could let the next turn finish early, leaving the session idle while Claude was still working and letting a later resubmit repeat actions",
+    "Fixed WebFetch retaining expired page content in memory for the whole session instead of the intended 15 minutes",
+    "Fixed cloud sessions (Claude Code on the web, desktop and mobile apps) resuming out of plan mode after an idle worker restart",
+    "Fixed MCP elicitation forms taller than the terminal being clipped in fullscreen mode: the form now fits the window, with hidden fields reachable by scrolling and Accept/Decline always visible",
+    "Fixed remote MCP servers staying failed after a transient 5xx on a mid-session reconnect in cloud sessions or via SDK `setMcpServers()`",
+    "Fixed custom session titles disappearing from `/resume` after more than \\~64 KB of conversation was written following the rename",
+    "Fixed `claude -c`/resume picking up sessions from a different directory whose path differed only by characters like `_`, `-`, or `.`",
+    "Fixed `/resume` and the agents view showing a session as recently changed (and reordering it) when only its file was touched or it was merely reopened",
+    "Fixed `/resume` in all-projects mode telling you to `cd` into a deleted directory (e.g. a removed worktree); such sessions now resume in the current directory",
+    "Fixed the `dark-ansi` theme rendering expanded tool results in fullscreen mode with text the same color as the background",
+    "Fixed the fullscreen renderer prompt reappearing on every launch when it could never be answered; it now stops after being shown on three launches",
+    "Fixed `.worktreeinclude` patterns starting with `**/` silently matching nothing when the target lived in a gitignored directory",
+    "Fixed agents, skills, and commands whose `.md` file starts with a UTF-8 BOM being silently ignored",
+    "Fixed `/insights` echoing literal `<message>` tags in its response on some models",
+    "Fixed marketplace `metadata.pluginRoot` having no effect: bare plugin source names now resolve under it as the docs describe",
+    "Fixed mouse movement in browser-based terminals inserting text like `\"35;150;7M\"` into the prompt when a mouse report arrived split across writes",
+    "Fixed custom theme overrides for the effort/ultracode status badge colors being ignored",
+    "Fixed OpenTelemetry trace fragmentation: tool executions deferred by a `PreToolUse` hook now resume in the original turn's trace instead of starting a new trace",
+    "Fixed vim mode in the agent view: Escape now switches to NORMAL mode and keeps your text instead of clearing the prompt",
+    "Fixed the `selection:copy` keybinding silently dropping a text selection that had been extended with Shift+Arrow keys",
+    "Fixed the `/voice` startup tip still appearing after voice dictation was enabled via the `voice.enabled` setting",
+    "Fixed shell-mode (`!`) Tab completion dropping the `./` from a `./script` path, which left a command the shell couldn't run",
+    "Fixed fullscreen mode answering a permission prompt or pressing a button when you clicked the terminal window only to bring it back into focus",
+    "Fixed slash-command panels (e.g. `/config`, `/model`) in fullscreen mode covering the latest messages; the conversation now stays pinned above the panel",
+    "Fixed the `/workflows` detail dialog overflowing the terminal and losing its header off-screen when opened while Claude is still responding",
+    "Fixed the Linux sandbox making a nonexistent `.git/config.worktree` unreadable, which broke every sandboxed git command in repos with `extensions.worktreeConfig` set",
+    "Fixed hooks failing with \"posix\\_spawn ENOENT\" after the session's working directory was deleted; they now run from the project root or home directory instead",
+    "Fixed `claudeMdExcludes` not excluding a symlinked `.claude/rules` file when the pattern names the rules directory or the symlink rather than its target",
+    "Fixed runaway session-title syncing to Remote Control when two Claude Code processes shared one background job's state (2.1.232 regression); title updates are now deduplicated and rate-limited",
+    "Fixed sessions whose title starts with `/` being unaddressable by `SendMessage` and shown as \"(untitled)\" in `ListAgents`",
+    "Fixed Ctrl+W, Ctrl+U, Ctrl+K, Option+Backspace, Option+D and vim `df`/`dt` leaving a broken `[Pasted text #N]` placeholder when the cursor was inside it",
+    "Fixed masked (password-style) inputs such as the login code field letting their text be pasted back with Ctrl+Y elsewhere or saved to prompt history when cleared with double Esc",
+    "Fixed Ctrl+Backspace deleting one character instead of a word in search boxes",
+    "Fixed a request rejected by an organization policy check being re-sent before the rejection was shown",
+    "Improved the reminder shown after compaction so a skill's original arguments are not re-run as a new request",
+    "Long file paths on tool-use rows now truncate in the middle to stay on one line",
+    "Remote sessions keep sending keep-alives while a long `SessionStart` or `Setup` hook runs, so the container is not idle-reaped mid-hook",
+    "`/goal`: repeat check-ins on long-running background work now back off (30 min, then 1 h, then every 2 h) instead of repeating every 30 minutes",
+    "`/goal`: resuming a session from the `claude --resume` picker now restores its active goal",
+    "`ListAgents` now tells a session its own name (the one peers use to message it), and `SendMessage` to your own name says so instead of \"no agent named …\"",
+    "`ListAgents` and `/list-agents` now list your live teammates (previously only subagents and other sessions appeared, so a reachable teammate looked absent)",
+    "`keybindingFlavor: \"readline\"` now also matches Bash for word keys: Alt+F and Ctrl/Option+→ stop at the end of the word, Alt+D deletes to it (Ctrl+Y pastes it back), and punctuation separates words",
+    "Persistent retry mode (`CLAUDE_CODE_RETRY_WATCHDOG`) now fails immediately on organization spend-limit and out-of-credits errors instead of waiting indefinitely for a reset",
+    "Claude in Chrome: `/clear` now closes the session's Chrome tab group, and empty groups are closed on `/resume` and when Claude Code exits",
+    "Remote sessions: images uploaded from mobile now include their saved file path, so Claude can copy them into files it creates",
+    "Claude Code on the web: requests from Bash and other tools to non-API anthropic.com hosts (e.g. www, docs) now go through the session's network proxy, so your environment's allowed domains apply",
+    "Remote Control: clearer message and `claude doctor` wording when Remote Control isn't enabled for your account",
+    "Windows: cross-session messaging is now available, so Claude Code sessions across your machines can message each other with `SendMessage` and find each other with `ListAgents`, as on macOS and Linux",
+    "\\[VSCode] \"View usage\" in the usage-limit banner now sits inline with the warning text instead of floating mid-banner"
+   ]
+  }
+ ]
+}

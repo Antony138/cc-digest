@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Fri, 21 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Sat, 22 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-08-22：2.1.239 → 2.1.240（2 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-22</guid>
+   <pubDate>Sat, 22 Aug 2026 07:00:00 +0900</pubDate>
+   <description>本期（2.1.239→2.1.240）以稳定性和安全修复为主：Bedrock 走代理时会被静默降级成非流式、导致双倍计费的问题被修复，掩码输入（如登录验证码）能被粘贴回显或存进历史的安全漏洞也被堵上；另外全屏模式下点击窗口聚焦可能误触权限确认框、`.worktreeinclude` 和自定义 agent/skill/command 文件里两处容易踩坑的静默失效一并修好。2.1.240 是纯维护发布，没有披露具体改动。
+亮点：修复 Bedrock 代理场景静默降级为非流式、双倍计费；掩码输入（登录验证码等）可被粘贴回显或写入历史的安全漏洞修复；全屏模式下点击窗口聚焦可能被误判为应答权限确认框；`.worktreeinclude` 里以 `**/` 开头的规则在 gitignored 目录下静默失效；带 UTF-8 BOM 的自定义 agent/skill/command 文件被静默忽略；Bedrock/Vertex/Foundry 等此前排除在外的环境，新安装现在默认直接进入全屏模式</description>
+  </item>
   <item>
    <title>2026-08-21：2.1.236 → 2.1.238（3 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
