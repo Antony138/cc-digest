@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sat, 22 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Mon, 24 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-08-24：2.1.241 → 2.1.241（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-24</guid>
+   <pubDate>Mon, 24 Aug 2026 07:00:00 +0900</pubDate>
+   <description>2.1.241 是一次纯维护发布，官方 changelog 只给出一句“修复与稳定性改进”，没有披露具体改动；这是继 2.1.240 之后连续第二个不透露细节的维护版本，日常直接升级即可，无需额外操作。
+亮点：2.1.241：同样只给出“修复与稳定性改进”，未列出具体条目；连续两期（2.1.240、2.1.241）都是不透露细节的维护发布；无破坏性变更、无需改动任何配置</description>
+  </item>
   <item>
    <title>2026-08-22：2.1.239 → 2.1.240（2 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
