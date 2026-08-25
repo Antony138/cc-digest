@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Mon, 24 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Tue, 25 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-08-25：2.1.243 → 2.1.245（2 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-25</guid>
+   <pubDate>Tue, 25 Aug 2026 07:00:00 +0900</pubDate>
+   <description>本期两个版本：2.1.243 是一次密集更新，新增 `/usage` 的 Loops 明细、可调节的提示缓存 TTL 等功能，并修复了 auto mode 误判不可用、远程 MCP 断线不重连等多个可靠性问题；2.1.245 紧接着修了新版 glibc（如 Arch、CachyOS、Fedora Rawhide）上的启动崩溃。另外 Bash 沙箱不再罗列允许的网络主机，改成直接尝试请求，行为有变化值得留意。
+亮点：修复 Linux 新版 glibc（2.44）上的启动崩溃；`/usage` 新增 Loops 明细，方便揪出失控的 `/loop` 任务；新增 `promptCacheTtl` / `subagentPromptCacheTtl`，主对话可维持 1 小时提示缓存；Bash 沙箱不再展示允许的网络主机白名单，改为直接尝试请求；两处 auto mode 可靠性修复：启动时误判不可用、请求被误拒；远程 MCP 服务器断线不重连、跨会话消息在无根容器失效等多项修复</description>
+  </item>
   <item>
    <title>2026-08-24：2.1.241 → 2.1.241（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
