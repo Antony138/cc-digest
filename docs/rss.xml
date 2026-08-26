@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Tue, 25 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Thu, 27 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-08-27：2.1.246 → 2.1.246（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-27</guid>
+   <pubDate>Thu, 27 Aug 2026 07:00:00 +0900</pubDate>
+   <description>2.1.246 是一次纯修复/打磨版本：没有新功能，但集中修掉了后台会话、插件、终端渲染和权限提示里一大批影响日常体验的 bug，还给危险的 Bash 通配符规则加了启动警告。
+亮点：`Bash(git * main)` 这类子命令前带通配符的规则，启动时会警告；`/permissions` 新增 Auto mode 标签页；修复超长单行 diff（如 base64 字符串）导致的严重卡顿；后台会话在多种环境问题下会启动失败，本次修复；第三方 Anthropic 兼容网关的遥测/密钥隔离修复；插件与技能加载相关的多处小修复</description>
+  </item>
   <item>
    <title>2026-08-25：2.1.243 → 2.1.245（2 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
