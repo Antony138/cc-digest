@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.246",
- "last_digest_date": "2026-08-27",
+ "last_version": "2.1.251",
+ "last_digest_date": "2026-08-28",
  "digests": [
+  {
+   "date": "2026-08-28",
+   "from": "2.1.247",
+   "to": "2.1.251",
+   "count": 4,
+   "tldr": "2.1.251 是本期重点：一次性修掉了文件工具、插件命令路径、Workflow 脚本读取权限等多处越权/路径逃逸类安全问题，同时把项目级 settings.json 的 env 收窄、CLAUDE_CODE_SUBAGENT_MODEL 语义也变了，都值得升级前留意。"
+  },
   {
    "date": "2026-08-27",
    "from": "2.1.246",

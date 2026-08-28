@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Thu, 27 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Fri, 28 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-08-28：2.1.247 → 2.1.251（4 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-28</guid>
+   <pubDate>Fri, 28 Aug 2026 07:00:00 +0900</pubDate>
+   <description>2.1.251 是本期重点：一次性修掉了文件工具、插件命令路径、Workflow 脚本读取权限等多处越权/路径逃逸类安全问题，同时把项目级 settings.json 的 env 收窄、CLAUDE_CODE_SUBAGENT_MODEL 语义也变了，都值得升级前留意。
+亮点：2.1.251 修了一批文件/路径越权类安全漏洞；破坏性变更：项目级 settings.json 的 env 不再能设置 CLAUDE_CONFIG_DIR / TMPDIR 等；CLAUDE_CODE_SUBAGENT_MODEL 从「强制覆盖」变成「默认值」；新增 --restricted / CLAUDE_CODE_RESTRICTED 沙盒模式；修复长会话里每小时左右一次的 prompt cache miss；/cost 新增 prompt cache 明细，/usage 新增 Spend limit 进度条</description>
+  </item>
   <item>
    <title>2026-08-27：2.1.246 → 2.1.246（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Wed, 15 Jul 2026 07:00:00 +0900</pubDate>
    <description>本期 4 个版本主打权限体系加固与长会话性能大修：2.1.208 修掉一批内存泄漏、把编辑密集会话的 transcript 体积最多缩小 79 倍，2.1.210 起 `Write(path)` 等权限规则写法需改为 `Edit(path)`，另外网关用户此前被 prompt caching 回归多收的 token 账单也修好了。
 亮点：权限规则写法调整：`Write(path)` 等启动时会告警；一批安全加固：worktree 隔离、提示注入、`rm -rf` 兜底；长会话性能与内存大修；屏幕阅读器模式上线，vim 党喜提 `jj` 退出插入模式；网关 prompt caching 回归修复：不再重复计费尾部 system 块；worktree 里的「总是允许」终于能记住了</description>
-  </item>
-  <item>
-   <title>2026-07-11：2.1.204 → 2.1.207（4 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-07-11</guid>
-   <pubDate>Sat, 11 Jul 2026 07:00:00 +0900</pubDate>
-   <description>本期覆盖 2.1.204–2.1.207：auto mode 在 Bedrock/Vertex/Foundry 上默认开启且 `autoMode` 配置不再从 `.claude/settings.local.json` 读取，插件 `${user_config.*}` shell 注入修复引入破坏性变更，同时长响应流式输出卡顿这一老毛病终于修复。
-亮点：插件配置收紧：shell 形式的 `${user_config.*}` 被禁用；auto mode 策略调整：企业平台默认开启，配置位置迁移；长响应流式输出不再卡死终端；`/doctor` 升级为全面体检工具；auto mode 多项安全加固；MCP 稳定性修复：超时配置生效、OAuth 不再频繁掉登录</description>
   </item>
  </channel>
 </rss>
