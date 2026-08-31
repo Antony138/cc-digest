@@ -1,0 +1,59 @@
+{
+ "date": "2026-09-01",
+ "version_range": {
+  "from": "2.1.252",
+  "to": "2.1.252",
+  "count": 1
+ },
+ "tldr": "2.1.252 是一期纯修复版本，没有新功能或破坏性变更，主要解决了几个会在日常使用中撞见的小毛病：后台任务失败输出过大可能撑爆请求、Remote Control 连接不稳时卡住数分钟、新项目里 always allow 不生效等。",
+ "highlights": [
+  {
+   "title": "修复后台任务失败输出过大导致请求超限",
+   "category": "修复",
+   "detail": "当后台任务的失败信息非常大时（比如磁盘写满后 git 报错刷屏），之前会把这些内容整段塞进会话上下文，导致对话超过 API 请求体积上限而卡住；现在做了限制，不会再因为一条超大失败输出拖垮整个会话。",
+   "action": null,
+   "versions": [
+    "2.1.252"
+   ]
+  },
+  {
+   "title": "Remote Control 连接不稳时不再卡住数分钟",
+   "category": "修复",
+   "detail": "由 Claude Desktop 或 VS Code 托管的 Remote Control 会话，在与 claude.ai 的连接质量变差时，工具执行完成后界面会卡住数分钟才恢复响应；这个延迟问题这次修复了，对经常切到手机/网页端远程操作的用户体验提升明显。",
+   "action": null,
+   "versions": [
+    "2.1.252"
+   ]
+  },
+  {
+   "title": "修复部分 Mac 上 Bash 命令报 \"task output swap refused\" 失败",
+   "category": "修复",
+   "detail": "某些 Mac 环境下，任务目录被移动或替换成软链接后，Bash 命令会直接失败并报 \"task output swap refused (tasks dir moved or linked)\"；这个问题这次修复了。",
+   "action": null,
+   "versions": [
+    "2.1.252"
+   ]
+  },
+  {
+   "title": "修复新项目里 \"always allow\" 权限选择不生效",
+   "category": "修复",
+   "detail": "在还没有 `.claude/settings.local.json` 文件的新项目里，权限提示时选择 \"always allow\" 并不会被真正保存下来，下次还是会重新弹出确认；现在这个记忆行为正常了。",
+   "action": null,
+   "versions": [
+    "2.1.252"
+   ]
+  }
+ ],
+ "versions": [
+  {
+   "version": "2.1.252",
+   "date": "2026-08-31",
+   "bullets": [
+    "Fixed Bash commands failing with \"task output swap refused (tasks dir moved or linked)\" on some Macs",
+    "Fixed \"always allow\" not saving in a project that has no .claude/settings.local.json yet",
+    "Fixed Remote Control sessions hosted by Claude Desktop or VS Code stalling for minutes after a tool finished when the connection to claude.ai was degraded",
+    "Fixed background task notifications with very large failure output (for example git errors on a full disk) making the conversation exceed the API request size limit"
+   ]
+  }
+ ]
+}

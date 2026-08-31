@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Fri, 28 Aug 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Tue, 01 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-09-01：2.1.252 → 2.1.252（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-01</guid>
+   <pubDate>Tue, 01 Sep 2026 07:00:00 +0900</pubDate>
+   <description>2.1.252 是一期纯修复版本，没有新功能或破坏性变更，主要解决了几个会在日常使用中撞见的小毛病：后台任务失败输出过大可能撑爆请求、Remote Control 连接不稳时卡住数分钟、新项目里 always allow 不生效等。
+亮点：修复后台任务失败输出过大导致请求超限；Remote Control 连接不稳时不再卡住数分钟；修复部分 Mac 上 Bash 命令报 "task output swap refused" 失败；修复新项目里 "always allow" 权限选择不生效</description>
+  </item>
   <item>
    <title>2026-08-28：2.1.247 → 2.1.251（4 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Sat, 18 Jul 2026 07:00:00 +0900</pubDate>
    <description>本期以安全加固为主线：2.1.214 集中修补了一批 Bash/PowerShell 权限检查绕过，并收紧了单段 `dir/**` 权限规则与 hook 条件的匹配范围（用到的需要检查配置）；2.1.212 把 `/fork` 重做成独立后台会话，并给 WebSearch 和子代理加上防失控上限。
 亮点：单段 `dir/**` 规则匹配范围收紧；一批权限检查绕过被集中修补；`/fork` 重做：分叉成独立后台会话；WebSearch 与子代理加上防失控上限；慢 MCP 调用自动转后台；plan 模式不再漏放行文件修改命令</description>
-  </item>
-  <item>
-   <title>2026-07-15：2.1.208 → 2.1.211（4 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-07-15</guid>
-   <pubDate>Wed, 15 Jul 2026 07:00:00 +0900</pubDate>
-   <description>本期 4 个版本主打权限体系加固与长会话性能大修：2.1.208 修掉一批内存泄漏、把编辑密集会话的 transcript 体积最多缩小 79 倍，2.1.210 起 `Write(path)` 等权限规则写法需改为 `Edit(path)`，另外网关用户此前被 prompt caching 回归多收的 token 账单也修好了。
-亮点：权限规则写法调整：`Write(path)` 等启动时会告警；一批安全加固：worktree 隔离、提示注入、`rm -rf` 兜底；长会话性能与内存大修；屏幕阅读器模式上线，vim 党喜提 `jj` 退出插入模式；网关 prompt caching 回归修复：不再重复计费尾部 system 块；worktree 里的「总是允许」终于能记住了</description>
   </item>
  </channel>
 </rss>
