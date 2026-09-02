@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Tue, 01 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Thu, 03 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-09-03：2.1.257 → 2.1.258（2 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-03</guid>
+   <pubDate>Thu, 03 Sep 2026 07:00:00 +0900</pubDate>
+   <description>这期合并了两个版本：2.1.257 是本周最大的一次更新，带来 Fable 5.1 默认模型、auto 模式新增 Containment Escape 安全规则，以及一条需要注意的破坏性变更（项目级 defaultMode: bypassPermissions 失效）；2.1.258 是次日热修复，解决了 macOS 12 无法启动和远程/定时会话报错两个高优先级问题。
+亮点：破坏性变更：项目级 settings.json 里的 defaultMode: "bypassPermissions" 不再生效；auto 模式新增 Containment Escape 防护规则；2.1.258 热修复：macOS 12 (Monterey) 无法启动；2.1.258 修复远程/定时会话报 "user messages must have non-empty content"；新增 Claude Fable 5.1，成为 Fable 系列默认模型；auto 模式读取工作目录外文件时新增一次性确认</description>
+  </item>
   <item>
    <title>2026-09-01：2.1.252 → 2.1.252（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Tue, 21 Jul 2026 07:00:00 +0900</pubDate>
    <description>本期最值得注意：自 2.1.215 起 Claude 不再自动运行 `/verify` 和 `/code-review`，想要审查需手动触发；2.1.216 则根治了长会话中随轮次二次方增长的卡顿，并对权限与沙箱做了多处安全加固。
 亮点：`/verify` 和 `/code-review` 不再自动运行；长会话二次方级卡顿被根治；权限与文件系统多处安全加固；新增 `sandbox.filesystem.disabled` 设置；auto mode 与后台会话一批高频修复</description>
-  </item>
-  <item>
-   <title>2026-07-18：2.1.212 → 2.1.214（2 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-07-18</guid>
-   <pubDate>Sat, 18 Jul 2026 07:00:00 +0900</pubDate>
-   <description>本期以安全加固为主线：2.1.214 集中修补了一批 Bash/PowerShell 权限检查绕过，并收紧了单段 `dir/**` 权限规则与 hook 条件的匹配范围（用到的需要检查配置）；2.1.212 把 `/fork` 重做成独立后台会话，并给 WebSearch 和子代理加上防失控上限。
-亮点：单段 `dir/**` 规则匹配范围收紧；一批权限检查绕过被集中修补；`/fork` 重做：分叉成独立后台会话；WebSearch 与子代理加上防失控上限；慢 MCP 调用自动转后台；plan 模式不再漏放行文件修改命令</description>
   </item>
  </channel>
 </rss>

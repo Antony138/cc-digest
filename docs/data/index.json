@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.252",
- "last_digest_date": "2026-09-01",
+ "last_version": "2.1.258",
+ "last_digest_date": "2026-09-03",
  "digests": [
+  {
+   "date": "2026-09-03",
+   "from": "2.1.257",
+   "to": "2.1.258",
+   "count": 2,
+   "tldr": "这期合并了两个版本：2.1.257 是本周最大的一次更新，带来 Fable 5.1 默认模型、auto 模式新增 Containment Escape 安全规则，以及一条需要注意的破坏性变更（项目级 defaultMode: bypassPermissions 失效）；2.1.258 是次日热修复，解决了 macOS 12 无法启动和远程/定时会话报错两个高优先级问题。"
+  },
   {
    "date": "2026-09-01",
    "from": "2.1.252",
