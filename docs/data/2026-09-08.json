@@ -1,0 +1,123 @@
+{
+ "date": "2026-09-08",
+ "version_range": {
+  "from": "2.1.265",
+  "to": "2.1.265",
+  "count": 1
+ },
+ "tldr": "2.1.265 是一次少见的大型维护发布，修复列表长达 50 条：最值得关注的是 Windows 受限沙箱下 Read/Write/Edit 全面失效的严重 bug、非交互会话（-p/SDK/云端）里 cd 目录不再每轮重置，以及多处 prompt cache 复用失效的修复，重度使用多代理和自动化流程的人受益最明显。",
+ "highlights": [
+  {
+   "title": "Windows 受限沙箱下文件工具失效",
+   "category": "修复",
+   "detail": "在 AppContainer 或受限 token 沙箱里运行时，Read、Write、Edit 会因为“符号链接解析在权限检查后发生变化”被无差别拒绝，导致这类 Windows 沙箱环境完全没法编辑文件。",
+   "action": "在 Windows 受限沙箱环境使用 Claude Code 的用户请升级到 2.1.265。",
+   "versions": [
+    "2.1.265"
+   ]
+  },
+  {
+   "title": "非交互会话不再每轮重置工作目录",
+   "category": "修复",
+   "detail": "-p 打印模式配合 stream-json 输入、Agent SDK、云端会话此前每来一条新用户消息就会把 shell 工作目录重置回起点；现在 cd 的效果能跨多轮保留，脚本化、自动化工作流里“先 cd 再执行命令”终于稳定了。",
+   "action": null,
+   "versions": [
+    "2.1.265"
+   ]
+  },
+  {
+   "title": "多处 prompt cache 复用失效被修复",
+   "category": "修复",
+   "detail": "恢复一个由前台派生的子代理时，工具列表和系统提示前缀会跟着变，导致该代理的 prompt cache 作废；agent 队友和被恢复的子代理在后续轮次也会把 SubagentStart hook 上下文、预加载的 skill 挪出提示前缀，同样打掉缓存。两处都修好了，重度使用多代理和 agent 队友的场景能明显省下 token 和等待时间。",
+   "action": null,
+   "versions": [
+    "2.1.265"
+   ]
+  },
+  {
+   "title": "MCP 遗留 HTTP+SSE 服务器恢复可用",
+   "category": "修复",
+   "detail": "配置为 `http` 传输、但服务端只支持旧版 HTTP+SSE 协议的 MCP server 此前会连接失败；现在 Claude Code 会按 MCP 规范自动回退到 SSE。",
+   "action": "如果你的 MCP 配置里有一直连不上的 `http` 类型 server，可以重新试一次。",
+   "versions": [
+    "2.1.265"
+   ]
+  },
+  {
+   "title": "Artifact 工具读取他人页面时按不可信内容处理",
+   "category": "安全",
+   "detail": "用 Artifact 工具读取别人发布的 artifact 时，生成的摘要现在会把页面内容当成不可信数据，识别并标记其中嵌入的指令，而不是直接照单转述，降低了被恶意 artifact 做提示注入的风险。",
+   "action": null,
+   "versions": [
+    "2.1.265"
+   ]
+  },
+  {
+   "title": "Claude apps gateway 登录与遥测行为变更",
+   "category": "破坏性变更",
+   "detail": "托管设置里配置了 `forceLoginGatewayUrl` 的机器，现在从启动那一刻起就直接是 Claude apps gateway 会话（等同 `forceLoginMethod: \"gateway\"`），不会再退回到遗留的 claude.ai 登录或 API key；同时这类会话的 OTLP 遥测默认直接发往托管设置里指定的 collector，不再经过 gateway 中转（没有指定 collector 的会话仍走原来的中转路径）。",
+   "action": "通过 managed settings 配置了 Claude apps gateway 的管理员，需要确认 `forceLoginGatewayUrl` 和 OTEL collector 的配置是否符合预期。",
+   "versions": [
+    "2.1.265"
+   ]
+  }
+ ],
+ "versions": [
+  {
+   "version": "2.1.265",
+   "date": "2026-09-08",
+   "bullets": [
+    "Added `user.email` and `user.groups` to the telemetry Claude Desktop and Cowork send through a Claude apps gateway, matching terminal sessions",
+    "Added support for pointing `--plugin-dir` at a folder of plugins: each child folder with a manifest loads, and children added or removed while running are picked up",
+    "Added a 1 GB cap on tool results saved to disk; the in-conversation preview says when a saved file was truncated",
+    "Fixed resuming a foreground-spawned subagent changing its tool list and system prompt prefix, which broke prompt-cache reuse for that agent",
+    "Fixed agent teammates and resumed subagents moving SubagentStart hook context and preloaded skills out of the prompt prefix on later turns, which broke prompt-cache reuse",
+    "Fixed resume after the previous process died while a tool was running: the last prompt is no longer rewritten, and the interrupted tool call is kept and marked interrupted",
+    "Fixed `/model opusplan[1m]` being rejected with \"Model not found\"",
+    "Fixed syntax-highlighted code in permission prompts and messages sometimes omitting a character after a Ruby `?`, Erlang `$`, or Perl `$` sigil",
+    "Fixed the fullscreen transcript jumping by one row whenever the slash-command or @-file suggestion list opened or closed",
+    "Fixed a plugin path containing a backslash bypassing the symlink containment check on macOS and Linux",
+    "Fixed plugin directories whose names begin with two dots being wrongly refused as outside the plugin root",
+    "Fixed VS Code and SDK sessions occasionally requiring re-login when a session was closed while refreshing its token",
+    "Fixed Remote Control sessions sending the end-of-turn signal before the reply's last message, which could show a reply as finished in the Claude app before its last part arrived",
+    "Fixed background (`--bg`) sessions occasionally being retired mid-turn when a message arrived just before the idle timeout",
+    "Fixed Claude Code's own git status and diff probes running clean filters configured by a nested repository inside the working tree",
+    "Fixed the advisor tool and its instructions being re-decided per request from the request's model; the decision is now made once and announced in the conversation when it changes",
+    "Fixed artifact publish accepting connector tool names the connector doesn't expose; the publish is now refused when none of the declared tools exist, and warned when only some don't",
+    "Fixed `/add-dir <subdirectory>` refusing to load a subdirectory's agents when managed settings lock only skills to plugins, and promising agents when only agents are locked",
+    "Fixed two-key keyboard shortcuts cancelling silently when the second key arrived more than a second later, as happens inside tmux; they now wait 3 seconds and show a notice when they time out",
+    "Fixed forked skills (`context: fork`) not streaming their kickoff prompt and, with `--forward-subagent-text`, their text turns as progress events in stream-json",
+    "Fixed a plugin's default component folder that the OS cannot check, such as a symlink loop, being silently skipped; it is now reported in `/plugin` with the error code",
+    "Fixed the Claude apps gateway's OTLP telemetry relay pausing all forwarding to a collector for 30 seconds after it rejected a few payloads as malformed or too large",
+    "Fixed `/plugin` Discover/Browse and `claude plugin list --json --available` showing no description or display name for marketplace plugins whose metadata lives only in their `plugin.json`",
+    "Fixed `/login` showing \"no gateway URL is configured\" when re-run in a session that signed in to a Claude apps gateway set by managed settings",
+    "Fixed `/model` claiming a model was \"saved as your default\" when the settings file couldn't be written; it now says the save failed and why",
+    "Fixed `/clear` from Remote Control waiting on SessionStart hooks and on open terminal dialogs before completing",
+    "Fixed the `/config` dialog changing height when switching between its tabs",
+    "Fixed resuming a workflow run after its container restarted; a resume whose run journal is missing now fails with a clear error instead of rerunning every agent",
+    "Fixed the `claude-api` skill's error-code reference: model access failures return 404 and unavailable beta headers return 400, not 403",
+    "Fixed non-interactive sessions (`-p` with stream-json input, Agent SDK, cloud sessions) resetting the shell working directory at each new user message; a `cd` now persists across turns",
+    "Fixed MCP servers configured as `http` that only speak the legacy HTTP+SSE transport never connecting; Claude Code now falls back to SSE as the MCP spec describes",
+    "Fixed some claude.ai connectors in cloud sessions showing as needing authentication even though they are connected in claude.ai (servers that answer an unsupported request with HTTP 401)",
+    "Fixed remote sessions keeping their sandbox container alive while a connector approval or sign-in link waits for you",
+    "Fixed resumed sessions showing long model-facing recovery instructions in \"background task didn't finish\" notices instead of a short status line",
+    "Windows: Fixed Read, Write and Edit refusing every file (\"symlink resolution changed after permission was checked\") when running inside an AppContainer or restricted-token sandbox",
+    "Improved `--worktree` startup on large repositories: the new worktree is now checked out in parallel (git 2.32+)",
+    "Improved `/workflows` agent detail: tool calls are marked running, failed or done, the subagent's task list is shown when it has one, and Enter unfolds the listed calls with their inputs and results",
+    "Improved slash commands typed mid-prompt: matches now show in a list (Tab opens it outside fullscreen) instead of a single suggestion, and a plugin skill is now found by its bare name",
+    "Improved remote MCP servers that need sign-in: Claude Code no longer registers an OAuth client with them until you actually authenticate",
+    "Improved the time to resume long sessions that read many files",
+    "Improved the error shown when an image over the size limits cannot be decoded: it now names the cause and how to fix it instead of only citing the limit",
+    "Improved the Artifact tool's read of an artifact someone else wrote: the summary now treats the page as untrusted content and flags embedded instructions rather than relaying them",
+    "Updated the `.claude` folder permission option to say what it actually allows: editing files in the project's `.claude` folder (or `~/.claude`) for the session",
+    "Changed machines with `forceLoginGatewayUrl` in managed settings to be Claude apps gateway sessions from startup, like `forceLoginMethod: \"gateway\"`; a leftover claude.ai login or API key is not used",
+    "Changed image processing to use the runtime's built-in image support; the CLI no longer extracts a native image module to the temp directory",
+    "Changed plugin display metadata to prefer the marketplace entry over `plugin.json` on the Installed tab and `claude plugin details`, filling gaps from `plugin.json`",
+    "Changed Claude apps gateway sessions to export OpenTelemetry directly to a collector the gateway's managed settings name in `OTEL_EXPORTER_OTLP_ENDPOINT`, instead of through the gateway's relay; sessions without a named collector still use the relay",
+    "\\[VSCode] Added automatic archiving of sessions inactive for a set period (new \"Archive inactive sessions\" setting, default 14 days)",
+    "\\[VSCode] Fixed the sidebar chat coming back blank after Reload Window or a restart when the conversation had been open for more than 10 minutes",
+    "\\[VSCode] Fixed the timeline dot sitting below the text on the \"Remote Control is active\" message"
+   ]
+  }
+ ]
+}

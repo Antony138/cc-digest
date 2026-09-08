@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Mon, 07 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Tue, 08 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-09-08：2.1.265 → 2.1.265（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-08</guid>
+   <pubDate>Tue, 08 Sep 2026 07:00:00 +0900</pubDate>
+   <description>2.1.265 是一次少见的大型维护发布，修复列表长达 50 条：最值得关注的是 Windows 受限沙箱下 Read/Write/Edit 全面失效的严重 bug、非交互会话（-p/SDK/云端）里 cd 目录不再每轮重置，以及多处 prompt cache 复用失效的修复，重度使用多代理和自动化流程的人受益最明显。
+亮点：Windows 受限沙箱下文件工具失效；非交互会话不再每轮重置工作目录；多处 prompt cache 复用失效被修复；MCP 遗留 HTTP+SSE 服务器恢复可用；Artifact 工具读取他人页面时按不可信内容处理；Claude apps gateway 登录与遥测行为变更</description>
+  </item>
   <item>
    <title>2026-09-07：2.1.263 → 2.1.263（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Mon, 27 Jul 2026 07:00:00 +0900</pubDate>
    <description>2.1.220 是一次纯维护性发布，官方 changelog 只给了一句“修复与稳定性改进”，没有披露具体改动，也没有新功能、破坏性变更或需要调整的配置，日常升级即可。
 亮点：2.1.220：官方仅注明“修复与稳定性改进”，未列出具体条目；紧接上期 Opus 5 大版本之后的收尾式小版本；无破坏性变更、无需改动任何配置</description>
-  </item>
-  <item>
-   <title>2026-07-25：2.1.219 → 2.1.219（1 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-07-25</guid>
-   <pubDate>Sat, 25 Jul 2026 07:00:00 +0900</pubDate>
-   <description>本期最大的事是 Claude Opus 5 上线并成为默认 Opus 模型（100 万 token 上下文，fast mode 定价 $10/$50 每 Mtok）；同时子代理嵌套深度默认从 1 层放宽回 3 层，等于悄悄撤销了上期收紧的安全限制，重度用多代理工作流的人需要留意。
-亮点：Claude Opus 5 发布，成为默认 Opus 模型；子代理嵌套深度默认从 1 层放宽回 3 层；Fast mode 移除 Opus 4.7；Dynamic workflow 默认收紧到「中等规模」（建议少于 15 个 agent）；新增 `sandbox.network.strictAllowlist` 设置；修复 `claude -p` 在流式请求中途报错时丢弃已生成内容</description>
   </item>
  </channel>
 </rss>

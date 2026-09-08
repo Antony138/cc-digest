@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.263",
- "last_digest_date": "2026-09-07",
+ "last_version": "2.1.265",
+ "last_digest_date": "2026-09-08",
  "digests": [
+  {
+   "date": "2026-09-08",
+   "from": "2.1.265",
+   "to": "2.1.265",
+   "count": 1,
+   "tldr": "2.1.265 是一次少见的大型维护发布，修复列表长达 50 条：最值得关注的是 Windows 受限沙箱下 Read/Write/Edit 全面失效的严重 bug、非交互会话（-p/SDK/云端）里 cd 目录不再每轮重置，以及多处 prompt cache 复用失效的修复，重度使用多代理和自动化流程的人受益最明显。"
+  },
   {
    "date": "2026-09-07",
    "from": "2.1.263",
