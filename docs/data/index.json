@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.265",
- "last_digest_date": "2026-09-08",
+ "last_version": "2.1.267",
+ "last_digest_date": "2026-09-10",
  "digests": [
+  {
+   "date": "2026-09-10",
+   "from": "2.1.266",
+   "to": "2.1.267",
+   "count": 2,
+   "tldr": "两个版本延续了上个版本的大规模发布节奏：2.1.266 火速修复了 2.1.265 引入的网关登录回归；2.1.267 新增按 effort 等级设上限、system prompt 热更新两个配置项，并修复了一长串 prompt-cache 失效、沙箱启动、mobile/VSCode 渲染和 Claude Tag 问题。"
+  },
   {
    "date": "2026-09-08",
    "from": "2.1.265",
