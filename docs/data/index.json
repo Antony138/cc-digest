@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.267",
- "last_digest_date": "2026-09-10",
+ "last_version": "2.1.269",
+ "last_digest_date": "2026-09-11",
  "digests": [
+  {
+   "date": "2026-09-11",
+   "from": "2.1.268",
+   "to": "2.1.269",
+   "count": 2,
+   "tldr": "2.1.268 修复了自 2.1.265 起第三方 Anthropic 兼容端点全线 400 报错的回归，同时收紧了两处权限相关行为（TodoWrite 系工具收窄到指定模型、Artifact 权限从 WebFetch 规则中拆分）；2.1.269 新增 claude plugin eval，继续修复 prompt-cache 失效和一处权限规则取反漏洞。"
+  },
   {
    "date": "2026-09-10",
    "from": "2.1.266",

@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Thu, 10 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Fri, 11 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-09-11：2.1.268 → 2.1.269（2 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-11</guid>
+   <pubDate>Fri, 11 Sep 2026 07:00:00 +0900</pubDate>
+   <description>2.1.268 修复了自 2.1.265 起第三方 Anthropic 兼容端点全线 400 报错的回归，同时收紧了两处权限相关行为（TodoWrite 系工具收窄到指定模型、Artifact 权限从 WebFetch 规则中拆分）；2.1.269 新增 claude plugin eval，继续修复 prompt-cache 失效和一处权限规则取反漏洞。
+亮点：TodoWrite/任务追踪工具收窄到指定模型；Artifact 权限从 WebFetch 规则中拆分；第三方 Anthropic 兼容端点 400 报错回归修复；又一批 prompt-cache 失效场景被修复；新增 claude plugin eval，插件也能跑评测集；权限规则里的 `!` 取反越权漏洞修复</description>
+  </item>
   <item>
    <title>2026-09-10：2.1.266 → 2.1.267（2 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Fri, 07 Aug 2026 07:00:00 +0900</pubDate>
    <description>本期是一次密集的安全加固：worktree 隔离越权执行 git、权限检查被特殊字符或动态 import() 绕过等多个漏洞被修复；同时 ultraplan 功能被移除，Remote Control 自动启动方式和上下文窗口强制策略也发生了需要留意的行为变化。
 亮点：一批权限/隔离绕过漏洞集中修复；ultraplan 功能被移除；Remote Control 自动启动改为只能在用户级 `/config` 打开；1M 上下文与未知模型 ID 的上下文窗口强制策略变化；`/review` 变成 `/code-review` 的别名，且会记住上次的 effort 等级；marketplace 白名单/黑名单支持 owner 通配符，新增 `/teleport` 提示</description>
-  </item>
-  <item>
-   <title>2026-08-05：2.1.221 → 2.1.221（1 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-05</guid>
-   <pubDate>Wed, 05 Aug 2026 07:00:00 +0900</pubDate>
-   <description>本期安全修复是重点：修好了 zsh 正则条件和 Windows 带引号路径这两处权限检查绕过；同时新增 Linux/WSL 沙箱凭据文件 mask 模式和 VSCode Focus view，并修复了 `-p` 打印模式下 MCP 工具调用被当成文本输出的问题。
-亮点：两处 Bash/PowerShell 权限检查绕过被修复；沙箱凭据文件新增 `mode: "mask"`（Linux/WSL）；VSCode 扩展新增 Focus view；修复 `-p` 打印模式下 `--mcp-config` 的 MCP 工具首轮不可用；后台会话默认行为调整：自动提交推送、按需开 draft PR；修复 `CLAUDE_CODE_RESUME_INTERRUPTED_TURN=0` 不生效</description>
   </item>
  </channel>
 </rss>
