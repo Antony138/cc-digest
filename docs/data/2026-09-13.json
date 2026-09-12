@@ -1,0 +1,47 @@
+{
+ "date": "2026-09-13",
+ "version_range": {
+  "from": "2.1.270",
+  "to": "2.1.270",
+  "count": 1
+ },
+ "tldr": "2.1.270 是一次单条修复的快速热修复：解决了长会话中 Bash 里本应免确认的只读 git 命令（如 git status/log/diff）会突然重新弹出权限确认的回归，这个回归由前一天的 2.1.269 引入；本期无新功能、无破坏性变更，直接升级即可。",
+ "highlights": [
+  {
+   "title": "长会话里只读 git 命令重新弹出权限确认的回归被修复",
+   "category": "修复",
+   "detail": "2.1.269 引入了一个回归：一个会话运行一段时间后，Bash 里本应自动放行的只读 git 命令（`git status`、`git log`、`git diff` 等）会开始意外要求权限确认，打断本该无感的操作。2.1.270 修复了这个问题，只读 git 命令重新恢复长会话下的免确认行为。",
+   "action": null,
+   "versions": [
+    "2.1.270"
+   ]
+  },
+  {
+   "title": "回归窗口只存在于 2.1.269，其他版本不受影响",
+   "category": "改进",
+   "detail": "这个 bug 只出现在 2.1.269 这一个版本上；停留在 2.1.268 或更早版本、或者已经跳过 2.1.269 直接升到 2.1.270 的用户都不会遇到。如果最近几天感觉长会话里 git 相关操作变得频繁要点确认，升级到 2.1.270 就能恢复正常。",
+   "action": null,
+   "versions": [
+    "2.1.270"
+   ]
+  },
+  {
+   "title": "纯热修复，无新功能、无需改动任何配置",
+   "category": "修复",
+   "detail": "本期只有这一条修复，没有新增功能，也没有涉及权限规则、环境变量或默认行为的改动，属于典型的次日紧急收尾发布，直接升级即可。",
+   "action": null,
+   "versions": [
+    "2.1.270"
+   ]
+  }
+ ],
+ "versions": [
+  {
+   "version": "2.1.270",
+   "date": "2026-09-12",
+   "bullets": [
+    "Fixed read-only git commands in Bash unexpectedly asking for permission after a session had been running for a while (regression in 2.1.269)"
+   ]
+  }
+ ]
+}
