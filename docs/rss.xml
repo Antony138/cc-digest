@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sun, 13 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Wed, 16 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-09-16：2.1.271 → 2.1.273（3 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-16</guid>
+   <pubDate>Wed, 16 Sep 2026 07:00:00 +0900</pubDate>
+   <description>2.1.271～2.1.273 这三版的重心是稳定性和安全：Bash 权限检查堵上了好几个能绕过审批的漏洞，`/resume`/`/teleport` 不再遗留旧会话的文件读取状态；对日常使用影响最大的是修复了 auto-compact 把上下文占用算高近一倍、导致过早压缩的问题，Monitor 工具的长期监听也改成了固定超时。
+亮点：auto-compact 误把上下文算满，提前触发压缩；多处 Bash 权限检查漏洞被堵上；`/resume`、`/teleport` 不再带着旧会话的文件读取记录；Monitor 工具取消无限期 persistent 监听，改为固定超时；自动模式沙箱新增按命令的 allowed_domains；子 agent／后台 agent 结果偶尔被误判为失败并丢失</description>
+  </item>
   <item>
    <title>2026-09-13：2.1.270 → 2.1.270（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Wed, 12 Aug 2026 07:00:00 +0900</pubDate>
    <description>本期只有 2.1.227 一个小版本，全是修复和体验优化：修了过期登录 token 下权限判断出错、误提示 Max 用户开通 Fable 用量额度的问题，也修了 GitHub Actions 里 claude-code-action 命令全部失败、以及 /tui 恢复到 rewind 之前状态的两个 bug。
 亮点：修复过期登录 token 导致的功能开关误判；修复 claude-code-action 在 GitHub 托管 runner 上全部命令失败；修复 /tui 恢复到 rewind 之前的历史；slash 命令菜单交互细节打磨；减少输入建议场景下的事件循环卡顿</description>
-  </item>
-  <item>
-   <title>2026-08-09：2.1.224 → 2.1.226（3 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-09</guid>
-   <pubDate>Sun, 09 Aug 2026 07:00:00 +0900</pubDate>
-   <description>本期（2.1.224→2.1.226）带来跨会话 SendMessage 与自托管环境两个大功能；新增的 bypassPermissions 会话消息审批默认值、反馈问卷 transcript 上传范围变化值得留意；另有多项沙箱隔离、Remote Control 和 headless 场景的安全与稳定性修复。
-亮点：跨会话 SendMessage 和自托管环境同时上线；跨会话消息新增审批/过期设置，bypassPermissions 会话默认更谨慎；两处沙箱/会话隔离安全修复；反馈问卷分享 transcript 时会额外带上 system prompt 和 CLAUDE.md；Remote Control 一揽子稳定性修复；headless/CI 场景的几个关键修复</description>
   </item>
  </channel>
 </rss>
