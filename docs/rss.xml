@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Wed, 16 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Thu, 17 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-09-17：2.1.274 → 2.1.274（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-17</guid>
+   <pubDate>Thu, 17 Sep 2026 07:00:00 +0900</pubDate>
+   <description>2.1.274 是一次修复为主的版本，最值得关注的是终结了会话卡死重试 "unexpected tool_use_id" 400 错误的老问题（支持自愈或给出明确报错），同时两处 MCP 相关默认行为发生破坏性变更，Bedrock/Vertex/Foundry 用户和用 `.mcp.json` 声明过 `"type": "sdk"` 条目的用户需要留意。
+亮点：会话卡死重复 400 报错的问题被修复；Bedrock / Vertex / Foundry 默认切换到 v2 MCP 客户端；`.mcp.json` 等配置里的 `"type": "sdk"` 条目不再生效；Bash 权限检查再堵两个绕过场景；MCP 连接与工具调用的一揽子可靠性修复；新增内存紧张提醒与 MCP 启动等待时间配置</description>
+  </item>
   <item>
    <title>2026-09-16：2.1.271 → 2.1.273（3 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Fri, 14 Aug 2026 07:00:00 +0900</pubDate>
    <description>本期（2.1.228→2.1.231）集中修复了一批会让终端直接崩溃或流式输出错乱的稳定性问题，同时对 sandbox 网络配置和 Windows 自托管 runner 启动做了更严格的约束，这两处涉及配置的改动需要留意。
 亮点：修复多个终端崩溃与流式输出错乱问题；MCP OAuth 登录修复：预注册 client（如 Slack）+ 严格授权服务器；sandbox 网络配置对 IPv6 写法强制收紧；Windows 自托管 runner 启动必须显式指定 --base-dir；/commit-push-pr 里的危险 git/gh 操作不再自动批准；同步自 claude.ai 的 skills 安全加固</description>
-  </item>
-  <item>
-   <title>2026-08-12：2.1.227 → 2.1.227（1 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-12</guid>
-   <pubDate>Wed, 12 Aug 2026 07:00:00 +0900</pubDate>
-   <description>本期只有 2.1.227 一个小版本，全是修复和体验优化：修了过期登录 token 下权限判断出错、误提示 Max 用户开通 Fable 用量额度的问题，也修了 GitHub Actions 里 claude-code-action 命令全部失败、以及 /tui 恢复到 rewind 之前状态的两个 bug。
-亮点：修复过期登录 token 导致的功能开关误判；修复 claude-code-action 在 GitHub 托管 runner 上全部命令失败；修复 /tui 恢复到 rewind 之前的历史；slash 命令菜单交互细节打磨；减少输入建议场景下的事件循环卡顿</description>
   </item>
  </channel>
 </rss>

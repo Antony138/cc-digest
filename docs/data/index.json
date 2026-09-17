@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.273",
- "last_digest_date": "2026-09-16",
+ "last_version": "2.1.274",
+ "last_digest_date": "2026-09-17",
  "digests": [
+  {
+   "date": "2026-09-17",
+   "from": "2.1.274",
+   "to": "2.1.274",
+   "count": 1,
+   "tldr": "2.1.274 是一次修复为主的版本，最值得关注的是终结了会话卡死重试 \"unexpected tool_use_id\" 400 错误的老问题（支持自愈或给出明确报错），同时两处 MCP 相关默认行为发生破坏性变更，Bedrock/Vertex/Foundry 用户和用 `.mcp.json` 声明过 `\"type\": \"sdk\"` 条目的用户需要留意。"
+  },
   {
    "date": "2026-09-16",
    "from": "2.1.271",
