@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.274",
- "last_digest_date": "2026-09-17",
+ "last_version": "2.1.277",
+ "last_digest_date": "2026-09-19",
  "digests": [
+  {
+   "date": "2026-09-19",
+   "from": "2.1.275",
+   "to": "2.1.277",
+   "count": 3,
+   "tldr": "本期横跨 2.1.275-2.1.277 三个版本：新增 AGENTS.md 项目指令支持、claude.ai 账号的 skills/plugins 自动同步到终端会话；TaskOutput 工具被正式移除属于破坏性变更；2.1.275 发布当天就把走网关/代理的请求全部搞挂了，2.1.276 火速修复。"
+  },
   {
    "date": "2026-09-17",
    "from": "2.1.274",
