@@ -1,0 +1,48 @@
+{
+ "date": "2026-09-20",
+ "version_range": {
+  "from": "2.1.278",
+  "to": "2.1.278",
+  "count": 1
+ },
+ "tldr": "2.1.278 是一次计费口径调整：Claude API / Enterprise 账号，以及 Bedrock、Google Cloud Agent Platform、Microsoft Foundry 上的 auto mode，默认改为把安全检查交给服务端做，不再为此单独计费；如果中间挂了网关/代理，会 fallback 回旧的计费方式并弹出提示。",
+ "highlights": [
+  {
+   "title": "Auto mode 的安全检查默认转到服务端执行，不再计费",
+   "category": "改进",
+   "detail": "auto mode 下，Claude Code 在执行 shell 命令、网络请求等操作前会先跑一次分类器做安全检查。这次分类器请求本来算作 token 用量计费，2.1.278 起在 Claude API、Enterprise 账号，以及 Claude Platform on AWS、Bedrock、Google Cloud Agent Platform、Microsoft Foundry 上默认改为让服务端顺带完成这次检查，不再单独计费。Pro/Max/Team 订阅计划不受影响（本来就不会看到这类提示）。",
+   "action": null,
+   "versions": [
+    "2.1.278"
+   ]
+  },
+  {
+   "title": "自建网关/代理若不透传请求头，会 fallback 到旧计费方式并弹提示",
+   "category": "改进",
+   "detail": "如果 Claude Code 和 API 之间有 LLM 网关或代理会剥离/改写请求头或响应字段（比如丢弃 `safeguards` 请求字段、`safeguard_results` 响应字段，或重写 tool-use ID），服务端检查就传不到会话，Claude Code 会自动退回到自己发起分类器请求（按原来的方式计费），并在交互式会话里弹出一次性提示告知。非交互模式（`-p`、`stream-json`）不会卡住，只是把提示打到 stderr 或作为 system 消息输出。",
+   "action": "自建或使用第三方 LLM 网关跑 auto mode 的用户：确认网关按透传协议转发请求/响应（参考 gateway compatibility guide），否则可以提前设置 `CLAUDE_CODE_AUTO_MODE_SERVER=0` 关闭服务端检查请求，避免每次话都触发这个提示（该变量在直连 Anthropic API 时不生效，且官方说明这是临时设置，未来版本可能移除）。",
+   "versions": [
+    "2.1.278"
+   ]
+  },
+  {
+   "title": "/status 新增 Auto mode server 行",
+   "category": "新功能",
+   "detail": "`/status` 里新增一行 **Auto mode server**：显示 `Enabled` 表示当前会话的 auto mode 分类器正跑在服务端（不计费），`Disabled` 表示已经 fallback 回本地计费方式。想确认自己是否吃到这次免计费改动，直接看这一行就行。",
+   "action": null,
+   "versions": [
+    "2.1.278"
+   ]
+  }
+ ],
+ "versions": [
+  {
+   "version": "2.1.278",
+   "date": "2026-09-19",
+   "bullets": [
+    "Changed auto mode for Claude API and Enterprise users, and on Bedrock, Vertex, Foundry and gateways, to default to the server-side classifier, which does not charge for classifier overhead (`CLAUDE_CODE_AUTO_MODE_SERVER=0` opts out on Bedrock, Vertex, Foundry and gateways); warns on billed fallback. See [https://code.claude.com/docs/en/auto-mode-classifier-billing](https://code.claude.com/docs/en/auto-mode-classifier-billing)",
+    "Added an `Auto mode server` row to `/status` showing whether this session's auto mode classifier runs on the server"
+   ]
+  }
+ ]
+}

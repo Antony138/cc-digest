@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.277",
- "last_digest_date": "2026-09-19",
+ "last_version": "2.1.278",
+ "last_digest_date": "2026-09-20",
  "digests": [
+  {
+   "date": "2026-09-20",
+   "from": "2.1.278",
+   "to": "2.1.278",
+   "count": 1,
+   "tldr": "2.1.278 是一次计费口径调整：Claude API / Enterprise 账号，以及 Bedrock、Google Cloud Agent Platform、Microsoft Foundry 上的 auto mode，默认改为把安全检查交给服务端做，不再为此单独计费；如果中间挂了网关/代理，会 fallback 回旧的计费方式并弹出提示。"
+  },
   {
    "date": "2026-09-19",
    "from": "2.1.275",
