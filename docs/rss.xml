@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sun, 20 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Wed, 23 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-09-23：2.1.280 → 2.1.280（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-23</guid>
+   <pubDate>Wed, 23 Sep 2026 07:00:00 +0900</pubDate>
+   <description>2.1.280 是一次大版本：正式发布 Opus 5.5 并成为默认 Opus 模型，同时 Pro 和 Team Standard 套餐的默认模型从 Sonnet 换成了 Opus，会明显推高用量消耗；此外 PermissionRequest hook 不再支持 agent 类型 hook，auto mode 卡死重试和一批 prompt cache 失效的老问题也在本次修复。
+亮点：Opus 5.5 发布，成为默认 Opus 模型；Pro / Team Standard 套餐默认模型从 Sonnet 改为 Opus；PermissionRequest hook 不再支持 agent 类型；auto mode 安全检查卡死重试的问题被修复；一批 prompt cache 失效场景被修复；符号链接路径写入的权限判断被修复</description>
+  </item>
   <item>
    <title>2026-09-20：2.1.278 → 2.1.278（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Wed, 19 Aug 2026 07:00:00 +0900</pubDate>
    <description>本期只有 2.1.235 一个版本，安全上修了权限提示里 Shift+Tab 误触发全局编辑授权的漏洞，并让权限弹窗文案和实际授权范围对齐；另外新增了输入框拼写检查，grep 病态正则卡死、language server 重连打掉整段 prompt cache 等问题也一并修复。
 亮点：输入框内置拼写检查；权限提示里 Shift+Tab 误触发全局编辑授权；权限对话框文案与实际授权范围对齐；内置 grep 修复病态正则卡死与 -m/-A/-C 组合出错；后台跑 /ultrareview、/autofix-pr 等 cloud session 更省资源；language server 断连重连不再打掉整段 prompt cache</description>
-  </item>
-  <item>
-   <title>2026-08-18：2.1.234 → 2.1.234（1 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-18</guid>
-   <pubDate>Tue, 18 Aug 2026 07:00:00 +0900</pubDate>
-   <description>本期是单版本发布（2.1.234），最大的变化是达到 claude.ai 用量限额后会话会自动续接的新默认行为，另外还有一批权限提示、长会话 sandbox 网络检查、Windows 路径安全方面的修复，以及 claude-api 内置 skill 大幅瘦身。
-亮点：用量限额重置后自动续接会话；移除 "Default teammate model" 设置；长会话里 sandbox 网络权限反复重问的问题修复；claude-api 内置 skill 大幅瘦身；账号邮箱使用范围收紧；多处权限提示与 Windows 路径安全修复</description>
   </item>
  </channel>
 </rss>

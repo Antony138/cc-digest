@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.278",
- "last_digest_date": "2026-09-20",
+ "last_version": "2.1.280",
+ "last_digest_date": "2026-09-23",
  "digests": [
+  {
+   "date": "2026-09-23",
+   "from": "2.1.280",
+   "to": "2.1.280",
+   "count": 1,
+   "tldr": "2.1.280 是一次大版本：正式发布 Opus 5.5 并成为默认 Opus 模型，同时 Pro 和 Team Standard 套餐的默认模型从 Sonnet 换成了 Opus，会明显推高用量消耗；此外 PermissionRequest hook 不再支持 agent 类型 hook，auto mode 卡死重试和一批 prompt cache 失效的老问题也在本次修复。"
+  },
   {
    "date": "2026-09-20",
    "from": "2.1.278",
