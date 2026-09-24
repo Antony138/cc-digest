@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.280",
- "last_digest_date": "2026-09-23",
+ "last_version": "2.1.282",
+ "last_digest_date": "2026-09-25",
  "digests": [
+  {
+   "date": "2026-09-25",
+   "from": "2.1.281",
+   "to": "2.1.282",
+   "count": 2,
+   "tldr": "2.1.281 和 2.1.282 是一轮偏重稳定性的连续更新：修复了大量会话恢复/resume 时打掉 prompt cache、甚至让每轮请求直接报错的老问题，同时给 anthropic-skills/claude-ai 命名空间的技能加载规则、项目级 OpenTelemetry 环境变量收紧了限制（需要检查配置是否受影响），auto mode 的权限判断也默认切到了服务端分类器。"
+  },
   {
    "date": "2026-09-23",
    "from": "2.1.280",

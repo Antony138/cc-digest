@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Wed, 23 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Fri, 25 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-09-25：2.1.281 → 2.1.282（2 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-25</guid>
+   <pubDate>Fri, 25 Sep 2026 07:00:00 +0900</pubDate>
+   <description>2.1.281 和 2.1.282 是一轮偏重稳定性的连续更新：修复了大量会话恢复/resume 时打掉 prompt cache、甚至让每轮请求直接报错的老问题，同时给 anthropic-skills/claude-ai 命名空间的技能加载规则、项目级 OpenTelemetry 环境变量收紧了限制（需要检查配置是否受影响），auto mode 的权限判断也默认切到了服务端分类器。
+亮点：anthropic-skills / claude-ai 命名空间技能加载规则收紧；项目 / 本地 settings.json 里的 OpenTelemetry 变量被忽略；auto mode 权限判断默认换成服务端分类器；危险 rm 检测和 auto mode 超时策略加强；大量 resume/续接场景打掉 prompt cache 的问题被修复；新增 `"attribution": false`，一键隐藏 commit/PR attribution</description>
+  </item>
   <item>
    <title>2026-09-23：2.1.280 → 2.1.280（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Fri, 21 Aug 2026 07:00:00 +0900</pubDate>
    <description>本期三个版本里最值得注意的是权限收紧：MCP 的 headersHelper 现在要求所在目录先通过信任确认，且不再继承外部凭据环境变量；同时全屏模式下双击 Ctrl+L/Cmd+K 清屏的老习惯被彻底拿掉。此外还修了一个长会话会持续吃内存的问题，并新增了 Concise 输出风格和 readline 风格的 Ctrl+W。
 亮点：MCP headersHelper 权限收紧：需信任确认、不再继承凭据环境变量；全屏模式下 Ctrl+L / Cmd+K 双击清屏快捷键被移除；修复长会话里的内存无限增长；自定义 base URL / LLM 网关下 prompt caching 失效修复；新增内置 "Concise" 输出风格；新增 keybindingFlavor：readline 风格 Ctrl+W</description>
-  </item>
-  <item>
-   <title>2026-08-19：2.1.235 → 2.1.235（1 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-19</guid>
-   <pubDate>Wed, 19 Aug 2026 07:00:00 +0900</pubDate>
-   <description>本期只有 2.1.235 一个版本，安全上修了权限提示里 Shift+Tab 误触发全局编辑授权的漏洞，并让权限弹窗文案和实际授权范围对齐；另外新增了输入框拼写检查，grep 病态正则卡死、language server 重连打掉整段 prompt cache 等问题也一并修复。
-亮点：输入框内置拼写检查；权限提示里 Shift+Tab 误触发全局编辑授权；权限对话框文案与实际授权范围对齐；内置 grep 修复病态正则卡死与 -m/-A/-C 组合出错；后台跑 /ultrareview、/autofix-pr 等 cloud session 更省资源；language server 断连重连不再打掉整段 prompt cache</description>
   </item>
  </channel>
 </rss>
