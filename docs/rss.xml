@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Fri, 25 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Sun, 27 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-09-27：2.1.283 → 2.1.283（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-27</guid>
+   <pubDate>Sun, 27 Sep 2026 07:00:00 +0900</pubDate>
+   <description>2.1.283 撤回了上期（2.1.282）对 anthropic-skills/claude-ai 命名空间的限制，同时把 auto mode 默认开启的场景又扩大了一步——第三方模型提供方或关闭遥测时，没有显式配置权限模式就会默认进入 auto mode；此外新增了审计 prompt 写法的 `/doctor prompt-audit`、给管理员用的模型版本锁定/拉黑配置，还有一批 MCP、sandbox、Windows 删除防护相关的修复。
+亮点：无权限模式配置时，默认进入 auto mode；2.1.282 对 anthropic-skills/claude-ai 命名空间的限制被撤回；新增 `/doctor prompt-audit`；managed settings 新增按版本锁模型 / 单独拉黑模型；一批 MCP / sandbox 稳定性修复；Windows: PowerShell 工具堵住了几类危险删除</description>
+  </item>
   <item>
    <title>2026-09-25：2.1.281 → 2.1.282（2 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Sat, 22 Aug 2026 07:00:00 +0900</pubDate>
    <description>本期（2.1.239→2.1.240）以稳定性和安全修复为主：Bedrock 走代理时会被静默降级成非流式、导致双倍计费的问题被修复，掩码输入（如登录验证码）能被粘贴回显或存进历史的安全漏洞也被堵上；另外全屏模式下点击窗口聚焦可能误触权限确认框、`.worktreeinclude` 和自定义 agent/skill/command 文件里两处容易踩坑的静默失效一并修好。2.1.240 是纯维护发布，没有披露具体改动。
 亮点：修复 Bedrock 代理场景静默降级为非流式、双倍计费；掩码输入（登录验证码等）可被粘贴回显或写入历史的安全漏洞修复；全屏模式下点击窗口聚焦可能被误判为应答权限确认框；`.worktreeinclude` 里以 `**/` 开头的规则在 gitignored 目录下静默失效；带 UTF-8 BOM 的自定义 agent/skill/command 文件被静默忽略；Bedrock/Vertex/Foundry 等此前排除在外的环境，新安装现在默认直接进入全屏模式</description>
-  </item>
-  <item>
-   <title>2026-08-21：2.1.236 → 2.1.238（3 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-21</guid>
-   <pubDate>Fri, 21 Aug 2026 07:00:00 +0900</pubDate>
-   <description>本期三个版本里最值得注意的是权限收紧：MCP 的 headersHelper 现在要求所在目录先通过信任确认，且不再继承外部凭据环境变量；同时全屏模式下双击 Ctrl+L/Cmd+K 清屏的老习惯被彻底拿掉。此外还修了一个长会话会持续吃内存的问题，并新增了 Concise 输出风格和 readline 风格的 Ctrl+W。
-亮点：MCP headersHelper 权限收紧：需信任确认、不再继承凭据环境变量；全屏模式下 Ctrl+L / Cmd+K 双击清屏快捷键被移除；修复长会话里的内存无限增长；自定义 base URL / LLM 网关下 prompt caching 失效修复；新增内置 "Concise" 输出风格；新增 keybindingFlavor：readline 风格 Ctrl+W</description>
   </item>
  </channel>
 </rss>

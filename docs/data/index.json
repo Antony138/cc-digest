@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.282",
- "last_digest_date": "2026-09-25",
+ "last_version": "2.1.283",
+ "last_digest_date": "2026-09-27",
  "digests": [
+  {
+   "date": "2026-09-27",
+   "from": "2.1.283",
+   "to": "2.1.283",
+   "count": 1,
+   "tldr": "2.1.283 撤回了上期（2.1.282）对 anthropic-skills/claude-ai 命名空间的限制，同时把 auto mode 默认开启的场景又扩大了一步——第三方模型提供方或关闭遥测时，没有显式配置权限模式就会默认进入 auto mode；此外新增了审计 prompt 写法的 `/doctor prompt-audit`、给管理员用的模型版本锁定/拉黑配置，还有一批 MCP、sandbox、Windows 删除防护相关的修复。"
+  },
   {
    "date": "2026-09-25",
    "from": "2.1.281",
