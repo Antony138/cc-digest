@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.283",
- "last_digest_date": "2026-09-27",
+ "last_version": "2.1.284",
+ "last_digest_date": "2026-09-28",
  "digests": [
+  {
+   "date": "2026-09-28",
+   "from": "2.1.284",
+   "to": "2.1.284",
+   "count": 1,
+   "tldr": "2.1.284 发布了 Claude Sonnet 5.5 并将其设为 Anthropic API 上的默认 Sonnet 模型（100 万上下文，价格不变）；同时终端和 VS Code 会话默认进入 auto mode 的范围从「第三方模型 / 关闭遥测」扩大到了所有套餐和提供方，没有显式配置权限模式的用户需要留意；Ultracode 也从效果滑杆的附属选项变成了可在任意 effort 等级下单独切换的独立开关。"
+  },
   {
    "date": "2026-09-27",
    "from": "2.1.283",
