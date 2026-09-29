@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Mon, 28 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Wed, 30 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-09-30：2.1.285 → 2.1.285（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-30</guid>
+   <pubDate>Wed, 30 Sep 2026 07:00:00 +0900</pubDate>
+   <description>2.1.285 是一次体量很大的杂项合集，没有单一亮点，但有三处需要主动应对的变更：后台 Bash/PowerShell 命令加了运行时长上限、自定义网关会话默认切到 1M 上下文、MCP server 名 `widgets` 被系统保留；另外修复了内联脚本反复弹权限确认这个高频体验问题。
+亮点：后台 Bash / PowerShell 命令新增运行时长上限；自定义 ANTHROPIC_BASE_URL 网关会话默认切换到 1M 上下文；MCP server 名 `widgets` 被系统保留；修复内联脚本反复触发 sandbox 权限确认；新增 `claude --desktop` 和 `claude plugin configure`；streaming 重试预算收敛，后台 subagent 收尾更及时</description>
+  </item>
   <item>
    <title>2026-09-28：2.1.284 → 2.1.284（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Tue, 25 Aug 2026 07:00:00 +0900</pubDate>
    <description>本期两个版本：2.1.243 是一次密集更新，新增 `/usage` 的 Loops 明细、可调节的提示缓存 TTL 等功能，并修复了 auto mode 误判不可用、远程 MCP 断线不重连等多个可靠性问题；2.1.245 紧接着修了新版 glibc（如 Arch、CachyOS、Fedora Rawhide）上的启动崩溃。另外 Bash 沙箱不再罗列允许的网络主机，改成直接尝试请求，行为有变化值得留意。
 亮点：修复 Linux 新版 glibc（2.44）上的启动崩溃；`/usage` 新增 Loops 明细，方便揪出失控的 `/loop` 任务；新增 `promptCacheTtl` / `subagentPromptCacheTtl`，主对话可维持 1 小时提示缓存；Bash 沙箱不再展示允许的网络主机白名单，改为直接尝试请求；两处 auto mode 可靠性修复：启动时误判不可用、请求被误拒；远程 MCP 服务器断线不重连、跨会话消息在无根容器失效等多项修复</description>
-  </item>
-  <item>
-   <title>2026-08-24：2.1.241 → 2.1.241（1 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-24</guid>
-   <pubDate>Mon, 24 Aug 2026 07:00:00 +0900</pubDate>
-   <description>2.1.241 是一次纯维护发布，官方 changelog 只给出一句“修复与稳定性改进”，没有披露具体改动；这是继 2.1.240 之后连续第二个不透露细节的维护版本，日常直接升级即可，无需额外操作。
-亮点：2.1.241：同样只给出“修复与稳定性改进”，未列出具体条目；连续两期（2.1.240、2.1.241）都是不透露细节的维护发布；无破坏性变更、无需改动任何配置</description>
   </item>
  </channel>
 </rss>
