@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Wed, 30 Sep 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Fri, 02 Oct 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-10-02：2.1.286 → 2.1.287（2 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-10-02</guid>
+   <pubDate>Fri, 02 Oct 2026 07:00:00 +0900</pubDate>
+   <description>2.1.286 和 2.1.287 这两版加起来信息量很大：新增了 Claude Mods 插件框架（内置了会在后台提醒你容易漏掉的事情的 You should know），同时 Opus/Fable 在自定义网关上默认切到 1M 上下文、MCP 新协议的弹窗能力都是需要留意的破坏性变更,此外还修了一批权限绕过和密钥遮罩不全的安全问题。
+亮点：新增 Claude Mods，内置 "You should know" 侧 agent；Opus 4.7+ / Fable 在自定义网关上默认启用 1M 上下文；MCP 新协议支持服务器弹出登录等 URL 提示,部分自建 server 可能断连；`alwaysLoad: false` 的 MCP server 现在整台 server 的工具都会被延迟加载；修复一批权限绕过与密钥遮罩不全的安全问题；模型被 API 拒绝时不再导致整轮直接失败</description>
+  </item>
   <item>
    <title>2026-09-30：2.1.285 → 2.1.285（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Thu, 27 Aug 2026 07:00:00 +0900</pubDate>
    <description>2.1.246 是一次纯修复/打磨版本：没有新功能，但集中修掉了后台会话、插件、终端渲染和权限提示里一大批影响日常体验的 bug，还给危险的 Bash 通配符规则加了启动警告。
 亮点：`Bash(git * main)` 这类子命令前带通配符的规则，启动时会警告；`/permissions` 新增 Auto mode 标签页；修复超长单行 diff（如 base64 字符串）导致的严重卡顿；后台会话在多种环境问题下会启动失败，本次修复；第三方 Anthropic 兼容网关的遥测/密钥隔离修复；插件与技能加载相关的多处小修复</description>
-  </item>
-  <item>
-   <title>2026-08-25：2.1.243 → 2.1.245（2 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-08-25</guid>
-   <pubDate>Tue, 25 Aug 2026 07:00:00 +0900</pubDate>
-   <description>本期两个版本：2.1.243 是一次密集更新，新增 `/usage` 的 Loops 明细、可调节的提示缓存 TTL 等功能，并修复了 auto mode 误判不可用、远程 MCP 断线不重连等多个可靠性问题；2.1.245 紧接着修了新版 glibc（如 Arch、CachyOS、Fedora Rawhide）上的启动崩溃。另外 Bash 沙箱不再罗列允许的网络主机，改成直接尝试请求，行为有变化值得留意。
-亮点：修复 Linux 新版 glibc（2.44）上的启动崩溃；`/usage` 新增 Loops 明细，方便揪出失控的 `/loop` 任务；新增 `promptCacheTtl` / `subagentPromptCacheTtl`，主对话可维持 1 小时提示缓存；Bash 沙箱不再展示允许的网络主机白名单，改为直接尝试请求；两处 auto mode 可靠性修复：启动时误判不可用、请求被误拒；远程 MCP 服务器断线不重连、跨会话消息在无根容器失效等多项修复</description>
   </item>
  </channel>
 </rss>
