@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.287",
- "last_digest_date": "2026-10-02",
+ "last_version": "2.1.288",
+ "last_digest_date": "2026-10-04",
  "digests": [
+  {
+   "date": "2026-10-04",
+   "from": "2.1.288",
+   "to": "2.1.288",
+   "count": 1,
+   "tldr": "2.1.288 版本号只跳了一位,内容却不轻:集中修复了一批 resume/长对话可靠性问题(丢上下文、丢最后一条回复、丢 thinking),还堵上了 bypassPermissions 下用 bash -c 包装危险 rm 绕过确认的安全漏洞;唯一需要留意的破坏性变更是 auto mode 本地分类器不再认 Sonnet 5.5/Opus 5.5 的模型 pin。"
+  },
   {
    "date": "2026-10-02",
    "from": "2.1.286",
