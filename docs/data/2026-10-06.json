@@ -1,0 +1,91 @@
+{
+ "date": "2026-10-06",
+ "version_range": {
+  "from": "2.1.289",
+  "to": "2.1.289",
+  "count": 1
+ },
+ "tldr": "2.1.289 是上一版 Claude Mods 插件框架落地后的集中补丁：堵上了好几处 Mods/沙箱权限检查能被绕过的安全漏洞，同时修了一长串会让会话卡死、崩溃或界面错乱的稳定性问题，没有破坏性变更，升级即可获益。",
+ "highlights": [
+  {
+   "title": "修复一批 Mods/沙箱权限检查绕过问题",
+   "category": "安全",
+   "detail": "这版堵上了好几个安全口子：托管机器上，针对复合 shell 命令某一段的 deny/ask 规则此前不会覆盖用户自装 mod 已给出的批准；通过符号链接 @-mention、修改或在 IDE 里选中的文件能绕过 Read 的 deny 规则；沙箱 auto-allow 下，命令前面带了环境变量赋值（如 `TZ=\"$HOME\" rm -rf build`）或一个单独的变量赋值语句时，Bash 的 deny/ask 规则会漏判；另外还修了一个用户自装插件能够改写某个组织托管 MCP server 的登录工具描述文字的问题。",
+   "action": null,
+   "versions": [
+    "2.1.289"
+   ]
+  },
+  {
+   "title": "新增 `agent.spawn` 等 Mods 开发者 API",
+   "category": "新功能",
+   "detail": "面向 Mods 插件作者：新增 `agent.spawn` 用于生成 teammate，插件 hook 事件里统一用同一个 agent id 标识，`$.agent.list()` 也新增了 idle 和 waiting 状态，方便插件感知 agent 的生命周期。",
+   "action": null,
+   "versions": [
+    "2.1.289"
+   ]
+  },
+  {
+   "title": "密集修复 Mods 框架引发的卡死、崩溃与界面错乱",
+   "category": "修复",
+   "detail": "上一版（2.1.287）刚上线的 Mods 框架这版做了大量打磨：mod 异步抛出的错误会打断后台/受监督会话；一个高度为零却不断增长的 mod 区域、ui.render 钩子返回的异常值、终端不认识的 Box 边框样式，都曾导致整个会话崩溃或启动时冻结/强制退出，现在改成只让出问题的 mod 组件单独失败（抛出 `ui.fault`），不再牵连其他内容；此外还修了带 tab、杂散转义符的文本盖住下方行、mod 面板/条带里右对齐内容压到关闭按钮下面、失败组件只显示空白或 `Error` 等一堆界面细节问题。重度使用插件/Mods 的人这版收益最明显。",
+   "action": null,
+   "versions": [
+    "2.1.289"
+   ]
+  },
+  {
+   "title": "[VSCode] 撤销 2.1.288 对 `claude auth status` 的改动",
+   "category": "修复",
+   "detail": "上一版（2.1.288）对 `claude auth status` 的一处改动可能导致登出变得更频繁，这版在 VSCode 扩展里把它撤销了。",
+   "action": null,
+   "versions": [
+    "2.1.289"
+   ]
+  },
+  {
+   "title": "修复发布的 Artifact 页面被畸形代码块冻结浏览器标签页",
+   "category": "修复",
+   "detail": "已发布的 Artifact 页面中，如果短代码块里塞了大量未闭合的 `<script>` 标签，会让阅读者的浏览器标签页冻结甚至崩溃；这版修复了这个问题，同一个渲染 bug 在 Claude Code 终端里也一并修好。",
+   "action": null,
+   "versions": [
+    "2.1.289"
+   ]
+  }
+ ],
+ "versions": [
+  {
+   "version": "2.1.289",
+   "date": "2026-10-03",
+   "bullets": [
+    "Fixed a deny or ask rule on a nested part of a compound shell command not holding over a user-installed mod's approval on managed machines",
+    "Fixed the terminal freezing on short code blocks with many unclosed `<script>` tags or deeply nested `${` substitutions",
+    "Fixed `Read` deny rules not applying to files @-mentioned, changed, or selected in the IDE through a symlink",
+    "\\[VSCode] Reverted a 2.1.288 change to `claude auth status` that may have made sign-outs more frequent",
+    "Improved how quickly large files open in a plugin code pane by laying the highlighted view out once at its final width",
+    "Fixed `plugin list`, `plugin eval` and `plugin update` showing a stale copy of a plugin installed from a local folder marketplace, and hot reload for a symlinked `--plugin-dir`",
+    "Fixed installed mods not loading in the first session after an upgrade",
+    "Fixed a plugin's rows above the prompt showing a stale row while the Background tasks dialog was open in fullscreen",
+    "Fixed plugin panes drawing nothing when a link used a localhost address, an `@` in its path, an uppercase host or a `file:` path",
+    "Fixed a user-installed plugin being able to rewrite the descriptions of an organization-managed MCP server's sign-in tools",
+    "Fixed a freeze or forced quit at launch when a plugin drew a Box with a border style the terminal does not know",
+    "Fixed supervised and background sessions ending when a plugin's on-screen handler threw asynchronously",
+    "Fixed sessions ending with an interface error when a plugin region with no height kept growing",
+    "Fixed Bash deny and ask rules missing a command behind an environment variable prefix with an expanded value (e.g. `TZ=\"$HOME\" rm -rf build`) when the sandbox auto-allows commands",
+    "Fixed a Bash deny or ask rule being skipped under sandbox auto-allow when a bare variable assignment came before the command",
+    "Fixed `claude plugin validate` skipping the plugin when the folder also holds a marketplace manifest",
+    "Added `agent.spawn` for teammates, one agent id across plugin hook events, and idle and waiting states in `$.agent.list()`",
+    "Fixed sessions ending with \"unrecoverable interface error\" when a value a mod's `ui.render` hook wrote made a row throw while drawn; the engine now draws its own row instead",
+    "Fixed text with a tab, a stray escape and a C1 control, or a short text with a tab and CRLF line endings, drawing over the rows below it",
+    "Fixed right-aligned content in a mod's pane or band drawing under the close mark or `[-]`, which now also keep one column in from the terminal's edge",
+    "Fixed a mod's `Client` that fails while drawn taking down everything the mod drew around it; it now fails alone and raises `ui.fault`",
+    "Fixed `claude plugin validate` failing an Anthropic marketplace's own plugin and listing a clean `plugin.json` in `--json`",
+    "Fixed a mod's band that fails to draw briefly telling the cards under it to step aside",
+    "Fixed a failed plugin component showing `Error` or nothing as its reason when the failure carried no message",
+    "Improved the line a mod's author sees when its band or pane fails to draw: it names the mod and says nothing was drawn",
+    "Fixed published artifact pages freezing or crashing the reader's browser tab on short code blocks with many unclosed `<script>` tags",
+    "Fixed a mod's Client region staying failed for the whole session after the terminal threw while drawing it"
+   ]
+  }
+ ]
+}
