@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.289",
- "last_digest_date": "2026-10-06",
+ "last_version": "2.1.293",
+ "last_digest_date": "2026-10-08",
  "digests": [
+  {
+   "date": "2026-10-08",
+   "from": "2.1.290",
+   "to": "2.1.293",
+   "count": 4,
+   "tldr": "四连发更新：新增 Claude Haiku 5.5，并堵上了好几处权限/沙箱安全漏洞；但 2.1.293 撤销了云端 `/loop` 容器重启自动恢复的修复，依赖定时任务的云端 routine 要留意，stdio MCP 的协议协商方式也默认变了。"
+  },
   {
    "date": "2026-10-06",
    "from": "2.1.289",
