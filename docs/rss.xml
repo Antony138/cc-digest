@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Thu, 08 Oct 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Sat, 10 Oct 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-10-10：2.1.294 → 2.1.296（3 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-10-10</guid>
+   <pubDate>Sat, 10 Oct 2026 07:00:00 +0900</pubDate>
+   <description>三连发更新的重点是两处安全加固：自然语言写的 prompt/agent hook 曾可能放行本该拦截的操作，这次修复了；hook 也新增了失败时默认拦截的选项。另外 claude.ai 连接器的 MCP 协议协商方式默认换新，旧 server 可能连不上，Sonnet 5.5 的缓存读取价格也减半了。
+亮点：修复自然语言 hook 曾可能放行本该拦截的操作；hook 新增失败时默认拦截的选项；claude.ai 连接器默认改用新版 MCP 协议协商；`←` 切后台时，正在跑的内容会被打断而不是继续跑完；Sonnet 5.5 缓存读取价格减半；一批安全修复：Windows bypass 模式漏判、密钥脱敏遗漏、权限检查绕过</description>
+  </item>
   <item>
    <title>2026-10-08：2.1.290 → 2.1.293（4 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Sat, 05 Sep 2026 07:00:00 +0900</pubDate>
    <description>本期合并 2.1.259～2.1.261 三个版本：最大的变化是提示输入框的单词编辑快捷键统一改成 Bash 风格，原有的 keybindingFlavor 设置直接失效；同时修了一个会让"只读"目录变成实际可写的权限规则解析漏洞，以及多会话并发时互相覆盖 ~/.claude.json 的老问题，还带来了全屏 /diff 面板和 /skill-doctor 两个挺实用的新命令。
 亮点：破坏性变更：keybindingFlavor 设置失效，单词编辑快捷键统一改成 Bash 风格；安全修复：带括号的权限规则会被当无效丢弃，导致"只读"目录实际可写；修复并发多会话互相覆盖 ~/.claude.json，workspace trust 和 MCP 状态不再丢；全屏模式新增 /diff 面板，实时看 Claude 改了什么；新增 /skill-doctor，找出哪些技能占着上下文却没被用到；Bash 里 Read() 拒绝规则扩大匹配范围后又部分回滚，注意当前生效状态</description>
-  </item>
-  <item>
-   <title>2026-09-03：2.1.257 → 2.1.258（2 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-03</guid>
-   <pubDate>Thu, 03 Sep 2026 07:00:00 +0900</pubDate>
-   <description>这期合并了两个版本：2.1.257 是本周最大的一次更新，带来 Fable 5.1 默认模型、auto 模式新增 Containment Escape 安全规则，以及一条需要注意的破坏性变更（项目级 defaultMode: bypassPermissions 失效）；2.1.258 是次日热修复，解决了 macOS 12 无法启动和远程/定时会话报错两个高优先级问题。
-亮点：破坏性变更：项目级 settings.json 里的 defaultMode: "bypassPermissions" 不再生效；auto 模式新增 Containment Escape 防护规则；2.1.258 热修复：macOS 12 (Monterey) 无法启动；2.1.258 修复远程/定时会话报 "user messages must have non-empty content"；新增 Claude Fable 5.1，成为 Fable 系列默认模型；auto 模式读取工作目录外文件时新增一次性确认</description>
   </item>
  </channel>
 </rss>

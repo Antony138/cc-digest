@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.293",
- "last_digest_date": "2026-10-08",
+ "last_version": "2.1.296",
+ "last_digest_date": "2026-10-10",
  "digests": [
+  {
+   "date": "2026-10-10",
+   "from": "2.1.294",
+   "to": "2.1.296",
+   "count": 3,
+   "tldr": "三连发更新的重点是两处安全加固：自然语言写的 prompt/agent hook 曾可能放行本该拦截的操作，这次修复了；hook 也新增了失败时默认拦截的选项。另外 claude.ai 连接器的 MCP 协议协商方式默认换新，旧 server 可能连不上，Sonnet 5.5 的缓存读取价格也减半了。"
+  },
   {
    "date": "2026-10-08",
    "from": "2.1.290",
