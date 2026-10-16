@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.300",
- "last_digest_date": "2026-10-15",
+ "last_version": "2.1.302",
+ "last_digest_date": "2026-10-17",
  "digests": [
+  {
+   "date": "2026-10-17",
+   "from": "2.1.301",
+   "to": "2.1.302",
+   "count": 2,
+   "tldr": "2.1.301/2.1.302 两连发最值得关注的是一处权限相关的破坏性变更：`claude -p` 和 Agent SDK 在第三方 provider 上，没有显式指定权限模式时默认行为从 auto 变成了 default；另外 fork subagent 在更多场景下默认开启，云端 routine 失败重跑导致重复执行的问题也修了。"
+  },
   {
    "date": "2026-10-15",
    "from": "2.1.299",
