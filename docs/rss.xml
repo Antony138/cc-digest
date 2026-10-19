@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sat, 17 Oct 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Tue, 20 Oct 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-10-20：2.1.303 → 2.1.304（2 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-10-20</guid>
+   <pubDate>Tue, 20 Oct 2026 07:00:00 +0900</pubDate>
+   <description>2.1.304 这次信息量很大，对 mod/plugin 开发者最该留意的是 `settings.read` hook 的签名变更（一处小破坏性变更）和新增的 `decider: "person"` 强制人工审批；同时修了一批沙箱与 headless 场景下可被绕过限制的安全问题，以及重度使用 subagent/fork 的用户会踩到的“刚执行完就丢最近记忆”的坑。2.1.303 本身只是常规 bug fixes。
+亮点：mod 的 `settings.read` hook 签名变更；`tool.check` 新增 `decider: "person"`，把审批权完全锁给人；`/auto-mode-setup` 扩展到 Bedrock / Vertex / Foundry / Claude apps gateway 及遥测关闭场景；一批沙箱/安全修复：挂载盘 `rm -r` 漏提醒、Linux 沙箱正则误判、headless 绕过 max-turns；子代理修复：刚执行完就被继续提问会丢失最近工作记忆；`CLAUDE_CODE_AUTO_COMPACT_WINDOW=200k` 之前被静默当成 100K</description>
+  </item>
   <item>
    <title>2026-10-17：2.1.301 → 2.1.302（2 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Thu, 10 Sep 2026 07:00:00 +0900</pubDate>
    <description>两个版本延续了上个版本的大规模发布节奏：2.1.266 火速修复了 2.1.265 引入的网关登录回归；2.1.267 新增按 effort 等级设上限、system prompt 热更新两个配置项，并修复了一长串 prompt-cache 失效、沙箱启动、mobile/VSCode 渲染和 Claude Tag 问题。
 亮点：2.1.265 的网关登录回归被紧急修复；新增 maxEffortLevel，可给 effort 等级封顶；--system-prompt-snapshot off：调试 system prompt 更方便；又一批 prompt-cache 复用失效被修复；macOS/Linux 上 marketplace 路径穿越漏洞修复；Gateway：forward_user_identity 上游 429 不再自动故障转移</description>
-  </item>
-  <item>
-   <title>2026-09-08：2.1.265 → 2.1.265（1 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-08</guid>
-   <pubDate>Tue, 08 Sep 2026 07:00:00 +0900</pubDate>
-   <description>2.1.265 是一次少见的大型维护发布，修复列表长达 50 条：最值得关注的是 Windows 受限沙箱下 Read/Write/Edit 全面失效的严重 bug、非交互会话（-p/SDK/云端）里 cd 目录不再每轮重置，以及多处 prompt cache 复用失效的修复，重度使用多代理和自动化流程的人受益最明显。
-亮点：Windows 受限沙箱下文件工具失效；非交互会话不再每轮重置工作目录；多处 prompt cache 复用失效被修复；MCP 遗留 HTTP+SSE 服务器恢复可用；Artifact 工具读取他人页面时按不可信内容处理；Claude apps gateway 登录与遥测行为变更</description>
   </item>
  </channel>
 </rss>

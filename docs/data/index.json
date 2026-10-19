@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.302",
- "last_digest_date": "2026-10-17",
+ "last_version": "2.1.304",
+ "last_digest_date": "2026-10-20",
  "digests": [
+  {
+   "date": "2026-10-20",
+   "from": "2.1.303",
+   "to": "2.1.304",
+   "count": 2,
+   "tldr": "2.1.304 这次信息量很大，对 mod/plugin 开发者最该留意的是 `settings.read` hook 的签名变更（一处小破坏性变更）和新增的 `decider: \"person\"` 强制人工审批；同时修了一批沙箱与 headless 场景下可被绕过限制的安全问题，以及重度使用 subagent/fork 的用户会踩到的“刚执行完就丢最近记忆”的坑。2.1.303 本身只是常规 bug fixes。"
+  },
   {
    "date": "2026-10-17",
    "from": "2.1.301",

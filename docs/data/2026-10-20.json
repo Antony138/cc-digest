@@ -1,0 +1,144 @@
+{
+ "date": "2026-10-20",
+ "version_range": {
+  "from": "2.1.303",
+  "to": "2.1.304",
+  "count": 2
+ },
+ "tldr": "2.1.304 这次信息量很大，对 mod/plugin 开发者最该留意的是 `settings.read` hook 的签名变更（一处小破坏性变更）和新增的 `decider: \"person\"` 强制人工审批；同时修了一批沙箱与 headless 场景下可被绕过限制的安全问题，以及重度使用 subagent/fork 的用户会踩到的“刚执行完就丢最近记忆”的坑。2.1.303 本身只是常规 bug fixes。",
+ "highlights": [
+  {
+   "title": "mod 的 `settings.read` hook 签名变更",
+   "category": "破坏性变更",
+   "detail": "以前 `settings.read` hook 只能看到合并后的最终配置；现在改成按层（layer）依次传入，hook 可以重写合并结果，企业可以借此把某项配置（比如 `cleanupPeriodDays`）设成硬上限，子层不能覆盖。",
+   "action": "如果自己写过读取或篡改 settings 的 mod，需要按新签名（接收各层输入、返回重写后的合并配置）调整，否则 hook 可能不再按预期工作。",
+   "versions": [
+    "2.1.304"
+   ]
+  },
+  {
+   "title": "`tool.check` 新增 `decider: \"person\"`，把审批权完全锁给人",
+   "category": "新功能",
+   "detail": "mod 的 `tool.check` 返回里新增 `decider: \"person\"`：这条工具调用只能由弹出的权限对话框或宿主的回调来批准；如果当前环境没有人可以被问（比如无人值守的自动化），直接按 mod 给的理由拒绝，不会被别的规则悄悄放行。",
+   "action": null,
+   "versions": [
+    "2.1.304"
+   ]
+  },
+  {
+   "title": "`/auto-mode-setup` 扩展到 Bedrock / Vertex / Foundry / Claude apps gateway 及遥测关闭场景",
+   "category": "改进",
+   "detail": "这个读取你项目和近期会话、引导配置 auto mode 的向导，之前只在标准场景可用，现在企业网关、第三方云厂商托管、关闭遥测的会话也能用了。",
+   "action": null,
+   "versions": [
+    "2.1.304"
+   ]
+  },
+  {
+   "title": "一批沙箱/安全修复：挂载盘 `rm -r` 漏提醒、Linux 沙箱正则误判、headless 绕过 max-turns",
+   "category": "安全",
+   "detail": "修了三个安全相关的坑：对挂载盘或其顶层目录（如 `/Volumes`、`/media`、WSL 的 `/mnt/c`）跑 `rm -r` 之前不会再漏掉本该有的安全提示；Linux 上 `sandbox.filesystem.denyRead` 里带方括号但不是字符类的 glob（比如 `[user-id]` 路由文件夹）导致沙箱命令直接起不来的问题修复了；另外 headless 运行时，失控的插件靠不断派生子代理或重跑已完成的任务，原本可以绕过 `--max-turns`、Stop 或输入结束的限制一直跑下去，这个漏洞也堵上了。",
+   "action": null,
+   "versions": [
+    "2.1.304"
+   ]
+  },
+  {
+   "title": "子代理修复：刚执行完就被继续提问会丢失最近工作记忆",
+   "category": "修复",
+   "detail": "子代理（subagent）刚完成任务后，如果立刻给它发消息或恢复会话，它有时会“忘记”刚做完的那部分工作，这个问题修复了，重度使用 fork/subagent 编排任务流的用户会明显受益。VS Code 里后台子代理的展示方式也从逐条流式输出改成了折叠的单行状态，完整记录仍可在 `/tasks` 里看。",
+   "action": null,
+   "versions": [
+    "2.1.304"
+   ]
+  },
+  {
+   "title": "`CLAUDE_CODE_AUTO_COMPACT_WINDOW=200k` 之前被静默当成 100K",
+   "category": "修复",
+   "detail": "设置这个环境变量调整自动压缩窗口时，带 `k`/`M` 单位的值此前会被错误地按 100K 处理却不报错；现在支持和 `--autocompact` 一样的 `k`/`M` 后缀，数值超范围或被忽略时也会给出警告。",
+   "action": "如果之前设置过 `CLAUDE_CODE_AUTO_COMPACT_WINDOW` 并怀疑没生效，升级后留意日志里的警告，按需重新确认数值。",
+   "versions": [
+    "2.1.304"
+   ]
+  }
+ ],
+ "versions": [
+  {
+   "version": "2.1.304",
+   "date": "2026-10-19",
+   "bullets": [
+    "Added a transcript line when a plugin that runs first skips one of your mod's hooks, naming the event and the plugin",
+    "Added `decider: \"person\"` to a mod's `tool.check` answer: only the permission dialog or a host's callback can approve the ask, and it is refused with the mod's reason where nobody can be asked",
+    "Added `e.isReadOnly` to a mod's `tool.check` event, set when the tool call is read-only",
+    "Added `/auto-mode-setup`: a guided setup that reads your project and recent sessions to teach auto mode about your environment, now also available on Bedrock, Vertex, Foundry, Claude apps gateway and telemetry-disabled sessions",
+    "Added `/claude-api managed-agents-secure`, which compares a Managed Agents agent's settings with Anthropic's published security guide, without changing anything",
+    "Added the names of the tools called earlier to the compaction summary in the transcript view (Ctrl+O)",
+    "Added a warning on Pro and Max plans when resuming an inactive conversation would use a noticeable share of your 5-hour usage limit: resume anyway, or start a new conversation and Claude can look up the previous one if you refer to it",
+    "\\[VSCode] Added mod drawing in the chat panel for sessions on Amazon Bedrock, Google Vertex AI and Microsoft Foundry, behind an LLM gateway, or with telemetry turned off",
+    "\\[Code Review] Added review levels to Code Review: Owners choose Quick, Standard (the default), or Deep for the organization, and can give individual repositories their own level",
+    "\\[Code Review] Added an option in Code Review admin settings to review every repository in a GitHub organization, including ones added later, without selecting them one by one",
+    "Changed mods' `settings.read` hooks to receive each settings layer and rewrite the merged settings, so a managed mod can make an organization's setting a ceiling, including the `cleanupPeriodDays` the retention sweep uses",
+    "Changed the `/artifacts` delete confirmation to show numbered choices: 1 or Enter keeps the artifact, 2 deletes it, and y, n and Esc still work",
+    "Changed the question that turns on the mods Claude writes in a session to plain text with no link or session id; it stays up when a new turn starts, and Claude tells you what loaded when you turn them on",
+    "Changed tool search to be on by default behind a custom `ANTHROPIC_BASE_URL`; a 400 or 422 from the gateway is retried without it",
+    "Changed compaction to send Claude the skill list again afterwards; `/reload-skills` now sends only new or changed skills",
+    "Changed skill hooks: the skills of one source (a repo, your own folder, or a plugin) can register at most 1,024 hooks and 16,384 matcher characters per session",
+    "Changed skills under a policy that allows hooks from plugins only: a skill used in the main conversation whose hooks are kept out no longer gets its `allowed-tools`",
+    "Updated the /claude-api skill to use the `ant` CLI on Claude Platform on AWS instead of falling back to the SDK or curl",
+    "Removed the notes from `claude plugin validate` that predicted where a mod's hooks would run",
+    "Removed the \"(research preview)\" label from the `/fast` dialog title on Opus 5.5",
+    "\\[VSCode] Changed background sub-agents to show as one status line under their Agent card instead of streaming every step into the chat; the full transcript stays in /tasks",
+    "Fixed the organization policy not refreshing until the hourly check after approving an `ANTHROPIC_API_KEY` at startup or switching \"Use custom API key\" in `/config`",
+    "Fixed sandboxed commands failing to start on Linux when a `sandbox.filesystem.denyRead` glob contains brackets that are not a character class, such as a `[user-id]` route folder",
+    "Fixed `rm -r` of a mounted drive or a folder at its top level (`/Volumes`, `/media`, WSL's `/mnt/c`) not getting the safety prompt that `rm -rf /Applications` gets",
+    "Fixed `CLAUDE_CODE_TRANSCRIPT_LOCAL_GC` dropping messages from the saved transcript when the disk filled up while the file was being trimmed",
+    "Fixed a plugin keeping a headless run going past `--max-turns`, Stop, or ended input by spawning subagents or re-running a finished one",
+    "Fixed a failed mod reload removing the tools and commands of the version that stays loaded, and its messages being wrong or silent about whether the previous version is still loaded",
+    "Fixed a click on a mod's button being lost when buttons with the same label and no `key` were redrawn unchanged",
+    "Fixed mod sharing in the built-in `plugin-authoring` skill stopping at the secret scan on machines with managed settings and on Team and Enterprise plans",
+    "Fixed scheduled Cowork cloud sessions waiting five minutes again for each subagent whose WebFetch needed a URL approval that nobody was there to give",
+    "Fixed Write results and rejected edits showing a file outside the working directory as `../../…`; they now show `~/…` or the full path",
+    "Fixed a claude.ai Directory plugin's skills not running as commands when picked from the \"/\" menu in Cowork cloud sessions",
+    "Fixed Remote Control permanently withholding a desktop conversation's history when a different account was signed in to the terminal",
+    "Fixed Remote Control failing to start from Claude Desktop when DISABLE\\_TELEMETRY or DO\\_NOT\\_TRACK is set on a paid plan",
+    "Fixed model switches, messages and interrupts waiting behind a context usage check in SDK and desktop sessions",
+    "Fixed `context_management: Extra inputs are not permitted` errors behind LLM gateways; Claude Code now resends the request without that field",
+    "Fixed OpenTelemetry settings delivered through server-managed settings being ignored for the whole session after signing in during first-run setup or the first start after /logout",
+    "Fixed unsandboxed Bash commands in Claude Desktop Code tab sessions on macOS and Linux not seeing environment variables exported in shell startup files such as \\~/.zshrc",
+    "Fixed the Consumer Terms notice being skipped for a day or longer after a server error",
+    "Fixed `/privacy-settings` offering choices that may not apply to you after a network or server error",
+    "Fixed a \"Context limit reached\" or \"Prompt is too long\" error after stopping a turn while Claude Code was compacting a conversation the API had rejected as too long",
+    "Fixed subagents sometimes forgetting their most recent work when they were messaged or resumed right after finishing",
+    "Fixed `claude --help` text for `--tools`, `--resume`, `--debug`, `--json-schema`, `--disable-slash-commands`, `--system-prompt-snapshot` and `claude update` to match actual behavior",
+    "Fixed `claude --worktree` removing the worktree and its branch without asking at exit when HEAD was detached or on another branch, which could lose commits",
+    "Fixed resumed and cloud sessions sending Claude the whole skill list again each time plugins reloaded at startup",
+    "Fixed an interrupt not ending a Read that waits on an idle pipe or device named like an image",
+    "Fixed `/effort status`, `/effort ultracode` and the prompt's effort indicator showing a guessed effort level when `CLAUDE_CODE_EFFORT_LEVEL` is `auto` or `unset` and no level is sent",
+    "Fixed a PreToolUse hook's deny reason being replaced by a timeout error when an Agent SDK callback hook on the same tool call timed out",
+    "Fixed Bash and PowerShell deleting a large command's output file when it could not be copied to the session's tool-results folder, unless the disk is full",
+    "Fixed notes typed into a multiple-choice question with previews being cut off with \"…\" in terminals under about 100 columns, hiding what was typed (anthropics/claude-code#82768)",
+    "Fixed self-paced `/loop` wakeups scheduled at the 1-hour maximum firing just after the 1-hour prompt cache expired, so those wakeups no longer re-read the conversation uncached",
+    "Fixed agent teams: approving a shutdown request from the main session no longer exits the whole CLI",
+    "Fixed a skill's `once` hook also removing another skill's identical hook after it ran",
+    "Fixed transcript mode's `{` and `}` landing the prompt on an inconsistent row, or off screen, instead of the transcript's first row",
+    "Fixed `CLAUDE_CODE_AUTO_COMPACT_WINDOW=200k` silently setting a 100K window: the variable now accepts `k` and `M` suffixes like `--autocompact`, and warns when a value is out of range or ignored",
+    "Fixed Ctrl+C in the agents view clearing a text selection without copying it when pressed before the mouse button was released",
+    "\\[VSCode] Fixed one cause of sessions failing to start with \"Subprocess initialization did not complete within 60000ms\": time a SessionStart command hook spends running no longer counts toward the limit, up to 10 minutes in total",
+    "\\[VSCode] Fixed a session closed while it was starting keeping its Claude Code process running until the start ended",
+    "\\[VSCode] Fixed a mod's drawings disappearing from a long-open panel until the next turn on machines that also run an older Claude Code",
+    "\\[VSCode] Fixed Past conversations hiding sessions when `claudeCode.claudeProcessWrapper` is set",
+    "\\[Cloud sessions] Fixed folders in the composer's @ list showing no name in cloud sessions, where picking one added only a space instead of a mention",
+    "\\[Claude Tag] Fixed Claude going silent in a thread when its channel becomes shared across Enterprise Grid workspaces mid-task; it now posts a one-time note to @-mention it in a new thread",
+    "\\[Claude Tag] Fixed `@Claude !fork` typed outside a thread getting no visible reply; Claude now shows you a private note saying to run it from inside a thread",
+    "\\[Code Review] Fixed pull requests opened within a minute or two of an admin turning on Code Review being silently skipped; they are now retried and reviewed"
+   ]
+  },
+  {
+   "version": "2.1.303",
+   "date": "2026-10-18",
+   "bullets": [
+    "Bug fixes and reliability improvements"
+   ]
+  }
+ ]
+}
