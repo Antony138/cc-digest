@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.304",
- "last_digest_date": "2026-10-20",
+ "last_version": "2.1.306",
+ "last_digest_date": "2026-10-22",
  "digests": [
+  {
+   "date": "2026-10-22",
+   "from": "2.1.305",
+   "to": "2.1.306",
+   "count": 2,
+   "tldr": "2.1.306 本身只是两个小修复（云端会话里 claude -p 丢登录态、多 MCP 工具场景下的误报“prompt 过长”），真正值得关注的是 2.1.305：一次 allowedMcpServers 的行为变更会让某些原本被你拦住的 MCP server 升级后悄悄恢复加载，还新增了会削弱沙盒文件保护的 allowNestedUserNamespaces 选项，同时修复了 2.1.304 引入的让 Vertex/Bedrock/网关场景下所有请求失败的 regression。"
+  },
   {
    "date": "2026-10-20",
    "from": "2.1.303",

@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Tue, 20 Oct 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Thu, 22 Oct 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-10-22：2.1.305 → 2.1.306（2 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-10-22</guid>
+   <pubDate>Thu, 22 Oct 2026 07:00:00 +0900</pubDate>
+   <description>2.1.306 本身只是两个小修复（云端会话里 claude -p 丢登录态、多 MCP 工具场景下的误报“prompt 过长”），真正值得关注的是 2.1.305：一次 allowedMcpServers 的行为变更会让某些原本被你拦住的 MCP server 升级后悄悄恢复加载，还新增了会削弱沙盒文件保护的 allowNestedUserNamespaces 选项，同时修复了 2.1.304 引入的让 Vertex/Bedrock/网关场景下所有请求失败的 regression。
+亮点：`allowedMcpServers` 不再过滤仅在 env 里用 `${VAR}` 的 stdio server；新增 `sandbox.allowNestedUserNamespaces`，但会削弱沙盒的文件保护；修复 2.1.304 引入的 regression：Vertex/Bedrock/网关场景下所有请求失败；修复 MCP server 被本地同名配置悄悄顶替的问题；按路径挂载的插件，在 `allowManagedPermissionRulesOnly` 组织策略下会丢失 `allowed-tools`；`/artifacts` 删除确认换成数字选择，`y`/`n` 失效</description>
+  </item>
   <item>
    <title>2026-10-20：2.1.303 → 2.1.304（2 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Fri, 11 Sep 2026 07:00:00 +0900</pubDate>
    <description>2.1.268 修复了自 2.1.265 起第三方 Anthropic 兼容端点全线 400 报错的回归，同时收紧了两处权限相关行为（TodoWrite 系工具收窄到指定模型、Artifact 权限从 WebFetch 规则中拆分）；2.1.269 新增 claude plugin eval，继续修复 prompt-cache 失效和一处权限规则取反漏洞。
 亮点：TodoWrite/任务追踪工具收窄到指定模型；Artifact 权限从 WebFetch 规则中拆分；第三方 Anthropic 兼容端点 400 报错回归修复；又一批 prompt-cache 失效场景被修复；新增 claude plugin eval，插件也能跑评测集；权限规则里的 `!` 取反越权漏洞修复</description>
-  </item>
-  <item>
-   <title>2026-09-10：2.1.266 → 2.1.267（2 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-10</guid>
-   <pubDate>Thu, 10 Sep 2026 07:00:00 +0900</pubDate>
-   <description>两个版本延续了上个版本的大规模发布节奏：2.1.266 火速修复了 2.1.265 引入的网关登录回归；2.1.267 新增按 effort 等级设上限、system prompt 热更新两个配置项，并修复了一长串 prompt-cache 失效、沙箱启动、mobile/VSCode 渲染和 Claude Tag 问题。
-亮点：2.1.265 的网关登录回归被紧急修复；新增 maxEffortLevel，可给 effort 等级封顶；--system-prompt-snapshot off：调试 system prompt 更方便；又一批 prompt-cache 复用失效被修复；macOS/Linux 上 marketplace 路径穿越漏洞修复；Gateway：forward_user_identity 上游 429 不再自动故障转移</description>
   </item>
  </channel>
 </rss>
