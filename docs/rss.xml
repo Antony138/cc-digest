@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Thu, 22 Oct 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Sat, 24 Oct 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-10-24：2.1.307 → 2.1.309（3 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-10-24</guid>
+   <pubDate>Sat, 24 Oct 2026 07:00:00 +0900</pubDate>
+   <description>这期信息量很大：2.1.309 一口气修了一长串沙盒/权限检查被绕过的安全问题，同时给 `claude ultrareview` 加上了强制 workspace trust 校验、把 `sed -i` 改成直接执行且不再能被 `/rewind` 撤销，都是要注意的破坏性变更；2.1.307 新增了面向审计场景的 `claude_code.safety_event` 遥测事件，2.1.308 只是常规小修复。
+亮点：一揽子沙盒/权限检查绕过修复；bypass permissions 模式下 rm/rmdir 改为直接拒绝；`claude ultrareview` 现在强制要求 workspace trust；`sed -i` 直接执行，不再被 `/rewind` 撤销；自托管 runner 的 checkout hook 默认 30 分钟超时；屏幕阅读器相关设置只认特定层级；修复误 @ 到无关 GitHub 用户；fork 子代理协调更可靠</description>
+  </item>
   <item>
    <title>2026-10-22：2.1.305 → 2.1.306（2 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Sun, 13 Sep 2026 07:00:00 +0900</pubDate>
    <description>2.1.270 是一次单条修复的快速热修复：解决了长会话中 Bash 里本应免确认的只读 git 命令（如 git status/log/diff）会突然重新弹出权限确认的回归，这个回归由前一天的 2.1.269 引入；本期无新功能、无破坏性变更，直接升级即可。
 亮点：长会话里只读 git 命令重新弹出权限确认的回归被修复；回归窗口只存在于 2.1.269，其他版本不受影响；纯热修复，无新功能、无需改动任何配置</description>
-  </item>
-  <item>
-   <title>2026-09-11：2.1.268 → 2.1.269（2 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-11</guid>
-   <pubDate>Fri, 11 Sep 2026 07:00:00 +0900</pubDate>
-   <description>2.1.268 修复了自 2.1.265 起第三方 Anthropic 兼容端点全线 400 报错的回归，同时收紧了两处权限相关行为（TodoWrite 系工具收窄到指定模型、Artifact 权限从 WebFetch 规则中拆分）；2.1.269 新增 claude plugin eval，继续修复 prompt-cache 失效和一处权限规则取反漏洞。
-亮点：TodoWrite/任务追踪工具收窄到指定模型；Artifact 权限从 WebFetch 规则中拆分；第三方 Anthropic 兼容端点 400 报错回归修复；又一批 prompt-cache 失效场景被修复；新增 claude plugin eval，插件也能跑评测集；权限规则里的 `!` 取反越权漏洞修复</description>
   </item>
  </channel>
 </rss>

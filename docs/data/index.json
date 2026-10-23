@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.306",
- "last_digest_date": "2026-10-22",
+ "last_version": "2.1.309",
+ "last_digest_date": "2026-10-24",
  "digests": [
+  {
+   "date": "2026-10-24",
+   "from": "2.1.307",
+   "to": "2.1.309",
+   "count": 3,
+   "tldr": "这期信息量很大：2.1.309 一口气修了一长串沙盒/权限检查被绕过的安全问题，同时给 `claude ultrareview` 加上了强制 workspace trust 校验、把 `sed -i` 改成直接执行且不再能被 `/rewind` 撤销，都是要注意的破坏性变更；2.1.307 新增了面向审计场景的 `claude_code.safety_event` 遥测事件，2.1.308 只是常规小修复。"
+  },
   {
    "date": "2026-10-22",
    "from": "2.1.305",
