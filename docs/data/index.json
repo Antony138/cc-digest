@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.309",
- "last_digest_date": "2026-10-24",
+ "last_version": "2.1.310",
+ "last_digest_date": "2026-10-26",
  "digests": [
+  {
+   "date": "2026-10-26",
+   "from": "2.1.310",
+   "to": "2.1.310",
+   "count": 1,
+   "tldr": "2.1.310 是一期常规修复为主的小版本：新增了 Monitor 工具和托管平台上的 plugin monitor 支持，同时修复了一个值得警惕的数据丢失类 bug——`cleanupPeriodDays` 设成很大的值时，后台清理会误删粘贴图片等近期文件；另外 Windows 下 Git Bash 缺失时 PreToolUse/PermissionRequest hook 会被绕过的问题也修了。"
+  },
   {
    "date": "2026-10-24",
    "from": "2.1.307",

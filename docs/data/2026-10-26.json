@@ -1,0 +1,99 @@
+{
+ "date": "2026-10-26",
+ "version_range": {
+  "from": "2.1.310",
+  "to": "2.1.310",
+  "count": 1
+ },
+ "tldr": "2.1.310 是一期常规修复为主的小版本：新增了 Monitor 工具和托管平台上的 plugin monitor 支持，同时修复了一个值得警惕的数据丢失类 bug——`cleanupPeriodDays` 设成很大的值时，后台清理会误删粘贴图片等近期文件；另外 Windows 下 Git Bash 缺失时 PreToolUse/PermissionRequest hook 会被绕过的问题也修了。",
+ "highlights": [
+  {
+   "title": "新增 Monitor 工具，托管平台也能跑 plugin monitor",
+   "category": "新功能",
+   "detail": "新增了 Monitor 工具，并让 plugin monitor 可以在 Bedrock、Vertex、Foundry 上跑，也支持在关闭遥测或非必要流量的场景下使用；同时这些场景下的长时间前台 sleep 也会被拦截（和本地一样）。用 monitor 跑后台任务轮询、或者在托管平台上做部署的用户会用到。",
+   "action": null,
+   "versions": [
+    "2.1.310"
+   ]
+  },
+  {
+   "title": "修复 `cleanupPeriodDays` 设得很大时误删近期文件（含粘贴图片）",
+   "category": "修复",
+   "detail": "后台清理逻辑之前在 `cleanupPeriodDays` 被设成一个很大的值时，反而会把一些最近的文件（比如粘贴进对话的图片）也清掉，和设置的意图正好相反。这是一个潜在丢数据的 bug，升级即修复，无需额外操作。",
+   "action": null,
+   "versions": [
+    "2.1.310"
+   ]
+  },
+  {
+   "title": "Windows：Git Bash 缺失时 hook 判断可被绕过",
+   "category": "安全",
+   "detail": "Windows 上如果没装 Git Bash，且 PreToolUse 或 PermissionRequest hook 的命令只是引号包裹的字符串（比如一个加了引号的路径），hook 本该拦截的工具调用会被放行。这个绕过已修复。",
+   "action": null,
+   "versions": [
+    "2.1.310"
+   ]
+  },
+  {
+   "title": "修复网关/兼容服务拒绝 `effort-2025-11-24` beta 头或中途 system 消息导致请求失败",
+   "category": "修复",
+   "detail": "一些网关和第三方兼容服务器会拒绝携带 `effort-2025-11-24` 这个 beta 值的请求，或拒绝对话中途插入的 system 消息，之前会导致请求直接失败；现在 Claude Code 会自动去掉这些再重试一次，不再整体挂掉。用自建网关或兼容 API 的用户受益最明显。",
+   "action": null,
+   "versions": [
+    "2.1.310"
+   ]
+  },
+  {
+   "title": "修复 \"Prompt 过长\" 后的 compaction 可能让下一次请求再次失败",
+   "category": "修复",
+   "detail": "触发 \"Prompt is too long\" 报错后做的 compaction，之前在对话里有大量密集文本（比如 base64 编码或 SVG）时会压缩不干净，保留太多内容，导致紧接着的下一次请求还是会报同样的错。现在修复了这个压缩不到位的问题。",
+   "action": null,
+   "versions": [
+    "2.1.310"
+   ]
+  },
+  {
+   "title": "Linux：`/sandbox` 能说清 AppArmor 限制用户命名空间导致沙盒起不来",
+   "category": "改进",
+   "detail": "Ubuntu 上 AppArmor 默认会限制普通用户创建命名空间，这会让 bubblewrap 无法启动沙盒；之前只是沙盒起不来，现在 `/sandbox` 和启动时的沙盒警告会直接点出是这个限制，并给出解除方法。",
+   "action": null,
+   "versions": [
+    "2.1.310"
+   ]
+  }
+ ],
+ "versions": [
+  {
+   "version": "2.1.310",
+   "date": "2026-10-23",
+   "bullets": [
+    "Added the Monitor tool and plugin monitors on Bedrock, Vertex, and Foundry, and when telemetry or nonessential traffic is disabled; long foreground sleeps are now blocked there too",
+    "Fixed requests failing behind some gateways and compatible servers that reject the `effort-2025-11-24` beta value or mid-conversation system messages; Claude Code now retries without them",
+    "Fixed background cleanup deleting some recent files, such as pasted images, when `cleanupPeriodDays` is set to a very large value",
+    "Fixed compaction after a \"Prompt is too long\" error keeping too much of a conversation with dense text, such as base64 or SVG, so the next request could fail again",
+    "Fixed file read permission prompts not showing where a symbolic link leads",
+    "Fixed a question's auto-continue timeout firing the moment the external editor closed after a long edit",
+    "Windows: Fixed PreToolUse and PermissionRequest hooks letting a tool call through when Git Bash is missing and the hook's command is only quoted strings, such as a quoted path",
+    "Improved auto mode's prompt before the first read outside the working directories: it now says when blocking those reads makes shell commands ask for permission",
+    "Improved memory use of non-interactive sessions (`-p`, Agent SDK) during compaction when the transcript file is very large",
+    "Improved a mod's `Image` to draw inside tmux with `allow-passthrough` and `focus-events` on, in kitty, Ghostty, and iTerm2 3.5+ with fullscreen rendering, where it showed only its `alt` text",
+    "Linux: Improved `/sandbox` and the sandbox startup warning to name Ubuntu's AppArmor restriction on user namespaces, and how to lift it, when it keeps bubblewrap from starting the sandbox",
+    "Changed the error for an MCP tool call that times out in a non-interactive session while the server's elicitation is unanswered: it now tells Claude that no answer came and not to repeat the call",
+    "[VSCode] Fixed pressing Enter on the plan review card's \"Send feedback and keep planning\" button approving the plan instead of sending your comments back",
+    "[VSCode] Fixed the panel showing \"Something went wrong\" after \"Switch branch & continue\" on a cloud session opened from Session history's Web tab",
+    "[Cloud sessions] Added Claude Code cloud sessions and Remote Control permissions to Enterprise custom roles, so Owners can control access to each by role",
+    "[Cloud sessions] Added a Choose file button to load a cloud environment's setup script from a file",
+    "[Cloud sessions] Fixed failed saves and archives in the cloud environment edit dialog showing no error inside the dialog",
+    "[Cloud sessions] Fixed failed routine API token actions showing only a toast; the error now appears in the routine edit dialog",
+    "[Cloud sessions] Improved the session start checklist to show a cloud environment's setup script output in a scrolling box",
+    "[Cloud sessions] Changed turning on Cloud sessions or Remote Control in admin settings to ask for confirmation and list the custom roles that have that permission",
+    "[Cloud sessions] Changed the cloud environment dialog to open network access, setup script and environment variables from rows instead of listing every editor at once",
+    "[Claude Tag] Fixed Claude Tag treating `!` commands such as `!restart` and `!help` as ordinary messages when sent in bold, italic or strikethrough",
+    "[Claude Tag] Fixed Claude Tag admin channel and workspace pages being replaced by a load error when a background refresh of the bundle list fails",
+    "[Claude Tag] Fixed Claude Tag's spend limits page in admin settings reporting that no channels match a filter while channel names are still loading",
+    "[Code Review] Fixed the Code Review admin section hiding its repositories and switches after a failed refresh of the repository list",
+    "[Code Review] Improved the Code Review admin section to retry the first load and show one Try again banner when it still fails"
+   ]
+  }
+ ]
+}

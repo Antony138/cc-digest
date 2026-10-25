@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sat, 24 Oct 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Mon, 26 Oct 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-10-26：2.1.310 → 2.1.310（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-10-26</guid>
+   <pubDate>Mon, 26 Oct 2026 07:00:00 +0900</pubDate>
+   <description>2.1.310 是一期常规修复为主的小版本：新增了 Monitor 工具和托管平台上的 plugin monitor 支持，同时修复了一个值得警惕的数据丢失类 bug——`cleanupPeriodDays` 设成很大的值时，后台清理会误删粘贴图片等近期文件；另外 Windows 下 Git Bash 缺失时 PreToolUse/PermissionRequest hook 会被绕过的问题也修了。
+亮点：新增 Monitor 工具，托管平台也能跑 plugin monitor；修复 `cleanupPeriodDays` 设得很大时误删近期文件（含粘贴图片）；Windows：Git Bash 缺失时 hook 判断可被绕过；修复网关/兼容服务拒绝 `effort-2025-11-24` beta 头或中途 system 消息导致请求失败；修复 "Prompt 过长" 后的 compaction 可能让下一次请求再次失败；Linux：`/sandbox` 能说清 AppArmor 限制用户命名空间导致沙盒起不来</description>
+  </item>
   <item>
    <title>2026-10-24：2.1.307 → 2.1.309（3 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Wed, 16 Sep 2026 07:00:00 +0900</pubDate>
    <description>2.1.271～2.1.273 这三版的重心是稳定性和安全：Bash 权限检查堵上了好几个能绕过审批的漏洞，`/resume`/`/teleport` 不再遗留旧会话的文件读取状态；对日常使用影响最大的是修复了 auto-compact 把上下文占用算高近一倍、导致过早压缩的问题，Monitor 工具的长期监听也改成了固定超时。
 亮点：auto-compact 误把上下文算满，提前触发压缩；多处 Bash 权限检查漏洞被堵上；`/resume`、`/teleport` 不再带着旧会话的文件读取记录；Monitor 工具取消无限期 persistent 监听，改为固定超时；自动模式沙箱新增按命令的 allowed_domains；子 agent／后台 agent 结果偶尔被误判为失败并丢失</description>
-  </item>
-  <item>
-   <title>2026-09-13：2.1.270 → 2.1.270（1 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-13</guid>
-   <pubDate>Sun, 13 Sep 2026 07:00:00 +0900</pubDate>
-   <description>2.1.270 是一次单条修复的快速热修复：解决了长会话中 Bash 里本应免确认的只读 git 命令（如 git status/log/diff）会突然重新弹出权限确认的回归，这个回归由前一天的 2.1.269 引入；本期无新功能、无破坏性变更，直接升级即可。
-亮点：长会话里只读 git 命令重新弹出权限确认的回归被修复；回归窗口只存在于 2.1.269，其他版本不受影响；纯热修复，无新功能、无需改动任何配置</description>
   </item>
  </channel>
 </rss>
