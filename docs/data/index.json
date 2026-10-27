@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.310",
- "last_digest_date": "2026-10-26",
+ "last_version": "2.1.312",
+ "last_digest_date": "2026-10-27",
  "digests": [
+  {
+   "date": "2026-10-27",
+   "from": "2.1.311",
+   "to": "2.1.312",
+   "count": 2,
+   "tldr": "这期可靠性修复为主，但藏着几处值得留意的变化：2.1.311 修了好几个“卡住不动”的老问题（API 拒绝重试的请求却被无限重试、中断要等超时才生效、标准会话超 200K tokens 直接报错），还把 `ultrathink` 升级成在新模型上跑满 xhigh effort；2.1.312 则撤回了刚上线没几天的 `claude_code.safety_event` 遥测事件，并悄悄改了 `--output-format json`/`stream-json` 的原始转义规则。"
+  },
   {
    "date": "2026-10-26",
    "from": "2.1.310",
