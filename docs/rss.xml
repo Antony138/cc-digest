@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Tue, 27 Oct 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Sat, 31 Oct 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-10-31：2.1.314 → 2.1.314（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-10-31</guid>
+   <pubDate>Sat, 31 Oct 2026 07:00:00 +0900</pubDate>
+   <description>这期只收录了 2.1.314 一个版本，但别被版本号骗了：新增了收紧写权限的 `permissions.blockWritesOutsideWorkingDirectories`，修了一个 worktree 里沙盒保护失效的安全问题，还有两处容易踩坑的行为变化——Bash 工具不再认你自定义的 `which`，`FORCE_HYPERLINK=false` 的语义也反过来了。
+亮点：新增 `permissions.blockWritesOutsideWorkingDirectories`：堵住一类写权限绕过；`claude -p --resume`/`--continue` 进入 worktree 时沙盒保护曾经失效；后台 diff 刷新抢 `.git/index.lock` 导致并发 git 命令报错的问题修了；"到限额自动继续"在任务自我重启时可能悄悄绕过 3 次上限；Bash 工具不再继承你 shell 里自定义的 `which`；`FORCE_HYPERLINK=false` 现在才真的关闭超链接</description>
+  </item>
   <item>
    <title>2026-10-27：2.1.311 → 2.1.312（2 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Sat, 19 Sep 2026 07:00:00 +0900</pubDate>
    <description>本期横跨 2.1.275-2.1.277 三个版本：新增 AGENTS.md 项目指令支持、claude.ai 账号的 skills/plugins 自动同步到终端会话；TaskOutput 工具被正式移除属于破坏性变更；2.1.275 发布当天就把走网关/代理的请求全部搞挂了，2.1.276 火速修复。
 亮点：TaskOutput 工具被移除；新增 AGENTS.md 项目指令支持；claude.ai 账号的 skills / plugins 会自动同步到终端；2.1.275 引入的网关请求全挂，2.1.276 当天修复；子代理与 workflow 输出加固防注入；发送消息的交互体验改进</description>
-  </item>
-  <item>
-   <title>2026-09-17：2.1.274 → 2.1.274（1 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-17</guid>
-   <pubDate>Thu, 17 Sep 2026 07:00:00 +0900</pubDate>
-   <description>2.1.274 是一次修复为主的版本，最值得关注的是终结了会话卡死重试 "unexpected tool_use_id" 400 错误的老问题（支持自愈或给出明确报错），同时两处 MCP 相关默认行为发生破坏性变更，Bedrock/Vertex/Foundry 用户和用 `.mcp.json` 声明过 `"type": "sdk"` 条目的用户需要留意。
-亮点：会话卡死重复 400 报错的问题被修复；Bedrock / Vertex / Foundry 默认切换到 v2 MCP 客户端；`.mcp.json` 等配置里的 `"type": "sdk"` 条目不再生效；Bash 权限检查再堵两个绕过场景；MCP 连接与工具调用的一揽子可靠性修复；新增内存紧张提醒与 MCP 启动等待时间配置</description>
   </item>
  </channel>
 </rss>

@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.312",
- "last_digest_date": "2026-10-27",
+ "last_version": "2.1.314",
+ "last_digest_date": "2026-10-31",
  "digests": [
+  {
+   "date": "2026-10-31",
+   "from": "2.1.314",
+   "to": "2.1.314",
+   "count": 1,
+   "tldr": "这期只收录了 2.1.314 一个版本，但别被版本号骗了：新增了收紧写权限的 `permissions.blockWritesOutsideWorkingDirectories`，修了一个 worktree 里沙盒保护失效的安全问题，还有两处容易踩坑的行为变化——Bash 工具不再认你自定义的 `which`，`FORCE_HYPERLINK=false` 的语义也反过来了。"
+  },
   {
    "date": "2026-10-27",
    "from": "2.1.311",
