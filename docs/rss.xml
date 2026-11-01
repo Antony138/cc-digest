@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sat, 31 Oct 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Mon, 02 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-11-02：2.1.316 → 2.1.316（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-11-02</guid>
+   <pubDate>Mon, 02 Nov 2026 07:00:00 +0900</pubDate>
+   <description>这期只有 2.1.316 一个版本，但信息量不小：Opus 4.8 的 fast mode 进入退役倒计时（11 月 30 日后直接报错），修复了子代理被唤醒时模型错误跳回主会话的问题，还堵上了 `--restricted` 会话可能从工作目录外上传文件的安全缺口。
+亮点：Opus 4.8 的 fast mode 进入倒计时，11 月 30 日后直接报错；新增 `CLAUDE_CODE_SUBAGENT_EFFORT`，统一设定子代理的默认 effort；子代理被后台任务唤醒时，模型会错误地跳回主会话设置；`--restricted` 会话可能从工作目录外上传文件；`/code-review` 在 Claude Desktop 和网页 Code 标签里终于有结果卡片了；云端会话新增表单卡片，MCP 服务器要你填信息时不会再被静默取消</description>
+  </item>
   <item>
    <title>2026-10-31：2.1.314 → 2.1.314（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Sun, 20 Sep 2026 07:00:00 +0900</pubDate>
    <description>2.1.278 是一次计费口径调整：Claude API / Enterprise 账号，以及 Bedrock、Google Cloud Agent Platform、Microsoft Foundry 上的 auto mode，默认改为把安全检查交给服务端做，不再为此单独计费；如果中间挂了网关/代理，会 fallback 回旧的计费方式并弹出提示。
 亮点：Auto mode 的安全检查默认转到服务端执行，不再计费；自建网关/代理若不透传请求头，会 fallback 到旧计费方式并弹提示；/status 新增 Auto mode server 行</description>
-  </item>
-  <item>
-   <title>2026-09-19：2.1.275 → 2.1.277（3 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-19</guid>
-   <pubDate>Sat, 19 Sep 2026 07:00:00 +0900</pubDate>
-   <description>本期横跨 2.1.275-2.1.277 三个版本：新增 AGENTS.md 项目指令支持、claude.ai 账号的 skills/plugins 自动同步到终端会话；TaskOutput 工具被正式移除属于破坏性变更；2.1.275 发布当天就把走网关/代理的请求全部搞挂了，2.1.276 火速修复。
-亮点：TaskOutput 工具被移除；新增 AGENTS.md 项目指令支持；claude.ai 账号的 skills / plugins 会自动同步到终端；2.1.275 引入的网关请求全挂，2.1.276 当天修复；子代理与 workflow 输出加固防注入；发送消息的交互体验改进</description>
   </item>
  </channel>
 </rss>
