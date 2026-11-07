@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.318",
- "last_digest_date": "2026-11-06",
+ "last_version": "2.1.319",
+ "last_digest_date": "2026-11-08",
  "digests": [
+  {
+   "date": "2026-11-08",
+   "from": "2.1.319",
+   "to": "2.1.319",
+   "count": 1,
+   "tldr": "这期只有 2.1.319 一个版本，但分量不轻：auto mode 的服务端安全审核默认扩大到关闭遥测/功能开关（包括走 LLM gateway）的场景，自定节奏的 `/loop` 也不再自动续期，另外还修了一个 Bash 权限绕过和一个 worktree 沙盒逃逸。"
+  },
   {
    "date": "2026-11-06",
    "from": "2.1.318",

@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Fri, 06 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Sun, 08 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-11-08：2.1.319 → 2.1.319（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-11-08</guid>
+   <pubDate>Sun, 08 Nov 2026 07:00:00 +0900</pubDate>
+   <description>这期只有 2.1.319 一个版本，但分量不轻：auto mode 的服务端安全审核默认扩大到关闭遥测/功能开关（包括走 LLM gateway）的场景，自定节奏的 `/loop` 也不再自动续期，另外还修了一个 Bash 权限绕过和一个 worktree 沙盒逃逸。
+亮点：auto mode 服务端审核扩大到关闭遥测/功能开关（包括 LLM gateway 后面）的场景；`/loop` 自定节奏模式改为跑完就结束，不再自动续期；新增 `permissions.denyInsteadOfPrompting`：自动化场景下不再卡在权限弹窗上干等；终端里新增 MCP 工具调用的后台任务支持；修复两个安全问题：Bash 权限检查可被环境变量前缀绕过、创建 worktree 时存在沙盒逃逸；修复一批容易让人摸不着头脑的稳定性问题</description>
+  </item>
   <item>
    <title>2026-11-06：2.1.318 → 2.1.318（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Sun, 27 Sep 2026 07:00:00 +0900</pubDate>
    <description>2.1.283 撤回了上期（2.1.282）对 anthropic-skills/claude-ai 命名空间的限制，同时把 auto mode 默认开启的场景又扩大了一步——第三方模型提供方或关闭遥测时，没有显式配置权限模式就会默认进入 auto mode；此外新增了审计 prompt 写法的 `/doctor prompt-audit`、给管理员用的模型版本锁定/拉黑配置，还有一批 MCP、sandbox、Windows 删除防护相关的修复。
 亮点：无权限模式配置时，默认进入 auto mode；2.1.282 对 anthropic-skills/claude-ai 命名空间的限制被撤回；新增 `/doctor prompt-audit`；managed settings 新增按版本锁模型 / 单独拉黑模型；一批 MCP / sandbox 稳定性修复；Windows: PowerShell 工具堵住了几类危险删除</description>
-  </item>
-  <item>
-   <title>2026-09-25：2.1.281 → 2.1.282（2 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-25</guid>
-   <pubDate>Fri, 25 Sep 2026 07:00:00 +0900</pubDate>
-   <description>2.1.281 和 2.1.282 是一轮偏重稳定性的连续更新：修复了大量会话恢复/resume 时打掉 prompt cache、甚至让每轮请求直接报错的老问题，同时给 anthropic-skills/claude-ai 命名空间的技能加载规则、项目级 OpenTelemetry 环境变量收紧了限制（需要检查配置是否受影响），auto mode 的权限判断也默认切到了服务端分类器。
-亮点：anthropic-skills / claude-ai 命名空间技能加载规则收紧；项目 / 本地 settings.json 里的 OpenTelemetry 变量被忽略；auto mode 权限判断默认换成服务端分类器；危险 rm 检测和 auto mode 超时策略加强；大量 resume/续接场景打掉 prompt cache 的问题被修复；新增 `"attribution": false`，一键隐藏 commit/PR attribution</description>
   </item>
  </channel>
 </rss>
