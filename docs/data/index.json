@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.321",
- "last_digest_date": "2026-11-09",
+ "last_version": "2.1.322",
+ "last_digest_date": "2026-11-11",
  "digests": [
+  {
+   "date": "2026-11-11",
+   "from": "2.1.322",
+   "to": "2.1.322",
+   "count": 1,
+   "tldr": "2.1.322 只有一条更新:Vertex 上的 fast mode 扩展到 global/us/eu 三个区域,如果 Vertex 拒绝就自动回落到标准速度,无需手动切换。"
+  },
   {
    "date": "2026-11-09",
    "from": "2.1.321",

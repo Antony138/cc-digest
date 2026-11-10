@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Mon, 09 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Wed, 11 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-11-11：2.1.322 → 2.1.322（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-11-11</guid>
+   <pubDate>Wed, 11 Nov 2026 07:00:00 +0900</pubDate>
+   <description>2.1.322 只有一条更新:Vertex 上的 fast mode 扩展到 global/us/eu 三个区域,如果 Vertex 拒绝就自动回落到标准速度,无需手动切换。
+亮点：fast mode 登陆 Vertex 的 global/us/eu 区域；Vertex 拒绝 fast mode 请求时自动回落到标准速度；纯新增能力,无需改动配置</description>
+  </item>
   <item>
    <title>2026-11-09：2.1.321 → 2.1.321（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Wed, 30 Sep 2026 07:00:00 +0900</pubDate>
    <description>2.1.285 是一次体量很大的杂项合集，没有单一亮点，但有三处需要主动应对的变更：后台 Bash/PowerShell 命令加了运行时长上限、自定义网关会话默认切到 1M 上下文、MCP server 名 `widgets` 被系统保留；另外修复了内联脚本反复弹权限确认这个高频体验问题。
 亮点：后台 Bash / PowerShell 命令新增运行时长上限；自定义 ANTHROPIC_BASE_URL 网关会话默认切换到 1M 上下文；MCP server 名 `widgets` 被系统保留；修复内联脚本反复触发 sandbox 权限确认；新增 `claude --desktop` 和 `claude plugin configure`；streaming 重试预算收敛，后台 subagent 收尾更及时</description>
-  </item>
-  <item>
-   <title>2026-09-28：2.1.284 → 2.1.284（1 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-28</guid>
-   <pubDate>Mon, 28 Sep 2026 07:00:00 +0900</pubDate>
-   <description>2.1.284 发布了 Claude Sonnet 5.5 并将其设为 Anthropic API 上的默认 Sonnet 模型（100 万上下文，价格不变）；同时终端和 VS Code 会话默认进入 auto mode 的范围从「第三方模型 / 关闭遥测」扩大到了所有套餐和提供方，没有显式配置权限模式的用户需要留意；Ultracode 也从效果滑杆的附属选项变成了可在任意 effort 等级下单独切换的独立开关。
-亮点：发布 Claude Sonnet 5.5，成为 Anthropic API 默认 Sonnet 模型；无权限模式配置时默认进入 auto mode 的范围扩大到所有套餐 / 提供方；Ultracode 变成 /effort 里的独立开关；新增 `/mcp reconnect all`；修复 `ANTHROPIC_FOUNDRY_RESOURCE` 未校验直接拼进请求地址的问题；一批会话稳定性修复</description>
   </item>
  </channel>
 </rss>

@@ -1,0 +1,47 @@
+{
+ "date": "2026-11-11",
+ "version_range": {
+  "from": "2.1.322",
+  "to": "2.1.322",
+  "count": 1
+ },
+ "tldr": "2.1.322 只有一条更新:Vertex 上的 fast mode 扩展到 global/us/eu 三个区域,如果 Vertex 拒绝就自动回落到标准速度,无需手动切换。",
+ "highlights": [
+  {
+   "title": "fast mode 登陆 Vertex 的 global/us/eu 区域",
+   "category": "新功能",
+   "detail": "fast mode 的支持范围这期扩展到了 Google Cloud Vertex AI 的 global、us、eu 三个区域。用 Vertex 作为后端的团队现在也能用 `/fast` 享受到更快的响应速度。",
+   "action": null,
+   "versions": [
+    "2.1.322"
+   ]
+  },
+  {
+   "title": "Vertex 拒绝 fast mode 请求时自动回落到标准速度",
+   "category": "改进",
+   "detail": "如果某个 Vertex 区域或项目配置暂时不支持/拒绝 fast mode 请求,Claude Code 会自动退回标准速度完成请求,而不是报错中断,体验上更稳妥,不用自己加重试逻辑。",
+   "action": null,
+   "versions": [
+    "2.1.322"
+   ]
+  },
+  {
+   "title": "纯新增能力,无需改动配置",
+   "category": "新功能",
+   "detail": "这条更新不涉及权限、默认行为或配置项的变化,Vertex 用户升级后会自动获得 fast mode 支持(如果所在区域可用),不用额外开关或配置。",
+   "action": null,
+   "versions": [
+    "2.1.322"
+   ]
+  }
+ ],
+ "versions": [
+  {
+   "version": "2.1.322",
+   "date": "2026-11-10",
+   "bullets": [
+    "Added fast mode on Vertex in the global, us and eu regions, falling back to standard speed if Vertex refuses it"
+   ]
+  }
+ ]
+}
