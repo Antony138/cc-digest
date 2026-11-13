@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Wed, 11 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Sat, 14 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-11-14：2.1.323 → 2.1.325（2 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-11-14</guid>
+   <pubDate>Sat, 14 Nov 2026 07:00:00 +0900</pubDate>
+   <description>2.1.323 带来实验性的 Code Mode（Claude 改用 JS 直接调工具）和一次上下文窗口策略大调整，2.1.325 则把沙盒内的 Bash 命令改回默认走权限确认，外加一轮安全修复——这两期都有需要你主动核对配置的改动。
+亮点：新增 Code Mode：Claude 改写 JS 脚本来调用工具（实验性，默认关）；沙盒内的 Bash 命令改回默认走正常权限确认；未识别模型 ID 的上下文窗口假设从 200K 改为 1M，第三方 gateway 模型要小心；scheduled tasks 和 `/loop` 运行带 `allowed-tools`/hook 的 skill 前现在会先问你；安全修复：zstd 压缩响应解码漏洞 + 内部 git/ripgrep 命令不再带登录令牌运行；不受信任目录下的只读 git 命令现在也要先确认</description>
+  </item>
   <item>
    <title>2026-11-11：2.1.322 → 2.1.322（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Fri, 02 Oct 2026 07:00:00 +0900</pubDate>
    <description>2.1.286 和 2.1.287 这两版加起来信息量很大：新增了 Claude Mods 插件框架（内置了会在后台提醒你容易漏掉的事情的 You should know），同时 Opus/Fable 在自定义网关上默认切到 1M 上下文、MCP 新协议的弹窗能力都是需要留意的破坏性变更,此外还修了一批权限绕过和密钥遮罩不全的安全问题。
 亮点：新增 Claude Mods，内置 "You should know" 侧 agent；Opus 4.7+ / Fable 在自定义网关上默认启用 1M 上下文；MCP 新协议支持服务器弹出登录等 URL 提示,部分自建 server 可能断连；`alwaysLoad: false` 的 MCP server 现在整台 server 的工具都会被延迟加载；修复一批权限绕过与密钥遮罩不全的安全问题；模型被 API 拒绝时不再导致整轮直接失败</description>
-  </item>
-  <item>
-   <title>2026-09-30：2.1.285 → 2.1.285（1 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-09-30</guid>
-   <pubDate>Wed, 30 Sep 2026 07:00:00 +0900</pubDate>
-   <description>2.1.285 是一次体量很大的杂项合集，没有单一亮点，但有三处需要主动应对的变更：后台 Bash/PowerShell 命令加了运行时长上限、自定义网关会话默认切到 1M 上下文、MCP server 名 `widgets` 被系统保留；另外修复了内联脚本反复弹权限确认这个高频体验问题。
-亮点：后台 Bash / PowerShell 命令新增运行时长上限；自定义 ANTHROPIC_BASE_URL 网关会话默认切换到 1M 上下文；MCP server 名 `widgets` 被系统保留；修复内联脚本反复触发 sandbox 权限确认；新增 `claude --desktop` 和 `claude plugin configure`；streaming 重试预算收敛，后台 subagent 收尾更及时</description>
   </item>
  </channel>
 </rss>
