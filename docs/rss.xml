@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sat, 14 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Tue, 17 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-11-17：2.1.326 → 2.1.326（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-11-17</guid>
+   <pubDate>Tue, 17 Nov 2026 07:00:00 +0900</pubDate>
+   <description>2.1.326 是一次把大量积累变更一次性合并发布的超大版本（改动条目破千），最值得留意的是无人值守自动化场景（scheduled tasks/`--bg`/bypass permissions）的权限检查又收紧了一轮，以及沙盒默认收紧了部分敏感 home 目录的写入权限，这两处都需要你主动核对配置；另外还修复了长会话 resume 丢失历史的老问题。
+亮点：无人值守自动化场景的权限检查又收紧了一轮；沙盒默认禁止写入部分敏感 home 目录；可靠性修复：长会话 resume 不再丢失最近或早期对话；Remote Control 回复改成实时流式推送到手机/浏览器；安全加固：登录凭据文件、设备/进程文件、worktree 共享分支都加了保护</description>
+  </item>
   <item>
    <title>2026-11-14：2.1.323 → 2.1.325（2 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Sun, 04 Oct 2026 07:00:00 +0900</pubDate>
    <description>2.1.288 版本号只跳了一位,内容却不轻:集中修复了一批 resume/长对话可靠性问题(丢上下文、丢最后一条回复、丢 thinking),还堵上了 bypassPermissions 下用 bash -c 包装危险 rm 绕过确认的安全漏洞;唯一需要留意的破坏性变更是 auto mode 本地分类器不再认 Sonnet 5.5/Opus 5.5 的模型 pin。
 亮点：`/code-review --max-findings &lt;n&gt;|all` 可调报告数量上限；Ctrl+C 清空输入框后,按 Up 能找回草稿；一批 resume/长对话可靠性修复；修复 bypassPermissions 下危险 `rm` 绕过确认的安全问题；auto mode 本地分类器不再认 Sonnet 5.5/Opus 5.5 的模型 pin；cloud session 内置 `gh api`,修了插件/subagent 的几个连锁 bug</description>
-  </item>
-  <item>
-   <title>2026-10-02：2.1.286 → 2.1.287（2 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-10-02</guid>
-   <pubDate>Fri, 02 Oct 2026 07:00:00 +0900</pubDate>
-   <description>2.1.286 和 2.1.287 这两版加起来信息量很大：新增了 Claude Mods 插件框架（内置了会在后台提醒你容易漏掉的事情的 You should know），同时 Opus/Fable 在自定义网关上默认切到 1M 上下文、MCP 新协议的弹窗能力都是需要留意的破坏性变更,此外还修了一批权限绕过和密钥遮罩不全的安全问题。
-亮点：新增 Claude Mods，内置 "You should know" 侧 agent；Opus 4.7+ / Fable 在自定义网关上默认启用 1M 上下文；MCP 新协议支持服务器弹出登录等 URL 提示,部分自建 server 可能断连；`alwaysLoad: false` 的 MCP server 现在整台 server 的工具都会被延迟加载；修复一批权限绕过与密钥遮罩不全的安全问题；模型被 API 拒绝时不再导致整轮直接失败</description>
   </item>
  </channel>
 </rss>
