@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.326",
- "last_digest_date": "2026-11-17",
+ "last_version": "2.1.327",
+ "last_digest_date": "2026-11-19",
  "digests": [
+  {
+   "date": "2026-11-19",
+   "from": "2.1.327",
+   "to": "2.1.327",
+   "count": 1,
+   "tldr": "2.1.327 延续上期的方向，继续给无人值守自动化场景（ExitWorktree、PowerShell 工具、subagent 恢复、auto mode 规则等）加审批点，同时 `/status` 新增了配置体检清单，外加一长串编辑器、终端和 MCP 连接的稳定性修复。"
+  },
   {
    "date": "2026-11-17",
    "from": "2.1.326",

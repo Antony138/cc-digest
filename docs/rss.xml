@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Tue, 17 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Thu, 19 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-11-19：2.1.327 → 2.1.327（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-11-19</guid>
+   <pubDate>Thu, 19 Nov 2026 07:00:00 +0900</pubDate>
+   <description>2.1.327 延续上期的方向，继续给无人值守自动化场景（ExitWorktree、PowerShell 工具、subagent 恢复、auto mode 规则等）加审批点，同时 `/status` 新增了配置体检清单，外加一长串编辑器、终端和 MCP 连接的稳定性修复。
+亮点：无人值守自动化场景的权限收紧，这次轮到好几个具体动作；`/status` 新增配置体检清单；`claude mcp add-json` 支持从 stdin 读取 JSON；强制审批 artifact 的组织里又多了两处收紧；一批稳定性修复：远程 MCP 重连、Grep 分页、大文件读取</description>
+  </item>
   <item>
    <title>2026-11-17：2.1.326 → 2.1.326（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Tue, 06 Oct 2026 07:00:00 +0900</pubDate>
    <description>2.1.289 是上一版 Claude Mods 插件框架落地后的集中补丁：堵上了好几处 Mods/沙箱权限检查能被绕过的安全漏洞，同时修了一长串会让会话卡死、崩溃或界面错乱的稳定性问题，没有破坏性变更，升级即可获益。
 亮点：修复一批 Mods/沙箱权限检查绕过问题；新增 `agent.spawn` 等 Mods 开发者 API；密集修复 Mods 框架引发的卡死、崩溃与界面错乱；[VSCode] 撤销 2.1.288 对 `claude auth status` 的改动；修复发布的 Artifact 页面被畸形代码块冻结浏览器标签页</description>
-  </item>
-  <item>
-   <title>2026-10-04：2.1.288 → 2.1.288（1 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-10-04</guid>
-   <pubDate>Sun, 04 Oct 2026 07:00:00 +0900</pubDate>
-   <description>2.1.288 版本号只跳了一位,内容却不轻:集中修复了一批 resume/长对话可靠性问题(丢上下文、丢最后一条回复、丢 thinking),还堵上了 bypassPermissions 下用 bash -c 包装危险 rm 绕过确认的安全漏洞;唯一需要留意的破坏性变更是 auto mode 本地分类器不再认 Sonnet 5.5/Opus 5.5 的模型 pin。
-亮点：`/code-review --max-findings &lt;n&gt;|all` 可调报告数量上限；Ctrl+C 清空输入框后,按 Up 能找回草稿；一批 resume/长对话可靠性修复；修复 bypassPermissions 下危险 `rm` 绕过确认的安全问题；auto mode 本地分类器不再认 Sonnet 5.5/Opus 5.5 的模型 pin；cloud session 内置 `gh api`,修了插件/subagent 的几个连锁 bug</description>
   </item>
  </channel>
 </rss>
