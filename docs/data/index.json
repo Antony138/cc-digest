@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.327",
- "last_digest_date": "2026-11-19",
+ "last_version": "2.1.329",
+ "last_digest_date": "2026-11-21",
  "digests": [
+  {
+   "date": "2026-11-21",
+   "from": "2.1.328",
+   "to": "2.1.329",
+   "count": 2,
+   "tldr": "2.1.328 和 2.1.329 一起发布，改动面很广：Code Mode 的 hook 行为和 /code-review 的职责划分都有破坏性调整，auto mode 覆盖面进一步扩大，同时修了一批拖了很久的可靠性问题（配置文件损坏、macOS keychain 登录死循环、Code Mode 内存失控）。"
+  },
   {
    "date": "2026-11-19",
    "from": "2.1.327",

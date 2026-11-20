@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Thu, 19 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Sat, 21 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-11-21：2.1.328 → 2.1.329（2 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-11-21</guid>
+   <pubDate>Sat, 21 Nov 2026 07:00:00 +0900</pubDate>
+   <description>2.1.328 和 2.1.329 一起发布，改动面很广：Code Mode 的 hook 行为和 /code-review 的职责划分都有破坏性调整，auto mode 覆盖面进一步扩大，同时修了一批拖了很久的可靠性问题（配置文件损坏、macOS keychain 登录死循环、Code Mode 内存失控）。
+亮点：已保存的 scheduled task 在新登录会话里大多要重新设置；Code Mode 的 hook 行为变了，两处都要留意；auto mode 覆盖面继续扩大，交互式会话默认就开着；`/code-review` 拆分职责：找 bug 和找优化分成了两个命令；一批拖了很久的可靠性问题这次修了；2.1.326 加的 `max_tokens` 自动重试被移除了</description>
+  </item>
   <item>
    <title>2026-11-19：2.1.327 → 2.1.327（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Thu, 08 Oct 2026 07:00:00 +0900</pubDate>
    <description>四连发更新：新增 Claude Haiku 5.5，并堵上了好几处权限/沙箱安全漏洞；但 2.1.293 撤销了云端 `/loop` 容器重启自动恢复的修复，依赖定时任务的云端 routine 要留意，stdio MCP 的协议协商方式也默认变了。
 亮点：新增 Claude Haiku 5.5；密集修复一批权限/沙箱安全漏洞；云端 routine 的 `/loop` 容器重启恢复被撤回；本地 stdio MCP server 默认协议协商方式变更；长对话稳定性修复：压缩后动作被当没做、MCP 连接内存泄漏</description>
-  </item>
-  <item>
-   <title>2026-10-06：2.1.289 → 2.1.289（1 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-10-06</guid>
-   <pubDate>Tue, 06 Oct 2026 07:00:00 +0900</pubDate>
-   <description>2.1.289 是上一版 Claude Mods 插件框架落地后的集中补丁：堵上了好几处 Mods/沙箱权限检查能被绕过的安全漏洞，同时修了一长串会让会话卡死、崩溃或界面错乱的稳定性问题，没有破坏性变更，升级即可获益。
-亮点：修复一批 Mods/沙箱权限检查绕过问题；新增 `agent.spawn` 等 Mods 开发者 API；密集修复 Mods 框架引发的卡死、崩溃与界面错乱；[VSCode] 撤销 2.1.288 对 `claude auth status` 的改动；修复发布的 Artifact 页面被畸形代码块冻结浏览器标签页</description>
   </item>
  </channel>
 </rss>
