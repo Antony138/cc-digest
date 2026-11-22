@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sat, 21 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Mon, 23 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-11-23：2.1.330 → 2.1.330（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-11-23</guid>
+   <pubDate>Mon, 23 Nov 2026 07:00:00 +0900</pubDate>
+   <description>这期只有 2.1.330 一个版本，新增了会自动画图的内置 mod easel，但真正值得花时间看的是一批拖了很久的可靠性修复（长对话压缩后卡死、WebFetch 卡死、设置并发写丢失、resume 因时间戳异常失败），另外上期刚撤掉的 `max_tokens` 自动重试这次又加回来了。
+亮点：新增内置图表 mod easel，会在需要时自动画图；`max_tokens` 自动重试又被加回来了；定时任务和 `/loop` 的存活时间从 7 天延长到 30 天；`deniedMcpServers` 按名字屏蔽 connector 的范围变窄了；一批拖了很久的卡死/丢数据问题这次修了；`claude --teleport` 在部分场景下不再自动切分支</description>
+  </item>
   <item>
    <title>2026-11-21：2.1.328 → 2.1.329（2 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Sat, 10 Oct 2026 07:00:00 +0900</pubDate>
    <description>三连发更新的重点是两处安全加固：自然语言写的 prompt/agent hook 曾可能放行本该拦截的操作，这次修复了；hook 也新增了失败时默认拦截的选项。另外 claude.ai 连接器的 MCP 协议协商方式默认换新，旧 server 可能连不上，Sonnet 5.5 的缓存读取价格也减半了。
 亮点：修复自然语言 hook 曾可能放行本该拦截的操作；hook 新增失败时默认拦截的选项；claude.ai 连接器默认改用新版 MCP 协议协商；`←` 切后台时，正在跑的内容会被打断而不是继续跑完；Sonnet 5.5 缓存读取价格减半；一批安全修复：Windows bypass 模式漏判、密钥脱敏遗漏、权限检查绕过</description>
-  </item>
-  <item>
-   <title>2026-10-08：2.1.290 → 2.1.293（4 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-10-08</guid>
-   <pubDate>Thu, 08 Oct 2026 07:00:00 +0900</pubDate>
-   <description>四连发更新：新增 Claude Haiku 5.5，并堵上了好几处权限/沙箱安全漏洞；但 2.1.293 撤销了云端 `/loop` 容器重启自动恢复的修复，依赖定时任务的云端 routine 要留意，stdio MCP 的协议协商方式也默认变了。
-亮点：新增 Claude Haiku 5.5；密集修复一批权限/沙箱安全漏洞；云端 routine 的 `/loop` 容器重启恢复被撤回；本地 stdio MCP server 默认协议协商方式变更；长对话稳定性修复：压缩后动作被当没做、MCP 连接内存泄漏</description>
   </item>
  </channel>
 </rss>
