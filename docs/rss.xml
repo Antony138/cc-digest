@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Mon, 23 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Tue, 24 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-11-24：2.1.331 → 2.1.331（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-11-24</guid>
+   <pubDate>Tue, 24 Nov 2026 07:00:00 +0900</pubDate>
+   <description>2.1.331 以稳定性修复为主：回复中途失连导致的超时失败、`/compact` 摘要偶尔丢内容、rewind 失败后误删文件这几个老问题都解决了；同时有两处需要留意的行为变更——托管插件市场将在 11 月 30 日起默认自动更新，以及 `PermissionDenied` hook 的 `retry` 语义变窄了。
+亮点：托管插件市场即将默认自动更新，11 月 30 日起生效；`PermissionDenied` hook 的 `retry: true` 语义变窄了；回复中途「失声」导致的超时/失败，现在会自动重试一次；`@file#10-12` 这种带行号的 @ 引用，终于不会把整个文件都带进来了；两个可能丢数据的老问题修了：`/compact` 摘要缺块、rewind 误删文件；几个确认框的 Yes/No 顺序换了，默认答案没变但按键顺序变了</description>
+  </item>
   <item>
    <title>2026-11-23：2.1.330 → 2.1.330（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Thu, 15 Oct 2026 07:00:00 +0900</pubDate>
    <description>2.1.299/2.1.300 两连发的重点是一处容易踩坑的破坏性变更和一批安全加固：MCP 工具权限规则改成精确匹配 server 全名，server 名里带双下划线的配置可能失效；同时修了好几处沙箱/权限逃逸问题，终端还新增了空闲自动压缩上下文。
 亮点：MCP 权限规则改成精确匹配 server 全名，双下划线命名的 server 要重新检查；`claude remote-control` 移除了本来就没用的 --sandbox/--no-sandbox 参数；终端新增空闲自动压缩，省下重新发消息时的重算成本；一批沙箱/权限逃逸修复，建议尽快升级；修复云端/无头会话里已批准的工具调用被执行两次的回归；hook 的执行顺序和输入校验都收紧了，自己写 hook 的人要重新验证一下</description>
-  </item>
-  <item>
-   <title>2026-10-10：2.1.294 → 2.1.296（3 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-10-10</guid>
-   <pubDate>Sat, 10 Oct 2026 07:00:00 +0900</pubDate>
-   <description>三连发更新的重点是两处安全加固：自然语言写的 prompt/agent hook 曾可能放行本该拦截的操作，这次修复了；hook 也新增了失败时默认拦截的选项。另外 claude.ai 连接器的 MCP 协议协商方式默认换新，旧 server 可能连不上，Sonnet 5.5 的缓存读取价格也减半了。
-亮点：修复自然语言 hook 曾可能放行本该拦截的操作；hook 新增失败时默认拦截的选项；claude.ai 连接器默认改用新版 MCP 协议协商；`←` 切后台时，正在跑的内容会被打断而不是继续跑完；Sonnet 5.5 缓存读取价格减半；一批安全修复：Windows bypass 模式漏判、密钥脱敏遗漏、权限检查绕过</description>
   </item>
  </channel>
 </rss>
