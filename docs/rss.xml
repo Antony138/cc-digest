@@ -5,7 +5,15 @@
   <link>https://antony138.github.io/cc-digest/</link>
   <description>Claude Code 更新的中文 AI 摘要，每 2-3 天一期。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Tue, 24 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Thu, 26 Nov 2026 07:00:00 +0900</lastBuildDate>
+  <item>
+   <title>2026-11-26：2.1.332 → 2.1.332（1 个版本）</title>
+   <link>https://antony138.github.io/cc-digest/</link>
+   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-11-26</guid>
+   <pubDate>Thu, 26 Nov 2026 07:00:00 +0900</pubDate>
+   <description>2.1.332 是一次攒了不少改动的大版本：修了一长串会导致卡死/假死的问题（hook 输出刷屏、本地 MCP 服务器卡住、超长 @ 引用、SSE 连接断线不恢复等），还加了 MCP 服务器自带技能（beta）；但如果你在用企业网关（Bedrock、Foundry、Google Cloud Agent Platform）、自托管 runner 或 OpenTelemetry 监控，这期有多处默认模型、别名和遥测字段的调整,升级前最好核对一下自己的配置。
+亮点：一大批「假死」问题修好了：hook 刷屏、MCP 服务器卡住、超长 @ 引用等；新增 MCP 服务器自带技能（beta）；后台任务、子 agent 和云端会话的一批可靠性修复；VS Code：新增几个顺手的小功能（Fix with Claude Code、一键解决合并冲突等）；破坏性变更集中在企业网关/自托管场景：模型别名、默认模型、OpenTelemetry 字段都有调整</description>
+  </item>
   <item>
    <title>2026-11-24：2.1.331 → 2.1.331（1 个版本）</title>
    <link>https://antony138.github.io/cc-digest/</link>
@@ -157,14 +165,6 @@
    <pubDate>Sat, 17 Oct 2026 07:00:00 +0900</pubDate>
    <description>2.1.301/2.1.302 两连发最值得关注的是一处权限相关的破坏性变更：`claude -p` 和 Agent SDK 在第三方 provider 上，没有显式指定权限模式时默认行为从 auto 变成了 default；另外 fork subagent 在更多场景下默认开启，云端 routine 失败重跑导致重复执行的问题也修了。
 亮点：`claude -p` / Agent SDK 在第三方 provider 上的默认权限模式从 auto 变成 default；fork subagent 在 claude -p / SDK / 桌面端 / VS Code 默认开启，普通 subagent 的前后台规则也变了；修复云端 routine 失败重跑导致重复执行的问题；`/config` 新增 Idle compaction 开关，ToolSearch 加载工具导致的 prompt cache miss 也修了；claude.ai/design（Claude Design）将于 2026 年 12 月 14 日关闭；Read 工具不再把任意大小的图片整个读进内存，超过 128MB 直接拒绝</description>
-  </item>
-  <item>
-   <title>2026-10-15：2.1.299 → 2.1.300（2 个版本）</title>
-   <link>https://antony138.github.io/cc-digest/</link>
-   <guid isPermaLink="false">https://antony138.github.io/cc-digest/#2026-10-15</guid>
-   <pubDate>Thu, 15 Oct 2026 07:00:00 +0900</pubDate>
-   <description>2.1.299/2.1.300 两连发的重点是一处容易踩坑的破坏性变更和一批安全加固：MCP 工具权限规则改成精确匹配 server 全名，server 名里带双下划线的配置可能失效；同时修了好几处沙箱/权限逃逸问题，终端还新增了空闲自动压缩上下文。
-亮点：MCP 权限规则改成精确匹配 server 全名，双下划线命名的 server 要重新检查；`claude remote-control` 移除了本来就没用的 --sandbox/--no-sandbox 参数；终端新增空闲自动压缩，省下重新发消息时的重算成本；一批沙箱/权限逃逸修复，建议尽快升级；修复云端/无头会话里已批准的工具调用被执行两次的回归；hook 的执行顺序和输入校验都收紧了，自己写 hook 的人要重新验证一下</description>
   </item>
  </channel>
 </rss>

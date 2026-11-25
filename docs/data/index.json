@@ -1,7 +1,14 @@
 {
- "last_version": "2.1.331",
- "last_digest_date": "2026-11-24",
+ "last_version": "2.1.332",
+ "last_digest_date": "2026-11-26",
  "digests": [
+  {
+   "date": "2026-11-26",
+   "from": "2.1.332",
+   "to": "2.1.332",
+   "count": 1,
+   "tldr": "2.1.332 是一次攒了不少改动的大版本：修了一长串会导致卡死/假死的问题（hook 输出刷屏、本地 MCP 服务器卡住、超长 @ 引用、SSE 连接断线不恢复等），还加了 MCP 服务器自带技能（beta）；但如果你在用企业网关（Bedrock、Foundry、Google Cloud Agent Platform）、自托管 runner 或 OpenTelemetry 监控，这期有多处默认模型、别名和遥测字段的调整,升级前最好核对一下自己的配置。"
+  },
   {
    "date": "2026-11-24",
    "from": "2.1.331",
